@@ -221,7 +221,7 @@ def fig_inventory() -> None:
         ("S3", "Drug response /\npharmacogenomics", 11, "Diversify", "mostly PRISM", GOLD),
         ("S4", "Human genetic\ntarget support", 0, "Deferred", "GenomicsBench", GRAY_DARK),
         ("S5", "Causal target\nvalidation", 12, "Ready", "v1 coverage", TEAL),
-        ("S6", "Perturbational\nMoA / PD", 17, "Ready", "strongest coverage", TEAL),
+        ("S6", "MoA /\npharmacodynamics", 17, "Ready", "strongest coverage", TEAL),
         ("S7", "Compound-target\ncharacterization", 1, "Build", "largest gap", RED),
         ("S8", "Developability\n& safety", 16, "Diversify", "cardiotox-heavy", ACCENT),
         ("S9", "Translational\nefficacy", 6, "Diversify", "one NSCLC source", ACCENT),
