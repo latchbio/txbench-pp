@@ -264,7 +264,7 @@ evidence blocks.
 
 \subsection{Agents do not yet reliably recover preclinical pharmacology decisions}
 
-We evaluated 16 model–harness configurations, comprising 11 models across three agent harnesses, on 100 preclinical pharmacology tasks. Each configuration was run three independent times per task, yielding 4,800 agent trajectories in total. A trajectory was scored as passing only if its submitted answer satisfied every task-specific grader; failed or crashed runs were counted as non-passes. We report pass rate as the fraction of passing trajectories, with 95\% confidence intervals computed across the 100 tasks.
+We evaluated 16 model–harness configurations, comprising 11 models across three agent harnesses, on 100 preclinical pharmacology tasks. Each configuration was run three independent times per task, yielding 4,800 agent trajectories in total. A trajectory was scored as passing only if its submitted answer satisfied every task-specific grader. We report pass rate as the fraction of passing trajectories, with 95\% confidence intervals computed across the 100 tasks.
 
 The four strongest configurations were Claude Opus 4.8 on Pi, with a pass rate of 59.3\% (178/300; 95\% CI, 51.0–67.6); GPT-5.5 on Pi, 55.3\% (166/300; 47.0–63.6); Claude Opus 4.8 on Claude Code, 54.7\% (164/300; 45.9–63.4); and Gemini-3.5-Flash on Pi, 51.3\% (154/300; 42.9–59.8). These systems did not separate into a clear winner. Instead, the top configurations formed a broad, overlapping performance tier, with no configuration rising decisively above the ~50–60\% range. Even the best system left more than 40\% of decisions unrecovered.
 
