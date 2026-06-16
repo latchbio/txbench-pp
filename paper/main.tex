@@ -270,12 +270,23 @@ The four strongest configurations were Claude Opus 4.8 on Pi, with a pass rate o
 
 Thus, across providers, model generations, and agent harnesses, no system approached the reliability required for preclinical decision-making. The absence of a clear leader, together with a performance ceiling near 60\%, suggests that current agent systems do not reliably recover preclinical pharmacology decisions.
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures/model_performance.png}
-    \caption{\textbf{Figure X: Pass rates and run-to-run reproducibility across model--harness configurations.} \textbf{A}, Trajectory-level pass rate for each of the 16 model--harness configurations across all 4,800 agent trajectories, with 95\% confidence intervals computed across the 100 preclinical pharmacology tasks. A trajectory was counted as passing only if its submitted answer satisfied all task-specific graders. \textbf{B}, Task-level reproducibility over the same model order, partitioning the 100 tasks for each model--harness configuration by whether zero, one, two, or all three independent attempts passed.}
-    \label{fig:passrates}
-\end{figure}
+\EndBody
+
+\begin{center}
+  \includegraphics[width=0.96\textwidth]{figures/model_performance.pdf}
+
+  \captionof{figure}{\textbf{Pass rates and reliability across model--harness configurations.}
+  \textbf{(A)} Strict pass rate for each of the 16 model--harness configurations across
+  all 4{,}800 agent trajectories, with 95\% bootstrap confidence intervals computed
+  over the 100 tasks. Each trajectory was scored pass only when its submitted
+  answer satisfied every task-specific grader. Alternate harnesses (Claude Code,
+  Codex) are shown as offset points for the models that ran them.
+  \textbf{(B)} Task-level reliability for the Pi harness, partitioning the 100
+  evaluations for each model by how many of the three independent rounds passed.}
+  \label{fig:leaderboard}
+\end{center}
+
+\StartBody
 
 \begin{table}[ht]
     \centering
@@ -305,79 +316,69 @@ Thus, across providers, model generations, and agent harnesses, no system approa
     \label{tab:passrates}
 \end{table}
 
-
-\todo{Topline paragraph from the model leaderboard (\texttt{fig1\_leaderboard}):
-state the scope (11 model families, 100 evaluations $\times$ 3 rounds on the Pi
-harness), the pass-rate definition, and the ordering from the leader
-(claude-opus-4-8, $\sim$60\%) down to the floor (grok-4.3, $\sim$19\%), with raw
-counts and confidence intervals. Emphasize that even the best system leaves
-roughly 40\% of decisions unrecovered.}
-
 \subsection{Most failures map to a compact failure-mode taxonomy}
 
-To understand why agents fail, we read every failing (model, evaluation) run on
-the Pi harness and labeled it against the evaluation's documented scientific
-intent, resulting in 1{,}834 labeled failures. Each failure is classified along two
-complementary axes. The \emph{scientific error} captures what is wrong with the
-answer, and the \emph{behavioral cause} captures how the model arrived there
-(Figure~\ref{fig:failure-taxonomy}). 
+To understand why agents fail, we manually reviewed every failing (model,
+evaluation) run on the Pi harness and labeled each against the evaluation's
+documented scientific intent, yielding 1{,}834 labeled failures. We classify
+each failure along two complementary axes: the \emph{scientific error}, which
+captures what is wrong with the answer, and the \emph{behavioral cause}, which
+captures how the model arrived there (Figure~\ref{fig:failure-taxonomy}).
 
 The scientific axis comprises five recurring error families
 (Figure~\ref{fig:failure-taxonomy}A, restricted to the $n=1{,}436$ failures that
-contain a scientific error). The largest is method, which resolves into two main
-sub-modes plus a small tail. A \emph{skipped-QC} method error (17\%) omits a
-required preprocessing or quality-control step. In one case, a model aggregated
-CRISPR guides to gene-level scores without first dropping guides that map to
-multiple loci, so paralog-family artifacts flooded the essential-gene list. A
-\emph{wrong-reference-frame} method error (21\%) runs the pipeline but compares
-against the wrong baseline, comparator, or normalization. A small
-\emph{wrong-assay-layer} tail (2\%) reads the wrong assay feature or modality
-entirely. A \emph{calibration} error (31\%) draws a cutoff a domain expert would
-set differently. In one competition-binding panel, models carried
-forward all 33 nonzero kinases when only the 8 strong binders above a clear
-affinity gap were supported. A \emph{perception} error (10\%) misreads a raw image,
-for example counting apoptotic debris as viable organoids or mis-segmenting
-two-channel colocalization. \emph{Prior over data} (10\%) answers from textbook or
-famous biology against the staged evidence. One model computed the strongest
-data-supported biomarker, a vanadium compound correlated with SLC26A2 at
-$r=-0.48$, and then discarded it for the textbook elesclomol-FDX1 cuproptosis pair.
-\emph{Over-reading} (10\%) states a stronger claim than the data supports, for
-example reporting tumor regression from a sub-baseline median when the per-animal
-measurements show only growth arrest. Method and calibration together account for
-71\% of scientific errors. 
+contain a scientific error). The largest, flawed method, resolves into two main
+sub-modes and a small tail. A \emph{skipped-QC} error (17\%) omits a required
+preprocessing or quality-control step: in one case, a model aggregated CRISPR
+guides to gene-level scores without first dropping guides that map to multiple
+loci, so paralog-family artifacts flooded the essential-gene list. A
+\emph{wrong-reference-frame} error (21\%) runs the pipeline correctly but
+compares against the wrong baseline, comparator, or normalization. The small
+\emph{wrong-assay-layer} tail (2\%) reads the wrong readout from the right
+experiment. On a proteasome-kinetics task asking which compound degrades
+substrate faster, the answer lives in the ubiquitin-remnant layer of a
+dual-readout mass-spectrometry run. A model that answers from the phosphoproteome
+layer of the same run reaches a different conclusion on what is a
+different question.
 
-The behavioral axis records how the failure happened, over all $n=1{,}834$ runs
-(Figure~\ref{fig:failure-taxonomy}B). Two-thirds (67\%) are \emph{engaged,
-analytically wrong}. The model did the work in good faith and made an analytical
+Beyond flawed method, four families remain. A \emph{calibration} error (31\%)
+draws a cutoff a domain expert would set differently. For instance, in one competition-binding
+panel, models carried forward all 33 nonzero kinases when only the 8 strong
+binders above a clear affinity gap were supported. A \emph{perception} error
+(10\%) misreads a raw image, such as counting apoptotic debris as viable
+organoids or mis-segmenting two-channel colocalization. \emph{Prior over data}
+(10\%) answers from textbook or famous biology against the staged evidence: one
+model computed the strongest data-supported biomarker---a vanadium compound
+correlated with SLC26A2 at $r=-0.48$---then discarded it for the textbook
+elesclomol-FDX1 cuproptosis pair. \emph{Over-reading} (10\%) states a stronger
+claim than the data supports, such as reporting tumor regression from a
+sub-baseline median when the per-animal measurements show only growth arrest.
+Together, method and calibration account for 71\% of scientific errors.
+
+The behavioral axis records how each failure happened, across all $n=1{,}834$
+runs (Figure~\ref{fig:failure-taxonomy}B). Two-thirds (67\%) are \emph{engaged,
+analytically wrong}: the model did the work in good faith and made an analytical
 error. The remaining third splits into one evidence-handling failure and three
-process failures. \emph{Prior-driven override} (6\%) is the one behavior in which
-the model engaged the data, often computed the supporting result, and then
-deferred to a textbook or famous-biology prior. It is the behavioral signature of
-the scientific \emph{prior over data} error, and the two coincide almost exactly.
-\emph{Weak commitment} (9\%) performs the right analysis but submits the wrong
-final answer. In one run a model's reasoning correctly identified CTNNB1 as the
-supported dependency while its output named E2F3. \emph{Abandoned-correct} (12\%)
-is the sharpest case. The model demonstrably had a passing result within reach and
-then committed to a worse one. \emph{Under-investment} (6\%) reaches an answer with
-little tool use or verification, for example a mitotic-kinase family call written
-from prior knowledge after merely listing the compounds. Per-run effort separates
-these modes. Under-investment is the only one written with markedly less work
-(median 6 reasoning steps against 14--17 for the others). Abandoned-correct and
-prior-driven override occur in the \emph{most} effortful runs (median 16 steps), so
-they are not relieved by additional compute. That a third of failures are
-non-analytical, and that abandoned-correct alone covers 212 runs in which the right
-result was within reach, implies that a meaningful fraction is recoverable through
-better verification and final-answer selection rather than added capability.
+process failures. \emph{Prior-driven override} (6\%), the lone evidence-handling
+case, engages the data and often computes the supporting result, then defers to a
+textbook or famous-biology prior. \emph{Weak commitment} (9\%) performs the right
+analysis but submits a final answer that does not match it, a mismatch that
+appears even in the strongest models and points to a missing final-answer check.
+\emph{Abandoned-correct} (12\%) has a passing result within reach and then
+commits to a worse, more canonical one such as a published figure or standard
+global method. Like prior-driven override, it occurs most often in the longest
+runs. \emph{Under-investment} (6\%) reaches an answer with little tool use,
+submitting a plausible call before running the per-dose computation or QC the
+task requires.
 
-The failures have a unifying frame. These are fluency-optimized systems applied to
-a domain that rewards adversarial restraint. The fluent move is confident,
-coherent, and consistent with prior knowledge, while the right experimental move
-defers to the data over the textbook, draws conservative cuts, and distrusts its
-own first answer. TxBench-PP's traps sit where these diverge, so the failures are a
-systematic readout of that misalignment. The models have the knowledge and the
-tooling, and often compute the right intermediate result, but they lack the
-epistemic stance of an experimentalist, namely prior-skepticism, calibrated
-commitment, and self-verification.
+The two axes distribute differently across models
+(Figure~\ref{fig:failure-taxonomy}C,D). The behavioral mix varies by model.
+Under-investment is concentrated in the two weakest models, at 32\% of grok-4.3's
+failures and 17\% of grok-4.20-reasoning's against 0--1\% for the others.
+Abandoned-correct is spread across the frontier at 7--17\%, highest in gpt-5.5
+and gemini-3.1-pro (17\% each). The scientific-error mix is nearly constant,
+with method and calibration accounting for 58--77\% of every model's scientific
+errors regardless of pass rate.
 \EndBody
 
 \begin{center}
@@ -393,11 +394,15 @@ commitment, and self-verification.
   \textbf{(B)} The behavioral-cause axis (how the model failed) shows that a third
   of failures are non-analytical: a prior-driven override of the model's own
   evidence, plus three process breakdowns (weak commitment, abandoned-correct,
-  under-investment). \textbf{(C)} The behavioral mix is a model signature:
+  under-investment).   \textbf{(C)} The behavioral mix is a model signature:
   under-investment dominates only the weakest model, while the strongest models
-  fail almost entirely through engaged, analytically wrong reasoning. A
-  scientific-error $\times$ behavioral-cause cross-tabulation is provided in the
-  supplement (\texttt{fig\_fm\_crosstab}).}
+  fail almost entirely through engaged, analytically wrong reasoning.
+  \textbf{(D)} The scientific-error mix, by contrast, is largely model-invariant:
+  method and calibration errors dominate every model regardless of overall
+  accuracy, so the \emph{kinds} of scientific mistakes are shared across the
+  frontier even as their rate falls (each bar normalized within that model's
+  scientific-error failures). A scientific-error $\times$ behavioral-cause
+  cross-tabulation is provided in the supplement (\texttt{fig\_fm\_crosstab}).}
   \label{fig:failure-taxonomy}
 \end{center}
 
@@ -410,6 +415,18 @@ Pass rates range from 27\% at the hardest stage to 55\% at the most forgiving
 Walking the arc in order shows that each stage has characteristic strengths and weaknesses.
 We look at a representative easy and hard evaluation for each stage, with the
 fraction of passing runs in parentheses.
+
+Stage-level model rankings track the overall ranking closely
+(Figure~\ref{fig:by-stage}C; mean Spearman $\rho = 0.80$ across stages, range
+0.56 at S7 to 0.92 at S8), and the two Grok models rank lowest at every stage.
+Three features stand out against this baseline. The two highest cells in the
+matrix are gemini-3.5-flash and gpt-5.5 at drug response (S3), at 87\% (95\% CI
+70--95, $n=30$) and 86\% (69--95, $n=29$), well above their own overall rates of
+52\% and 55\%. The clearest stage effect is within a single model. gemini-3.5-flash
+falls from 87\% at S3 to 28\% (16--44, $n=36$) at causal target validation (S5), a
+swing whose confidence intervals do not overlap. The widest within-family spread
+is at screening (S2), where claude-opus-4-8 scores 50\% (31--69) and the older
+claude-opus-4-6 12\% (4--31).
 
 \emph{Primary screening and hit prioritization (27\%)} is the hardest stage. Models are
 competent at the mechanical steps, such as robustly collapsing noisy replicates
@@ -509,7 +526,11 @@ and advanced on that false basis.
   characteristically along the arc, from wrong reference frame at screening (S2)
   to skipped QC at target validation (S5), calibration at target engagement (S7),
   and perception at the image-heavy translational stage (S9), while calibration
-  persists as a thread at every stage.}
+  persists as a thread at every stage.
+  \textbf{(C)} Strict pass rate for every model at each stage, ordered by overall
+  pass rate. The overall ordering is largely preserved across stages, with two
+  robust rearrangements: gemini-3.5-flash and gpt-5.5 lead at drug response (S3),
+  and gemini-3.5-flash drops sharply at causal target validation (S5).}
   \label{fig:by-stage}
 \end{center}
 
@@ -517,22 +538,25 @@ and advanced on that false basis.
 
 \subsection{Some task categories remain far harder than others}
 
-Difficulty depends more on the kind of judgment a task requires than on its
-biological domain. Grouped by task type rather than by pipeline stage, mean pass
-rate across the 11 models spans roughly fourfold over the categories with at least
-four evaluations, from 71\% on exposure and PK tasks to 19\% on hit prioritization
-and 17\% on cheminformatics (Figure~\ref{fig:by-task-type}). The high-scoring
-categories have a clear, well-defined answer, either a number computed and
-compared against a threshold (exposure and PK margins) or a single entity the
-evidence points to, such as a biomarker or a binary safety or engagement call. The
-low-scoring categories instead ask the model to pick a calibrated subset from many
-candidates, with no single answer to recover. Examples are which screen hits to
-advance (hit prioritization), which genes are selective dependencies (target
-dependency), whether a response is shared or lineage-selective (differential
-response), and which substructures are genuine safety liabilities
-(cheminformatics). The pattern matches the failure taxonomy. Tasks with a definite
-target are tractable, while those that require committing to a calibrated cut under
-uncertainty are not.
+Difficulty is governed more by the type of judgment a task requires than by its
+biological domain. Grouping the 100 evaluations by task type and restricting to
+the 14 categories backed by at least four evaluations (86 of the 100 evaluations),
+the mean Pi-harness pass rate across the 11 models spans 4.1-fold, from 71\% on
+exposure and PK tasks down to 19\% on hit prioritization and 17\% on
+cheminformatics (Figure~\ref{fig:by-task-type}). The split tracks answer structure
+rather than subject matter. The four highest categories all have a determinate
+target: exposure-PK (71\%), biomarker discovery (56\%), safety assessment (55\%),
+and target engagement (52\%) average 58\%, and each resolves to either a number
+computed and compared against a threshold or a single entity the evidence points
+to (a biomarker, or a binary safety or engagement call). The four lowest instead
+require selecting a calibrated subset from many candidates with no single answer to
+recover: target dependency (30\%), differential response (28\%), hit prioritization
+(19\%), and cheminformatics (17\%) average 24\%, a 34-percentage-point (2.5-fold)
+gap below the determinate group. These ask, respectively, which genes are selective
+dependencies, whether a response is shared or lineage-selective, which screen hits
+to advance, and which substructures are genuine safety liabilities. The ordering
+matches the failure taxonomy, where tasks with a definite target are tractable, while
+those that require committing to a calibrated cut under uncertainty are not.
 
 \EndBody
 
@@ -555,7 +579,7 @@ dominates, with the strongest models (claude-opus-4-8, gpt-5.5) high across most
 categories and the weakest (grok-4.3, grok-4.20-reasoning) low throughout. Down a
 column, the task sets a ceiling that a better model does not overcome. On the two
 hardest categories, hit prioritization and cheminformatics, no model exceeds 45\%,
-which points to a limit shared across current models,
+which points to a limit shared across current models.
 
 \EndBody
 
@@ -572,39 +596,49 @@ which points to a limit shared across current models,
 
 \StartBody
 
-\subsection{The strongest models win through disciplined scientific process}
+\subsection{Among strong models, accuracy tracks process discipline rather than effort}
 
-Pass rate is only weakly related to expended effort, and not monotonically.
-Across the 11 models, neither mean cost nor mean number of agent steps predicts
-accuracy above a low threshold (Figure~\ref{fig:frontier}). The two cheapest and
-fastest models, grok-4.3 (\$0.02 and 6 steps per evaluation) and
-grok-4.20-reasoning (\$0.11 and 11 steps), score lowest (19\% and 20\%), with
-failures dominated by under-investment (Figure~\ref{fig:failure-taxonomy}C). Above
-that level the two quantities diverge. gemini-3.5-flash uses the most steps
-(median 42, roughly 2.5 times opus-4-8) but scores 52\% against opus-4-8's 60\%,
-gpt-5.5 exceeds gpt-5.4 with fewer steps (15 versus 24), and claude-opus-4-6
-reaches 45\% in about 10 steps, above claude-sonnet-4-6 and kimi-k2p6 at higher
-step counts.
+Pass rate is only weakly and non-monotonically related to expended effort
+(Figure~\ref{fig:frontier}). Across the 11 models, mean agent steps and strict
+pass rate correlate at Spearman $\rho=0.54$, falling to $\rho=0.32$ once the two
+low-engagement Grok models are excluded. Those two models set a floor: grok-4.3
+(mean \$0.02, median 6 steps per evaluation) and grok-4.20-reasoning (\$0.11,
+median 11 steps) score lowest, at 18.3\% and 19.7\%, and their failures are
+dominated by under-investment (32\% and 17\% of failures, against 0--1\% for every
+other model; Figure~\ref{fig:failure-taxonomy}C). Above this floor, effort and
+accuracy decouple: gemini-3.5-flash runs the longest (median 43 steps, $\approx$
+2.5$\times$ opus-4-8's 17) yet reaches 51.3\% against opus-4-8's 59.3\%; gpt-5.5
+exceeds gpt-5.4 (55.3\% vs.\ 49.7\%) at fewer steps (median 15 vs.\ 24); and
+claude-opus-4-6 reaches 44.7\% at a median of 10 steps, above claude-sonnet-4-6
+(36.0\%) and kimi-k2p6 (29.7\%) at higher step counts.
 
-The differences among the stronger models track process discipline,
-which is comparable across systems. The most accurate runs reason through the
-question's scientific intent, draw a calibrated cut, verify intermediate results
-against the data, and commit to a single answer. claude-opus-4-8, the top model,
-defers to the staged evidence over priors. On the bosutinib task it set aside the
-compound's documented BCR-ABL and SRC activity and reported the non-canonical
-off-target engagement the data show, the distinction that determines whether a
-program attributes the compound's activity to its reputed targets or to the ones
-it actually engages. On the crizotinib control it applied only the threshold the
+What separates the strong models is instead the composition of their failures,
+not their analytic ceiling (Figure~\ref{fig:failure-taxonomy}C). The top Claude
+models fail almost entirely through engaged-but-incorrect analysis: 73--77\% of
+their failures are analytical, leaving only 23--27\% non-analytical
+(claude-opus-4-6 the cleanest, 23.0\% of $n=165$ failures; opus-4-7 26.8\%,
+opus-4-8 26.7\%). The GPT models reach comparable accuracy along a more
+process-laden path. Weak commitment (gpt-5.5 12\%, gpt-5.4 16\%) and
+abandoned-correct (17\% and 15\%) raise their non-analytical share to 39.7\%
+(gpt-5.5, $n=126$) and 41.8\% (gpt-5.4, $n=146$). Their remaining headroom is
+therefore concentrated in finalization---verifying the read and committing to the
+answer the analysis already supports---more than in raw analytic capability.
+Under-investment is effectively absent from every strong model ($\leq$1\% of
+failures) and appears only in the two cheapest.
+
+These quantitative patterns correspond to identifiable behaviors on individual
+tasks. The most accurate runs reason through the question's scientific intent,
+draw a calibrated cut, verify intermediate results against the data, and commit to
+a single answer. On the bosutinib task, claude-opus-4-8 set aside the compound's
+documented BCR-ABL and SRC activity and reported the non-canonical off-target
+engagement the data show---the distinction that determines whether a program
+attributes the compound's activity to its reputed targets or to the ones it
+actually engages---and on the crizotinib control it applied only the threshold the
 task specified, rather than the additional gate other models introduced that
-removes five genuine engagement hits and understates the compound's cellular
-target profile. gpt-5.5, the second-ranked model, is the best-calibrated on
-precision-sensitive tasks and verifies its reads before answering. On an EGFR and
-phospho-MEK colocalization task it established the panel layout and marker
-assignments before quantifying co-activation in code, the readout that decides
-whether the compound is advanced as on-pathway. Consistent with this, the
-strongest models fail predominantly through engaged but incorrect analysis rather
-than under-investment or weak commitment, which are concentrated in the
-lower-ranked models (Figure~\ref{fig:failure-taxonomy}C).
+removes five genuine engagement hits. gpt-5.5, best-calibrated on
+precision-sensitive tasks, established the panel layout and marker assignments
+before quantifying EGFR/phospho-MEK co-activation in code, the readout that decides
+whether the compound is advanced as on-pathway.
 
 \EndBody
 
@@ -649,14 +683,27 @@ the long-term combination task, models read a strong colony-stain reduction as a
 complete kill and drop a model the combination still supports
 (\texttt{HAI2027\_FIG1\_DUR01}, 48\%).
 
-Most models can compute the individual pieces, and they diverge at the
-commitment step, where the analysis has to become one advance-or-hold call.
-gpt-5.5 most often commits to a defensible, prioritized subset. kimi-k2p6
-computes the right per-model numbers and then returns the full ranked list
-instead of the small advanceable set. claude-opus-4-8, the strongest model
-overall, tends to over-rank on a single metric or carry too many candidates
-forward on these integrative tasks, and the Grok models answer with little of the
-multi-evidence work the decision requires.
+Most models can compute the individual pieces and diverge at the commitment
+step, where the analysis has to become one advance-or-hold call, and that step
+reorders the leaderboard. Ranking the eleven models by their pass rate on the
+six multi-evidence advancement decisions (18 runs each) yields an order almost
+unrelated to overall accuracy (Spearman $\rho = 0.08$;
+Figure~\ref{fig:program-model-compare}A), so leading the benchmark does not
+predict making the better program call. claude-opus-4-8, first overall at 60\%,
+ranks last on these decisions at 22\% (4/18). It clears both single-compound
+calls, advancing the one qualifying organoid compound (2/3) and holding when no
+candidate is safe (2/3), but it fails all four decisions that instead ask which
+preclinical models (cell lines and PDX models) should anchor the next program
+stage (the single-agent, priority, long-term, and decision-gate sets in
+Figure~\ref{fig:program-model-compare}B), passing none of them (0/3 each)
+because it over-ranks on a single metric or carries too many candidates forward.
+gpt-5.5 is the only model strong on both kinds of task (15/18, 83\%), committing
+to a defensible prioritized set rather than a full ranking. kimi-k2p6, ninth
+overall at 31\%, rises to second here (12/17, 71\%): its careful per-model
+computation pays off when the task rewards naming the supported models, though it
+still fails the restraint call by advancing a candidate on the no-go safety task
+(0/3). The two Grok models stay at the bottom (5/18 each) by answering
+with little of the multi-evidence work the decision requires.
 
 \EndBody
 
@@ -674,6 +721,23 @@ multi-evidence work the decision requires.
   \label{fig:program-decisions}
 \end{center}
 
+\begin{center}
+  \includegraphics[width=0.96\textwidth]{figures/fig_program_model_compare.pdf}
+
+  \captionof{figure}{\textbf{Aggregate accuracy does not predict program-decision
+  competence.} Pass rates on the six multi-evidence advancement decisions
+  (Pi harness, 18 runs per model). \textbf{(A)} Strict pass rate on all 100
+  evaluations versus on the six program decisions; the integrative go/no-go calls
+  reorder the leaderboard almost completely (Spearman $\rho = 0.08$), with the
+  overall-best model, claude-opus-4-8, falling to last and kimi-k2p6 rising from
+  ninth to second. \textbf{(B)} Per-decision pass rate by model. The two
+  single-compound calls (advance one, or hold; marked $\bullet$) are passed
+  broadly, but the four tasks that require nominating the supported subset of
+  models (marked with a diamond) separate the field; claude-opus-4-8 fails all
+  four.}
+  \label{fig:program-model-compare}
+\end{center}
+
 \StartBody
 
 \subsection{The agent harness has a surprising impact on model performance}
@@ -684,21 +748,22 @@ The magnitude of this improvement is comparable to a model-generation upgrade. F
 
 Instead, the residual performance differences can be traced to subtler scaffolding properties. For example, Pi's lean, three-tool loop failed on only 0.6\% of runs—compared to 1.8\% for Claude Code, and reached an answer in fewer steps. Conversely, OpenAI Codex's lack of a vision pathway further penalized its performance on figure-decisive tasks. Although these effects are modest in absolute terms and present wide confidence intervals, they are directionally robust and persist across different model families. Ultimately, an implementation detail nominally orthogonal to the model itself can shift the endpoint pass rate by a margin equivalent to a full model generation.
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures/fig_harness_impact.png}
-    \caption{\textbf{Figure X: The agent harness has a surprising impact on model performance.}: \textbf{A} Endpoint pass rates for each model evaluated under two different harnesses. Comparisons are matched within each model (i.e., each model executed an identical task set under both harnesses). The Pi harness (purple) outperformed the comparator harnesses across every shared model, exceeding Claude Code (orange) on the Anthropic Opus models and OpenAI Codex (lilac) on the GPT models. The labeled values represent the within-model performance difference in percentage points (pp). \textbf{B} The performance impact of a harness substitution (purple; mean within-model difference of +4.4 pp for Pi vs. Claude Code, and +5.5 pp for Pi vs. OpenAI Codex) compared to the impact of model-generation upgrades evaluated on the Pi harness (grey; Opus 4.6 to 4.7 = +4.7 pp, GPT-5.4 to 5.5 = +5.7 pp, Opus 4.7 to 4.8 = +10.0 pp). Holding the model fixed and changing only the harness shifts overall performance by a margin comparable to a full model-generation upgrade.}
-    \label{fig:passrates}
-\end{figure}
-
-\todo{From the harness-effect comparison (\texttt{fig4\_harness\_effect}):
-running the same model under different scaffolds (Pi vs Codex/CC) shifts the
-task-matched pass rate by roughly 3--12 points, with some models far more
-harness-sensitive than others (e.g. claude-opus-4-7) even though the overall
-ordering is largely preserved. Note the implication for fair model comparison:
-reported scores are a property of the model-plus-harness, not the model alone.}
-
 \EndBody
+
+\begin{center}
+  \includegraphics[width=0.96\textwidth]{figures/fig_harness_impact.pdf}
+
+  \captionof{figure}{\textbf{Harness choice is as consequential as a model-generation upgrade.}
+  \textbf{(A)} Task-matched pass rate on Pi versus the alternate harness for each
+  model pair. Points are matched on the shared evaluation set; the labeled gap is
+  the within-model Pi advantage in percentage points.
+  \textbf{(B)} Head-to-head comparison of the Pi advantage over an alternate harness
+  (terracotta) against the gain from a model-generation upgrade on Pi (grey).
+  A harness substitution shifts pass rate by a margin comparable to upgrading one
+  model generation, so reported scores should be interpreted as a property of
+  the model-plus-harness, not the model alone.}
+  \label{fig:harness-impact}
+\end{center}
 
 \StartBody
 
