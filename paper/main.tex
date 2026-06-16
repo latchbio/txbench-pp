@@ -240,58 +240,139 @@ evaluation manifest is frozen.}
 
 \section{Results}
 
-\subsection{Agents do not yet reliably recover preclinical pharmacology decisions}
+\subsection{No agent reliably recovers preclinical pharmacology decisions}
 
-\todo{Insert topline result paragraph. Recommended structure: state the number
-of model-harness pairs, total trajectories, pass-rate definition, top four
-systems with percentage first and counts/CIs in parentheses, then explain
-whether the leading systems form a broad tier or a stable ordering.}
+\todo{Topline paragraph from the model leaderboard (\texttt{fig1\_leaderboard}):
+state the scope (11 model families, 100 evaluations $\times$ 3 rounds on the Pi
+harness), the pass-rate definition, and the ordering from the leader
+(claude-opus-4-8, $\sim$60\%) down to the floor (grok-4.3, $\sim$19\%), with raw
+counts and confidence intervals. Emphasize that even the best system leaves
+roughly 40\% of decisions unrecovered.}
 
-\todo{Insert a horizontal model leaderboard figure after result tables exist.
-Use the EpiBench bar-plot orientation and report pass rate as percentage with
-fractions and confidence intervals in the table.}
+\subsection{Most failures map to a compact failure-mode taxonomy}
 
-\subsection{Failures reflect program-relevant judgment gaps}
+To understand why agents fail, we read every failing (model, evaluation) run on
+the Pi harness and labeled it against the evaluation's documented scientific
+intent, resulting in 1{,}834 labeled failures. Each failure is classified along two
+complementary axes. The \emph{scientific error} captures what is wrong with the
+answer, and the \emph{behavioral cause} captures how the model arrived there
+(Figure~\ref{fig:failure-taxonomy}). 
 
-TxBench-PP is designed so that many failures should be interpretable as
-drug-program judgment failures rather than arbitrary execution failures. The
-expected failure families are: literature priors over assay evidence,
-assay-context calibration failures, missing multi-property integration, and
-rigid thresholds that ignore margin or protocol context.
+The scientific axis comprises five recurring error families
+(Figure~\ref{fig:failure-taxonomy}A, restricted to the $n=1{,}436$ failures that
+contain a scientific error). The largest is method, which resolves into two main
+sub-modes plus a small tail. A \emph{skipped-QC} method error (17\%) omits a
+required preprocessing or quality-control step. In one case, a model aggregated
+CRISPR guides to gene-level scores without first dropping guides that map to
+multiple loci, so paralog-family artifacts flooded the essential-gene list. A
+\emph{wrong-reference-frame} method error (21\%) runs the pipeline but compares
+against the wrong baseline, comparator, or normalization. A small
+\emph{wrong-assay-layer} tail (2\%) reads the wrong assay feature or modality
+entirely. A \emph{calibration} error (31\%) draws a cutoff a domain expert would
+set differently. In one competition-binding panel, models carried
+forward all 33 nonzero kinases when only the 8 strong binders above a clear
+affinity gap were supported. A \emph{perception} error (10\%) misreads a raw image,
+for example counting apoptotic debris as viable organoids or mis-segmenting
+two-channel colocalization. \emph{Prior over data} (10\%) answers from textbook or
+famous biology against the staged evidence. One model computed the strongest
+data-supported biomarker, a vanadium compound correlated with SLC26A2 at
+$r=-0.48$, and then discarded it for the textbook elesclomol-FDX1 cuproptosis pair.
+\emph{Over-reading} (10\%) states a stronger claim than the data supports, for
+example reporting tumor regression from a sub-baseline median when the per-animal
+measurements show only growth arrest. Method and calibration together account for
+71\% of scientific errors. 
 
-\todo{Replace this boilerplate with trajectory-derived counts after manual
-review. Report the number of reviewed evaluations and make clear that these
-labels are diagnostic rather than exhaustive.}
+The behavioral axis records how the failure happened, over all $n=1{,}834$ runs
+(Figure~\ref{fig:failure-taxonomy}B). Two-thirds (67\%) are \emph{engaged,
+analytically wrong}. The model did the work in good faith and made an analytical
+error. The remaining third splits into one evidence-handling failure and three
+process failures. \emph{Prior-driven override} (6\%) is the one behavior in which
+the model engaged the data, often computed the supporting result, and then
+deferred to a textbook or famous-biology prior. It is the behavioral signature of
+the scientific \emph{prior over data} error, and the two coincide almost exactly.
+\emph{Weak commitment} (9\%) performs the right analysis but submits the wrong
+final answer. In one run a model's reasoning correctly identified CTNNB1 as the
+supported dependency while its output named E2F3. \emph{Abandoned-correct} (12\%)
+is the sharpest case. The model demonstrably had a passing result within reach and
+then committed to a worse one. \emph{Under-investment} (6\%) reaches an answer with
+little tool use or verification, for example a mitotic-kinase family call written
+from prior knowledge after merely listing the compounds. Per-run effort separates
+these modes. Under-investment is the only one written with markedly less work
+(median 6 reasoning steps against 14--17 for the others). Abandoned-correct and
+prior-driven override occur in the \emph{most} effortful runs (median 16 steps), so
+they are not relieved by additional compute. That a third of failures are
+non-analytical, and that abandoned-correct alone covers 212 runs in which the right
+result was within reach, implies that a meaningful fraction is recoverable through
+better verification and final-answer selection rather than added capability.
 
+The failures have a unifying frame. These are fluency-optimized systems applied to
+a domain that rewards adversarial restraint. The fluent move is confident,
+coherent, and consistent with prior knowledge, while the right experimental move
+defers to the data over the textbook, draws conservative cuts, and distrusts its
+own first answer. TxBench-PP's traps sit where these diverge, so the failures are a
+systematic readout of that misalignment. The models have the knowledge and the
+tooling, and often compute the right intermediate result, but they lack the
+epistemic stance of an experimentalist, namely prior-skepticism, calibrated
+commitment, and self-verification.
 \EndBody
 
 \begin{center}
   \includegraphics[width=0.91\textwidth]{figures/fig3_failure_taxonomy.pdf}
 
-  \captionof{figure}{\textbf{Expected failure taxonomy.}
-  TxBench-PP tasks are designed to distinguish careful preclinical
-  pharmacology reasoning from program-relevant judgment gaps: literature priors
-  overriding assay evidence, assay-context calibration failures, missing
-  multi-property integration, and rigid thresholds. Replace this design
-  taxonomy with empirically tagged failure counts after trajectory review.}
+  \captionof{figure}{\textbf{A two-axis failure taxonomy.}
+  All 1{,}834 failing (model, evaluation) runs on the Pi harness, labeled against each
+  evaluation's scientific intent and classified along two complementary axes.
+  \textbf{(A)} The scientific-error axis (what is wrong with the answer) is
+  dominated by method and calibration errors (71\% combined), which are general
+  analytical skills rather than domain knowledge; the method family resolves into
+  a skipped-QC/preprocessing sub-mode and a larger wrong-reference-frame sub-mode.
+  \textbf{(B)} The behavioral-cause axis (how the model failed) shows that a third
+  of failures are non-analytical: a prior-driven override of the model's own
+  evidence, plus three process breakdowns (weak commitment, abandoned-correct,
+  under-investment). \textbf{(C)} The behavioral mix is a model signature:
+  under-investment dominates only the weakest model, while the strongest models
+  fail almost entirely through engaged, analytically wrong reasoning. A
+  scientific-error $\times$ behavioral-cause cross-tabulation is provided in the
+  supplement (\texttt{fig\_fm\_crosstab}).}
   \label{fig:failure-taxonomy}
 \end{center}
 
 \StartBody
 
-\subsection{Case examples span the compound-centered preclinical spine}
+\subsection{The dominant failure mode shifts characteristically across pipeline stages}
 
-The benchmark examples should make the task format concrete. In decryptM, a
-blinded kinase inhibitor can carry a familiar class label while the
-dose-resolved phosphorylation footprint supports a different kinase-family
-mechanism. In Kinobeads, the strongest apparent protein signal may be a complex
-contaminant rather than a direct binder. In TG-GATEs, a blood-chemistry
-threshold may be less informative than pathology and survival under the study
-protocol. In PK tasks, total exposure or potency alone can select a compound
-that lacks adequate unbound coverage over the dosing interval.
+\todo{From the therapeutic-pipeline-stage breakdown (\texttt{fig3\_by\_tx\_stage}
+and \texttt{\_stage\_failure\_maps.md}): report per-stage pass rates and the
+mode that dominates each stage (e.g. S5 causal target validation is skipped-QC
+heavy; S9 translational efficacy is threshold-over-inclusion heavy; S2
+screening shows convergent quantitative misreads). Make clear the failure
+signature is stage-specific rather than uniform.}
 
-\todo{Replace these examples with exact task names, final answer surfaces, and
-short descriptions after the public task manifest is frozen.}
+\subsection{Some task categories remain far harder than others}
+
+\todo{From the task-type breakdown (\texttt{fig2\_by\_task\_type}, with
+\texttt{fig2b}/\texttt{fig2c} for the per-model view and heatmap): pass rate
+ranges from exposure-PK ($\sim$71\%) down to cheminformatics ($\sim$17\%);
+include the worst-to-best per-model whiskers to show the spread within each
+category.}
+
+\subsection{The strongest models win through disciplined scientific process}
+
+\todo{From the per-model signatures (\texttt{\_per\_model\_signatures.md}) and
+the cost/steps frontier (\texttt{fig5\_cost\_frontier}): spending does not buy
+accuracy (the Grok models under-invest; sonnet over-spends without yield). What
+separates strong runs is process discipline (reading images then verifying in
+code, framing the question correctly, drawing a defensible threshold, and
+committing to a discrete answer), not domain knowledge, which every model
+already has.}
+
+\subsection{Failures translate directly into wrong go/no-go decisions}
+
+\todo{Use the downstream-consequence lists in \texttt{\_stage\_failure\_maps.md}
+to tie representative failures to concrete program errors (e.g. advancing a
+non-selective compound as selective, a wrong cytostatic-vs-cytotoxic call, a
+missed safety liability, a contaminated target-engagement hit carried forward).
+Ground each in an exact eval name once the public manifest is frozen.}
 
 \EndBody
 
@@ -304,6 +385,19 @@ short descriptions after the public task manifest is frozen.}
   familiar shortcut.}
   \label{fig:case-examples}
 \end{center}
+
+\StartBody
+
+\subsection{The agent harness has a surprising impact on model performance}
+
+\todo{From the harness-effect comparison (\texttt{fig4\_harness\_effect}):
+running the same model under different scaffolds (Pi vs Codex/CC) shifts the
+task-matched pass rate by roughly 3--12 points, with some models far more
+harness-sensitive than others (e.g. claude-opus-4-7) even though the overall
+ordering is largely preserved. Note the implication for fair model comparison:
+reported scores are a property of the model-plus-harness, not the model alone.}
+
+\EndBody
 
 \StartBody
 
