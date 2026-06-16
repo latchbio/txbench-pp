@@ -117,13 +117,13 @@ def label(ax: plt.Axes, x: float, y: float, text: str, *, size=8, color=TEXT, bo
 
 def fig_pipeline() -> None:
     columns = [
-        ("Discovery", "mechanism,\nengagement,\nlead choice"),
-        ("Development", "ADMET,\nDMPK,\nPK"),
-        ("Translation", "safety,\nexposure,\nadvancement"),
+        "Discovery",
+        "Development",
+        "Translation",
     ]
     rows = [
         (
-            "Small molecule",
+            "Small\nmolecule",
             [
                 ("MoA / pathway\nTarget engagement", ACCENT),
                 ("ADMET / DMPK\nPK source choice", TEAL),
@@ -150,7 +150,7 @@ def fig_pipeline() -> None:
         ("PK", "PK/ADMET", ACCENT),
     ]
 
-    fig, ax = plt.subplots(figsize=(7.45, 4.55))
+    fig, ax = plt.subplots(figsize=(7.45, 4.85))
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.axis("off")
@@ -165,21 +165,21 @@ def fig_pipeline() -> None:
         color=MUTED,
     )
 
-    left = 0.175
-    top = 0.780
-    cell_w = 0.235
-    cell_h = 0.118
-    col_gap = 0.025
-    row_gap = 0.035
-    for j, (head, sub) in enumerate(columns):
+    left = 0.220
+    cell_w = 0.215
+    cell_h = 0.106
+    col_gap = 0.026
+    row_gap = 0.043
+    row0_y = 0.595
+    for j, head in enumerate(columns):
         x = left + j * (cell_w + col_gap)
-        label(ax, x + cell_w / 2, 0.835, head, size=7.6, bold=True, ha="center")
-        label(ax, x + cell_w / 2, 0.802, sub, size=5.6, color=MUTED, ha="center")
+        rounded_box(ax, (x, 0.748), cell_w, 0.052, fc=CREAM, ec=LINE, lw=0.45, radius=0.012)
+        label(ax, x + cell_w / 2, 0.774, head, size=7.5, bold=True, ha="center")
 
     for i, (row_name, cells, tag) in enumerate(rows):
-        y = top - i * (cell_h + row_gap) - cell_h
-        label(ax, 0.055, y + cell_h / 2, row_name, size=7.1, bold=True, ha="left")
-        label(ax, 0.055, y + 0.020, tag, size=5.6, color=ACCENT if tag == "TxBench-PP" else MUTED, bold=True, mono=True)
+        y = row0_y - i * (cell_h + row_gap)
+        label(ax, 0.060, y + cell_h * 0.58, row_name, size=7.0, bold=True, ha="left")
+        label(ax, 0.060, y + 0.020, tag, size=5.5, color=ACCENT if tag == "TxBench-PP" else MUTED, bold=True, mono=True)
         for j, (txt, c) in enumerate(cells):
             x = left + j * (cell_w + col_gap)
             fc = c if tag == "TxBench-PP" else "#F0EEE9"
@@ -196,20 +196,20 @@ def fig_pipeline() -> None:
                 ha="center",
             )
 
-    rounded_box(ax, (0.055, 0.195), 0.418, 0.090, fc=CREAM, ec=LINE, radius=0.018)
-    rounded_box(ax, (0.527, 0.195), 0.418, 0.090, fc=WHITE, ec=LINE, radius=0.018)
-    label(ax, 0.078, 0.258, "Cluster benchmark now", size=7.0, bold=True)
-    label(ax, 0.078, 0.220, "Repeated local decisions across assays and compounds", size=6.1, color=MUTED)
-    label(ax, 0.550, 0.258, "Program stories later", size=7.0, bold=True)
-    label(ax, 0.550, 0.220, "Long-horizon reasoning across discovery to translation", size=6.1, color=MUTED)
+    rounded_box(ax, (0.055, 0.154), 0.418, 0.084, fc=CREAM, ec=LINE, radius=0.018)
+    rounded_box(ax, (0.527, 0.154), 0.418, 0.084, fc=WHITE, ec=LINE, radius=0.018)
+    label(ax, 0.078, 0.211, "Cluster benchmark now", size=6.9, bold=True)
+    label(ax, 0.078, 0.178, "Repeated decisions across assays and compounds", size=5.9, color=MUTED)
+    label(ax, 0.550, 0.211, "Program stories later", size=6.9, bold=True)
+    label(ax, 0.550, 0.178, "Long-horizon reasoning across program stages", size=5.9, color=MUTED)
 
-    label(ax, 0.055, 0.130, "Current evidence sources", size=6.6, color=MUTED, bold=True, mono=True)
+    label(ax, 0.055, 0.095, "Current evidence sources", size=6.5, color=MUTED, bold=True, mono=True)
     for i, (code, name, c) in enumerate(detail_boxes):
-        x = 0.205 + i * 0.143
-        rounded_box(ax, (x, 0.082), 0.116, 0.056, fc=CREAM, ec=LINE, radius=0.012)
-        rounded_box(ax, (x + 0.010, 0.096), 0.032, 0.028, fc=c, ec="none", radius=0.006)
-        label(ax, x + 0.026, 0.110, code, size=5.2, color=WHITE, bold=True, ha="center", mono=True)
-        label(ax, x + 0.049, 0.110, name, size=5.2, bold=True)
+        x = 0.300 + i * 0.128
+        rounded_box(ax, (x, 0.065), 0.120, 0.052, fc=CREAM, ec=LINE, radius=0.011)
+        rounded_box(ax, (x + 0.009, 0.078), 0.029, 0.026, fc=c, ec="none", radius=0.006)
+        label(ax, x + 0.0235, 0.091, code, size=4.8, color=WHITE, bold=True, ha="center", mono=True)
+        label(ax, x + 0.044, 0.091, name, size=4.45, bold=True)
 
     save(fig, "fig1_pipeline")
 
