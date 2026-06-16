@@ -353,9 +353,107 @@ def fig_cases() -> None:
     save(fig, "fig4_cases")
 
 
+def fig_program_decisions() -> None:
+    """Three multi-evidence advancement decisions: one success, two failures."""
+    TEAL_DARK = "#19736A"
+    cards = [
+        {
+            "tag": "CORRECT",
+            "tag_color": TEAL,
+            "head": "Advance one compound, or none",
+            "body": "Colorectal-cancer organoid program. Inputs: primary screen, "
+            "mechanism image, tox counterscreen, DMPK exposure. Advance a compound "
+            "only if the desired mechanism, an adequate safety margin, and covering "
+            "exposure all hold.",
+            "good": "Advance CMP-05, the one compound that satisfies all three "
+            "criteria together.",
+            "bad_head": "Mostly correct  (82% pass)",
+            "bad": "The tempting shortcut, ranking by potency or by total exposure, "
+            "advances the wrong compound.",
+            "bad_fc": "#EEF3F1",
+            "bad_ec": "#C9DDD9",
+            "bad_color": TEAL_DARK,
+        },
+        {
+            "tag": "WRONG SYNTHESIS",
+            "tag_color": GOLD,
+            "head": "Pick the next decision-gate models",
+            "body": "NSCLC mTOR + WEE1 combination. The gate set must span models "
+            "with confirmed multi-endpoint support, the strongest responder still "
+            "lacking confirmation, and the strongest responder outside the primary "
+            "genotype.",
+            "good": "Build the gate on convergent multi-endpoint support "
+            "(e.g. PDX239 for the unconfirmed slot).",
+            "bad_head": "Common failure  (27% pass)",
+            "bad": "Rank on a single synergy metric and nominate an artifact model "
+            "(H2009), so the wrong models gate the program.",
+            "bad_fc": "#F5E9E4",
+            "bad_ec": "#E7C8B9",
+            "bad_color": ACCENT,
+        },
+        {
+            "tag": "FALSE-GO",
+            "tag_color": RED,
+            "head": "Advance only if safe and active",
+            "body": "Blinded intestinal multiplex-IF package. A candidate may advance "
+            "only with paired evidence of activity and healthy-tissue sparing.",
+            "good": "No candidate advances; the paired activity-and-safety evidence "
+            "fails for every candidate.",
+            "bad_head": "Common failure  (36% pass)",
+            "bad": "Advance on activity alone or a relative tumour-vs-healthy index, "
+            "pushing an unsafe candidate forward.",
+            "bad_fc": "#F5E9E4",
+            "bad_ec": "#E7C8B9",
+            "bad_color": ACCENT,
+        },
+    ]
+
+    fig, ax = plt.subplots(figsize=(7.3, 5.15))
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+    ax.axis("off")
+    label(ax, 0.04, 0.965, "Program decisions integrate several assay readouts into one go/no-go", size=10.2, bold=True)
+    label(
+        ax,
+        0.04,
+        0.922,
+        "Across 7 such advancement evaluations (230 runs) models pass only 35%; the same call can fail by advancing too much or too little.",
+        size=6.7,
+        color=MUTED,
+    )
+
+    top0 = 0.862
+    row_h = 0.262
+    gap = 0.022
+    for i, c in enumerate(cards):
+        top = top0 - i * (row_h + gap)
+        bot = top - row_h
+        rounded_box(ax, (0.04, bot), 0.92, row_h, fc=WHITE, ec=LINE, lw=0.7, radius=0.012)
+        # outcome tag strip
+        rounded_box(ax, (0.04, bot), 0.026, row_h, fc=c["tag_color"], ec="none", radius=0.012)
+        ax.text(0.053, bot + row_h / 2, c["tag"], fontsize=5.0, color=WHITE,
+                fontproperties=MONO_BOLD, ha="center", va="center", rotation=90)
+        # column A: context
+        label(ax, 0.085, top - 0.040, c["head"], size=7.2, bold=True)
+        label(ax, 0.085, top - 0.135, wrap(c["body"], 52), size=5.5, color=TEXT)
+        # column B: supported call
+        gx, gw = 0.470, 0.235
+        rounded_box(ax, (gx, bot + 0.030), gw, row_h - 0.060, fc="#EEF3F1", ec="#C9DDD9", lw=0.6, radius=0.016)
+        label(ax, gx + 0.014, top - 0.052, "DATA-SUPPORTED CALL", size=4.9, bold=True, mono=True, color=TEAL_DARK)
+        label(ax, gx + 0.014, top - 0.115, wrap(c["good"], 30), size=5.5, color=TEXT)
+        # column C: common failure + consequence
+        bx, bw = 0.715, 0.235
+        rounded_box(ax, (bx, bot + 0.030), bw, row_h - 0.060, fc=c["bad_fc"], ec=c["bad_ec"], lw=0.6, radius=0.016)
+        label(ax, bx + 0.014, top - 0.052, c["bad_head"].upper(), size=4.9, bold=True, mono=True, color=c["bad_color"])
+        label(ax, bx + 0.014, top - 0.115, wrap(c["bad"], 30), size=5.5, color=TEXT)
+
+    save(fig, "fig_program_decisions")
+
+
 if __name__ == "__main__":
     TEAL_DARK = "#19736A"
     fig_pipeline()
     fig_inventory()
     fig_failures()
     fig_cases()
+    fig_program_decisions()

@@ -583,22 +583,53 @@ lower-ranked models (Figure~\ref{fig:failure-taxonomy}C).
 
 \subsection{Failures translate directly into wrong go/no-go decisions}
 
-\todo{Use the downstream-consequence lists in \texttt{\_stage\_failure\_maps.md}
-to tie representative failures to concrete program errors (e.g. advancing a
-non-selective compound as selective, a wrong cytostatic-vs-cytotoxic call, a
-missed safety liability, a contaminated target-engagement hit carried forward).
-Ground each in an exact eval name once the public manifest is frozen.}
+The evaluations that most resemble a real pipeline gate are the program
+decisions, which hand the agent several assay readouts at once and ask for a
+single advance, hold, or prioritize call. The current suite has seven such
+advancement decisions, and across 230 runs models pass only 35\% of them
+(Figure~\ref{fig:program-decisions}). When the evidence package is clean the
+agents integrate it well, but on the harder gates they fail in both directions,
+by advancing weak candidates or discarding strong ones.
+
+The organoid program go/no-go is the clean case. Given a primary screen, a
+mechanism image, a tox counterscreen, and DMPK exposure for eight blinded
+compounds, the supported action is to advance the one compound that shows the
+desired cytostatic mechanism together with an adequate safety margin and covering
+exposure, and most models do (82\%). On the decision-gate task the agent must
+assemble a set of models with convergent support across several endpoints, but
+models rank on a single synergy metric and nominate a model that is an artifact of
+that one number (27\%), so the program's next experiments are built on the wrong
+models. On the safety advancement task the supported call is that no candidate
+moves forward, because none pairs activity with healthy-tissue sparing, yet models
+advance one on activity alone or on a relative tumour-versus-healthy index (36\%),
+putting an unsafe compound into the pipeline. The reverse error also appears. On
+the long-term combination task, models read a strong colony-stain reduction as a
+complete kill and drop a model the combination still supports
+(\texttt{HAI2027\_FIG1\_DUR01}, 48\%).
+
+Most models can compute the individual pieces, and they diverge at the
+commitment step, where the analysis has to become one advance-or-hold call.
+gpt-5.5 most often commits to a defensible, prioritized subset. kimi-k2p6
+computes the right per-model numbers and then returns the full ranked list
+instead of the small advanceable set. claude-opus-4-8, the strongest model
+overall, tends to over-rank on a single metric or carry too many candidates
+forward on these integrative tasks, and the Grok models answer with little of the
+multi-evidence work the decision requires.
 
 \EndBody
 
 \begin{center}
-  \includegraphics[width=0.92\textwidth]{figures/fig4_cases.pdf}
+  \includegraphics[width=0.96\textwidth]{figures/fig_program_decisions.pdf}
 
-  \captionof{figure}{\textbf{Representative task logic.}
-  Across mechanism, target engagement, safety, and exposure decisions, the
-  correct answer is the one supported by the supplied assay evidence, not the
-  familiar shortcut.}
-  \label{fig:case-examples}
+  \captionof{figure}{\textbf{Program decisions turn analysis errors into wrong
+  go/no-go calls.} Three multi-evidence advancement evaluations, each giving the
+  agent several assay readouts and asking for one advance, hold, or prioritize
+  call. For each we show the evidence and the question, the data-supported call,
+  and the common model error with its program consequence. The organoid go/no-go
+  is passed by most models (82\%); the decision-gate and safety-advancement tasks
+  fail in opposite directions, advancing the wrong models (27\%) or an unsafe
+  candidate (36\%).}
+  \label{fig:program-decisions}
 \end{center}
 
 \StartBody

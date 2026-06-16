@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="480.600694pt" height="299.916pt" viewBox="0 0 480.600694 299.916" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-06-16T16:39:47.230963</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.9.4, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 299.916 
+L 480.600694 299.916 
+L 480.600694 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 25.12296 123.690528 
+L 396.61704 123.690528 
+Q 401.50512 123.690528 401.50512 120.264336 
+L 401.50512 47.743272 
+Q 401.50512 44.31708 396.61704 44.31708 
+L 25.12296 44.31708 
+Q 20.23488 44.31708 20.23488 47.743272 
+L 20.23488 120.264336 
+Q 20.23488 123.690528 25.12296 123.690528 
+z
+" clip-path="url(#p0e438b5fa3)" style="fill: #ffffff; stroke: #ddd7cb; stroke-width: 0.7; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 25.12296 123.690528 
+L 32.45508 123.690528 
+Q 37.34316 123.690528 37.34316 120.264336 
+L 37.34316 47.743272 
+Q 37.34316 44.31708 32.45508 44.31708 
+L 25.12296 44.31708 
+Q 20.23488 44.31708 20.23488 47.743272 
+L 20.23488 120.264336 
+Q 20.23488 123.690528 25.12296 123.690528 
+z
+" clip-path="url(#p0e438b5fa3)" style="fill: #2a9d8f"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 201.90852 115.125048 
+L 291.11598 115.125048 
+Q 297.63342 115.125048 297.63342 110.556792 
+L 297.63342 57.450816 
+Q 297.63342 52.88256 291.11598 52.88256 
+L 201.90852 52.88256 
+Q 195.39108 52.88256 195.39108 57.450816 
+L 195.39108 110.556792 
+Q 195.39108 115.125048 201.90852 115.125048 
+z
+" clip-path="url(#p0e438b5fa3)" style="fill: #eef3f1; stroke: #c9ddd9; stroke-width: 0.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 301.70682 115.125048 
+L 390.91428 115.125048 
+Q 397.43172 115.125048 397.43172 110.556792 
+L 397.43172 57.450816 
+Q 397.43172 52.88256 390.91428 52.88256 
+L 301.70682 52.88256 
+Q 295.18938 52.88256 295.18938 57.450816 
+L 295.18938 110.556792 
+Q 295.18938 115.125048 301.70682 115.125048 
+z
+" clip-path="url(#p0e438b5fa3)" style="fill: #eef3f1; stroke: #c9ddd9; stroke-width: 0.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 25.12296 204.777072 
+L 396.61704 204.777072 
+Q 401.50512 204.777072 401.50512 201.35088 
+L 401.50512 128.829816 
+Q 401.50512 125.403624 396.61704 125.403624 
+L 25.12296 125.403624 
+Q 20.23488 125.403624 20.23488 128.829816 
+L 20.23488 201.35088 
+Q 20.23488 204.777072 25.12296 204.777072 
+z
+" clip-path="url(#p0e438b5fa3)" style="fill: #ffffff; stroke: #ddd7cb; stroke-width: 0.7; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 25.12296 204.777072 
+L 32.45508 204.777072 
+Q 37.34316 204.777072 37.34316 201.35088 
+L 37.34316 128.829816 
+Q 37.34316 125.403624 32.45508 125.403624 
+L 25.12296 125.403624 
+Q 20.23488 125.403624 20.23488 128.829816 
+L 20.23488 201.35088 
+Q 20.23488 204.777072 25.12296 204.777072 
+z
+" clip-path="url(#p0e438b5fa3)" style="fill: #b89142"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 201.90852 196.211592 
+L 291.11598 196.211592 
+Q 297.63342 196.211592 297.63342 191.643336 
+L 297.63342 138.53736 
+Q 297.63342 133.969104 291.11598 133.969104 
+L 201.90852 133.969104 
+Q 195.39108 133.969104 195.39108 138.53736 
+L 195.39108 191.643336 
+Q 195.39108 196.211592 201.90852 196.211592 
+z
+" clip-path="url(#p0e438b5fa3)" style="fill: #eef3f1; stroke: #c9ddd9; stroke-width: 0.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 301.70682 196.211592 
+L 390.91428 196.211592 
+Q 397.43172 196.211592 397.43172 191.643336 
+L 397.43172 138.53736 
+Q 397.43172 133.969104 390.91428 133.969104 
+L 301.70682 133.969104 
+Q 295.18938 133.969104 295.18938 138.53736 
+L 295.18938 191.643336 
+Q 295.18938 196.211592 301.70682 196.211592 
+z
+" clip-path="url(#p0e438b5fa3)" style="fill: #f5e9e4; stroke: #e7c8b9; stroke-width: 0.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 25.12296 285.863616 
+L 396.61704 285.863616 
+Q 401.50512 285.863616 401.50512 282.437424 
+L 401.50512 209.91636 
+Q 401.50512 206.490168 396.61704 206.490168 
+L 25.12296 206.490168 
+Q 20.23488 206.490168 20.23488 209.91636 
+L 20.23488 282.437424 
+Q 20.23488 285.863616 25.12296 285.863616 
+z
+" clip-path="url(#p0e438b5fa3)" style="fill: #ffffff; stroke: #ddd7cb; stroke-width: 0.7; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 25.12296 285.863616 
+L 32.45508 285.863616 
+Q 37.34316 285.863616 37.34316 282.437424 
+L 37.34316 209.91636 
+Q 37.34316 206.490168 32.45508 206.490168 
+L 25.12296 206.490168 
+Q 20.23488 206.490168 20.23488 209.91636 
+L 20.23488 282.437424 
+Q 20.23488 285.863616 25.12296 285.863616 
+z
+" clip-path="url(#p0e438b5fa3)" style="fill: #d14b4b"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 201.90852 277.298136 
+L 291.11598 277.298136 
+Q 297.63342 277.298136 297.63342 272.72988 
+L 297.63342 219.623904 
+Q 297.63342 215.055648 291.11598 215.055648 
+L 201.90852 215.055648 
+Q 195.39108 215.055648 195.39108 219.623904 
+L 195.39108 272.72988 
+Q 195.39108 277.298136 201.90852 277.298136 
+z
+" clip-path="url(#p0e438b5fa3)" style="fill: #eef3f1; stroke: #c9ddd9; stroke-width: 0.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 301.70682 277.298136 
+L 390.91428 277.298136 
+Q 397.43172 277.298136 397.43172 272.72988 
+L 397.43172 219.623904 
+Q 397.43172 215.055648 390.91428 215.055648 
+L 301.70682 215.055648 
+Q 295.18938 215.055648 295.18938 219.623904 
+L 295.18938 272.72988 
+Q 295.18938 277.298136 301.70682 277.298136 
+z
+" clip-path="url(#p0e438b5fa3)" style="fill: #f5e9e4; stroke: #e7c8b9; stroke-width: 0.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #15191f; font: 700 10.2px 'DejaVu Serif', serif; text-anchor: start" x="23.4936" y="19.935107" transform="rotate(-0 23.4936 19.935107)">Program decisions integrate several assay readouts into one go/no-go</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #5f6872; font: 6.7px 'DejaVu Serif', serif; text-anchor: start" x="23.4936" y="31.271396" transform="rotate(-0 23.4936 31.271396)">Across 7 such advancement evaluations (230 runs) models pass only 35%; the same call can fail by advancing too much or too little.</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #ffffff; font: 700 5px 'DejaVu Sans Mono', monospace" transform="translate(30.168708 94.539351) rotate(-90)">CORRECT</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #15191f; font: 700 7.2px 'DejaVu Serif', serif; text-anchor: start" x="41.8239" y="60.008598" transform="rotate(-0 41.8239 60.008598)">Advance one compound, or none</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(41.8239 74.189524)">Colorectal-cancer organoid program. Inputs: primary</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(41.8239 80.426524)">screen, mechanism image, tox counterscreen, DMPK</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(41.8239 86.663524)">exposure. Advance a compound only if the desired</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(41.8239 92.900524)">mechanism, an adequate safety margin, and covering</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(41.8239 99.137524)">exposure all hold.</text>
+   </g>
+   <g id="text_6">
+    <text style="fill: #19736a; font: 700 4.9px 'DejaVu Sans Mono', monospace; text-anchor: start" x="204.35256" y="62.800134" transform="rotate(-0 204.35256 62.800134)">DATA-SUPPORTED CALL</text>
+   </g>
+   <g id="text_7">
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(204.35256 74.755306)">Advance CMP-05, the one</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(204.35256 80.914103)">compound that satisfies all</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(204.35256 87.0729)">three criteria together.</text>
+   </g>
+   <g id="text_8">
+    <text style="fill: #19736a; font: 700 4.9px 'DejaVu Sans Mono', monospace; text-anchor: start" x="304.15086" y="62.800134" transform="rotate(-0 304.15086 62.800134)">MOSTLY CORRECT  (82% PASS)</text>
+   </g>
+   <g id="text_9">
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(304.15086 71.597704)">The tempting shortcut, ranking</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(304.15086 77.834704)">by potency or by total</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(304.15086 84.071704)">exposure, advances the wrong</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(304.15086 90.308704)">compound.</text>
+   </g>
+   <g id="text_10">
+    <text style="fill: #ffffff; font: 700 5px 'DejaVu Sans Mono', monospace" transform="translate(30.168708 187.66652) rotate(-90)">WRONG SYNTHESIS</text>
+   </g>
+   <g id="text_11">
+    <text style="fill: #15191f; font: 700 7.2px 'DejaVu Serif', serif; text-anchor: start" x="41.8239" y="141.043955" transform="rotate(-0 41.8239 141.043955)">Pick the next decision-gate models</text>
+   </g>
+   <g id="text_12">
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(41.8239 155.276068)">NSCLC mTOR + WEE1 combination. The gate set must</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(41.8239 161.513068)">span models with confirmed multi-endpoint support,</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(41.8239 167.671865)">the strongest responder still lacking confirmation,</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(41.8239 173.908865)">and the strongest responder outside the primary</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(41.8239 180.145865)">genotype.</text>
+   </g>
+   <g id="text_13">
+    <text style="fill: #19736a; font: 700 4.9px 'DejaVu Sans Mono', monospace; text-anchor: start" x="204.35256" y="143.886678" transform="rotate(-0 204.35256 143.886678)">DATA-SUPPORTED CALL</text>
+   </g>
+   <g id="text_14">
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(204.35256 152.72335)">Build the gate on convergent</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(204.35256 158.96035)">multi-endpoint support (e.g.</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(204.35256 165.19735)">PDX239 for the unconfirmed</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(204.35256 171.356147)">slot).</text>
+   </g>
+   <g id="text_15">
+    <text style="fill: #a95f3d; font: 700 4.9px 'DejaVu Sans Mono', monospace; text-anchor: start" x="304.15086" y="143.886678" transform="rotate(-0 304.15086 143.886678)">COMMON FAILURE  (27% PASS)</text>
+   </g>
+   <g id="text_16">
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(304.15086 152.72335)">Rank on a single synergy</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(304.15086 158.96035)">metric and nominate an</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(304.15086 165.119147)">artifact model (H2009), so the</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(304.15086 171.277944)">wrong models gate the program.</text>
+   </g>
+   <g id="text_17">
+    <text style="fill: #ffffff; font: 700 5px 'DejaVu Sans Mono', monospace" transform="translate(30.168708 258.217517) rotate(-90)">FALSE-GO</text>
+   </g>
+   <g id="text_18">
+    <text style="fill: #15191f; font: 700 7.2px 'DejaVu Serif', serif; text-anchor: start" x="41.8239" y="222.130499" transform="rotate(-0 41.8239 222.130499)">Advance only if safe and active</text>
+   </g>
+   <g id="text_19">
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(41.8239 242.560511)">Blinded intestinal multiplex-IF package. A candidate</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(41.8239 248.797511)">may advance only with paired evidence of activity</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(41.8239 255.034511)">and healthy-tissue sparing.</text>
+   </g>
+   <g id="text_20">
+    <text style="fill: #19736a; font: 700 4.9px 'DejaVu Sans Mono', monospace; text-anchor: start" x="204.35256" y="224.973222" transform="rotate(-0 204.35256 224.973222)">DATA-SUPPORTED CALL</text>
+   </g>
+   <g id="text_21">
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(204.35256 233.809894)">No candidate advances; the</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(204.35256 239.968691)">paired activity-and-safety</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(204.35256 246.205691)">evidence fails for every</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(204.35256 252.442691)">candidate.</text>
+   </g>
+   <g id="text_22">
+    <text style="fill: #a95f3d; font: 700 4.9px 'DejaVu Sans Mono', monospace; text-anchor: start" x="304.15086" y="224.973222" transform="rotate(-0 304.15086 224.973222)">COMMON FAILURE  (36% PASS)</text>
+   </g>
+   <g id="text_23">
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(304.15086 233.770792)">Advance on activity alone or a</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(304.15086 240.007792)">relative tumour-vs-healthy</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(304.15086 246.244792)">index, pushing an unsafe</text>
+    <text style="fill: #15191f; font: 5.5px 'DejaVu Serif', serif" transform="translate(304.15086 252.481792)">candidate forward.</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p0e438b5fa3">
+   <rect x="7.2" y="7.2" width="407.34" height="285.516"/>
+  </clipPath>
+ </defs>
+</svg>
