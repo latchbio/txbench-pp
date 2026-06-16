@@ -117,13 +117,13 @@ def label(ax: plt.Axes, x: float, y: float, text: str, *, size=8, color=TEXT, bo
 
 def fig_pipeline() -> None:
     columns = [
-        ("Discovery", "mechanism,\nengagement,\nlead choice"),
-        ("Development", "ADMET,\nDMPK,\nPK"),
-        ("Translation", "safety,\nexposure,\nadvancement"),
+        "Discovery",
+        "Development",
+        "Translation",
     ]
     rows = [
         (
-            "Small molecule",
+            "Small\nmolecule",
             [
                 ("MoA / pathway\nTarget engagement", ACCENT),
                 ("ADMET / DMPK\nPK source choice", TEAL),
@@ -150,7 +150,7 @@ def fig_pipeline() -> None:
         ("PK", "PK/ADMET", ACCENT),
     ]
 
-    fig, ax = plt.subplots(figsize=(7.45, 4.55))
+    fig, ax = plt.subplots(figsize=(7.45, 4.85))
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.axis("off")
@@ -165,21 +165,21 @@ def fig_pipeline() -> None:
         color=MUTED,
     )
 
-    left = 0.175
-    top = 0.780
-    cell_w = 0.235
-    cell_h = 0.118
-    col_gap = 0.025
-    row_gap = 0.035
-    for j, (head, sub) in enumerate(columns):
+    left = 0.220
+    cell_w = 0.215
+    cell_h = 0.106
+    col_gap = 0.026
+    row_gap = 0.043
+    row0_y = 0.595
+    for j, head in enumerate(columns):
         x = left + j * (cell_w + col_gap)
-        label(ax, x + cell_w / 2, 0.835, head, size=7.6, bold=True, ha="center")
-        label(ax, x + cell_w / 2, 0.802, sub, size=5.6, color=MUTED, ha="center")
+        rounded_box(ax, (x, 0.748), cell_w, 0.052, fc=CREAM, ec=LINE, lw=0.45, radius=0.012)
+        label(ax, x + cell_w / 2, 0.774, head, size=7.5, bold=True, ha="center")
 
     for i, (row_name, cells, tag) in enumerate(rows):
-        y = top - i * (cell_h + row_gap) - cell_h
-        label(ax, 0.055, y + cell_h / 2, row_name, size=7.1, bold=True, ha="left")
-        label(ax, 0.055, y + 0.020, tag, size=5.6, color=ACCENT if tag == "TxBench-PP" else MUTED, bold=True, mono=True)
+        y = row0_y - i * (cell_h + row_gap)
+        label(ax, 0.060, y + cell_h * 0.58, row_name, size=7.0, bold=True, ha="left")
+        label(ax, 0.060, y + 0.020, tag, size=5.5, color=ACCENT if tag == "TxBench-PP" else MUTED, bold=True, mono=True)
         for j, (txt, c) in enumerate(cells):
             x = left + j * (cell_w + col_gap)
             fc = c if tag == "TxBench-PP" else "#F0EEE9"
@@ -196,66 +196,82 @@ def fig_pipeline() -> None:
                 ha="center",
             )
 
-    rounded_box(ax, (0.055, 0.195), 0.418, 0.090, fc=CREAM, ec=LINE, radius=0.018)
-    rounded_box(ax, (0.527, 0.195), 0.418, 0.090, fc=WHITE, ec=LINE, radius=0.018)
-    label(ax, 0.078, 0.258, "Cluster benchmark now", size=7.0, bold=True)
-    label(ax, 0.078, 0.220, "Repeated local decisions across assays and compounds", size=6.1, color=MUTED)
-    label(ax, 0.550, 0.258, "Program stories later", size=7.0, bold=True)
-    label(ax, 0.550, 0.220, "Long-horizon reasoning across discovery to translation", size=6.1, color=MUTED)
+    rounded_box(ax, (0.055, 0.154), 0.418, 0.084, fc=CREAM, ec=LINE, radius=0.018)
+    rounded_box(ax, (0.527, 0.154), 0.418, 0.084, fc=WHITE, ec=LINE, radius=0.018)
+    label(ax, 0.078, 0.211, "Cluster benchmark now", size=6.9, bold=True)
+    label(ax, 0.078, 0.178, "Repeated decisions across assays and compounds", size=5.9, color=MUTED)
+    label(ax, 0.550, 0.211, "Program stories later", size=6.9, bold=True)
+    label(ax, 0.550, 0.178, "Long-horizon reasoning across program stages", size=5.9, color=MUTED)
 
-    label(ax, 0.055, 0.130, "Current evidence sources", size=6.6, color=MUTED, bold=True, mono=True)
+    label(ax, 0.055, 0.095, "Current evidence sources", size=6.5, color=MUTED, bold=True, mono=True)
     for i, (code, name, c) in enumerate(detail_boxes):
-        x = 0.205 + i * 0.143
-        rounded_box(ax, (x, 0.082), 0.116, 0.056, fc=CREAM, ec=LINE, radius=0.012)
-        rounded_box(ax, (x + 0.010, 0.096), 0.032, 0.028, fc=c, ec="none", radius=0.006)
-        label(ax, x + 0.026, 0.110, code, size=5.2, color=WHITE, bold=True, ha="center", mono=True)
-        label(ax, x + 0.049, 0.110, name, size=5.2, bold=True)
+        x = 0.300 + i * 0.128
+        rounded_box(ax, (x, 0.065), 0.120, 0.052, fc=CREAM, ec=LINE, radius=0.011)
+        rounded_box(ax, (x + 0.009, 0.078), 0.029, 0.026, fc=c, ec="none", radius=0.006)
+        label(ax, x + 0.0235, 0.091, code, size=4.8, color=WHITE, bold=True, ha="center", mono=True)
+        label(ax, x + 0.044, 0.091, name, size=4.45, bold=True)
 
     save(fig, "fig1_pipeline")
 
 
 def fig_inventory() -> None:
-    datasets = [
-        ("DM", "decryptM", "dose-resolved phosphoproteomics", 48, "MoA / pathway readouts", ACCENT),
-        ("DE", "decryptE", "dose-resolved expression proteomics", 12, "MoA + target reliability", VIOLET),
-        ("KB", "Kinobeads", "chemoproteomics target engagement", 2, "direct target selection", GOLD),
-        ("TG", "TG-GATEs", "in vivo rat toxicogenomics", 20, "safety / tox calls", RED),
-        ("PK", "PK/ADMET", "curated ADMET, DMPK, PK", 45, "free exposure + source choice", TEAL),
+    stages = [
+        ("S1", "Disease / model\ncharacterization", 0, "Deferred", "out of v1 scope", GRAY_DARK),
+        ("S2", "Primary screening\n& hit confirmation", 7, "Diversify", "PRISM-heavy", GOLD),
+        ("S3", "Drug response /\npharmacogenomics", 11, "Diversify", "mostly PRISM", GOLD),
+        ("S4", "Human genetic\ntarget support", 0, "Deferred", "GenomicsBench", GRAY_DARK),
+        ("S5", "Causal target\nvalidation", 12, "Ready", "v1 coverage", TEAL),
+        ("S6", "Perturbational\nMoA / PD", 17, "Ready", "strongest coverage", TEAL),
+        ("S7", "Compound-target\ncharacterization", 1, "Build", "largest gap", RED),
+        ("S8", "Developability\n& safety", 16, "Diversify", "cardiotox-heavy", ACCENT),
+        ("S9", "Translational\nefficacy", 6, "Diversify", "one NSCLC source", ACCENT),
     ]
-    max_eval = max(d[3] for d in datasets)
-    fig, ax = plt.subplots(figsize=(7.35, 4.35))
+    max_eval = max(d[2] for d in stages)
+    fig, ax = plt.subplots(figsize=(7.35, 4.65))
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.axis("off")
-    label(ax, 0.055, 0.955, "Evaluation inventory follows assay evidence, not a generic drug-discovery checklist", size=10.5, bold=True)
 
-    headers = ["Dataset", "Assay evidence", "Approx. evals", "Decision tested"]
-    xs = [0.055, 0.285, 0.555, 0.745]
+    label(ax, 0.055, 0.955, "Evaluation inventory follows the nine-stage Assays Roadmap", size=10.4, bold=True)
+    label(ax, 0.055, 0.905, "Coverage is broad by stage count, but several covered stages remain single-source dominated.", size=7.0, color=MUTED)
+
+    summary = [("70", "evals"), ("7/9", "stages covered"), ("S7", "build gap")]
+    widths = [0.135, 0.165, 0.150]
+    starts = [0.055, 0.210, 0.395]
+    for i, (big, small) in enumerate(summary):
+        x = starts[i]
+        rounded_box(ax, (x, 0.807), widths[i], 0.065, fc=CREAM, ec=LINE, radius=0.012)
+        label(ax, x + 0.022, 0.842, big, size=9.0, bold=True, mono=True, color=ACCENT if i == 2 else TEXT)
+        label(ax, x + 0.068, 0.842, small, size=5.9, color=MUTED, bold=True if i == 2 else False)
+
+    headers = ["Stage", "Evals", "Status", "Roadmap interpretation"]
+    xs = [0.055, 0.455, 0.598, 0.735]
     for x, h in zip(xs, headers):
-        label(ax, x, 0.87, h, size=6.7, color=MUTED, bold=True, mono=True)
-    ax.plot([0.05, 0.955], [0.838, 0.838], color=LINE, lw=0.9)
+        label(ax, x, 0.750, h, size=6.2, color=MUTED, bold=True, mono=True)
+    ax.plot([0.05, 0.955], [0.725, 0.725], color=LINE, lw=0.9)
 
-    row_h = 0.138
-    y0 = 0.755
-    for i, (code, name, assay, n, decision, c) in enumerate(datasets):
+    row_h = 0.071
+    y0 = 0.678
+    for i, (code, name, n, status, note, c) in enumerate(stages):
         y = y0 - i * row_h
-        rounded_box(ax, (0.045, y - 0.044), 0.91, 0.092, fc=WHITE if i % 2 else CREAM, ec=LINE, lw=0.35, radius=0.012)
-        rounded_box(ax, (0.058, y - 0.030), 0.043, 0.060, fc=c, ec="none", radius=0.010)
-        label(ax, 0.0795, y, code, size=7.0, color=WHITE, bold=True, ha="center", mono=True)
-        label(ax, 0.112, y + 0.008, name, size=7.0, bold=True)
-        label(ax, 0.285, y, wrap(assay, 28), size=6.1)
-        bar_w = 0.120 * n / max_eval
-        ax.add_patch(Rectangle((0.558, y - 0.015), 0.120, 0.030, facecolor="#ECE7DF", edgecolor="none"))
-        ax.add_patch(Rectangle((0.558, y - 0.015), bar_w, 0.030, facecolor=c, edgecolor="none"))
-        label(ax, 0.692, y, f"{n}", size=6.4, mono=True, bold=True, ha="right")
-        label(ax, 0.745, y, wrap(decision, 24), size=6.2)
+        rounded_box(ax, (0.045, y - 0.030), 0.91, 0.058, fc=WHITE if i % 2 else CREAM, ec=LINE, lw=0.30, radius=0.010)
+        rounded_box(ax, (0.058, y - 0.020), 0.038, 0.040, fc=c, ec="none", radius=0.008)
+        label(ax, 0.077, y, code, size=6.2, color=WHITE, bold=True, ha="center", mono=True)
+        label(ax, 0.108, y, name, size=5.65, bold=True)
+        ax.add_patch(Rectangle((0.455, y - 0.010), 0.098, 0.020, facecolor="#ECE7DF", edgecolor="none"))
+        if n > 0:
+            ax.add_patch(Rectangle((0.455, y - 0.010), 0.098 * n / max_eval, 0.020, facecolor=c, edgecolor="none"))
+        label(ax, 0.568, y, f"{n}", size=5.6, mono=True, bold=True, ha="right")
+        rounded_box(ax, (0.598, y - 0.018), 0.100, 0.036, fc=c, ec="none", radius=0.009)
+        label(ax, 0.648, y, status, size=5.0, color=WHITE, bold=True, ha="center", mono=True)
+        label(ax, 0.735, y, note, size=5.55, color=TEXT if status != "Deferred" else MUTED)
 
     label(
         ax,
         0.05,
-        0.052,
-        "Counts are approximate where the planning documents specify a target range. Replace with finalized inventory counts after task freeze.",
-        size=6.3,
+        0.030,
+        "Counts and statuses are from the Assays Roadmap coverage mapping. S1 and S4 are intentionally deferred for this release.",
+        size=5.8,
         color=MUTED,
     )
     save(fig, "fig2_inventory")
