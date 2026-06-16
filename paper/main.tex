@@ -312,9 +312,32 @@ Thus, across providers, model generations, and agent harnesses, no system approa
     Grok 4.3 / Pi & 18.3\% (55/300; 11.9--24.8) & 30/100 & 15/100 & 10/100 \\
     \bottomrule
     \end{tabular}
-    \caption{Table x: Pass rates by model–harness configuration. ass rates are reported as percentages, with the numerator and denominator shown as passing trajectories out of 300 total trajectories per configuration, together with 95\% confidence intervals. Confidence intervals were computed across task-level mean pass rates over the 100 preclinical pharmacology tasks. The final three columns report the number of tasks, out of 100, for which at least one, at least two, or all three independent attempts passed. Runtime and cost are included as operational diagnostics rather than leaderboard columns.}
+    \caption{Table x: Pass rates by model–harness configuration. Pass rates are reported as percentages, with the numerator and denominator shown as passing trajectories out of 300 total trajectories per configuration, together with 95\% confidence intervals. Confidence intervals were computed across task-level mean pass rates over the 100 preclinical pharmacology tasks. The final three columns report the number of tasks, out of 100, for which at least one, at least two, or all three independent attempts passed. Runtime and cost are included as operational diagnostics rather than leaderboard columns.}
     \label{tab:passrates}
 \end{table}
+
+
+\subsection{Failures vary across models}
+
+Across all 16 model-harness combinations, 92\% of evaluations were solvable in
+at least one trial. The strongest configuration, GPT-5.5 / Pi, had
+a 74\% starting pass rate.
+
+When requiring all three attempts to pass, this number dropped to 41\% for the
+highest scoring combination, again GPT-5.5 / Pi. The solve rate improved significantly when results from the second-best model-harness combination, Claude Opus 4.8 / Pi,
+were combined with GPT-5.5 / Pi.
+
+Failure patterns remain model-specific across pass
+thresholds. Coverage saturates when roughly five
+model-harness combinations are pooled. This indicates that frontier
+models can collectively resolve specific failures made by individual models.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.82\textwidth]{figures/fig_divergence_a.pdf}
+    \caption{\textbf{Figure X: Failures vary across models.} Oracle model-pooling coverage: the fraction of the 100 evaluations solved by at least one of the $k$ selected model-harness configurations, under two definitions of ``solved'' (at least one of three attempts, versus all three attempts). Solid lines show best-first pooling by marginal coverage; dashed lines show the mean over random model orderings. The gap between the best single model and the union of all models reflects divergent rather than fully shared failures.}
+    \label{fig:divergence}
+\end{figure}
 
 \subsection{Most failures map to a compact failure-mode taxonomy}
 
