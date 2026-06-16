@@ -410,23 +410,22 @@ errors regardless of pass rate.
 
 \subsection{The dominant failure mode shifts characteristically across pipeline stages}
 
-Pass rates range from 27\% at the hardest stage to 55\% at the most forgiving
+Pass rates range from 27\% at the hardest stage to 55\% at the easiest stage
 (Figure~\ref{fig:by-stage}).
 Walking the arc in order shows that each stage has characteristic strengths and weaknesses.
 We look at a representative easy and hard evaluation for each stage, with the
 fraction of passing runs in parentheses.
 
-Stage-level model rankings track the overall ranking closely
-(Figure~\ref{fig:by-stage}C; mean Spearman $\rho = 0.80$ across stages, range
-0.56 at S7 to 0.92 at S8), and the two Grok models rank lowest at every stage.
+Overall, the ordering of models at each stage closely mirrors their overall performance
+(Figure~\ref{fig:by-stage}C; mean Spearman $\rho = 0.80$ across stages, ranging from 0.56 at S7 to 0.92 at S8), with the two Grok models ranking lowest at every stage.
 Three features stand out against this baseline. The two highest cells in the
 matrix are gemini-3.5-flash and gpt-5.5 at drug response (S3), at 87\% (95\% CI
 70--95, $n=30$) and 86\% (69--95, $n=29$), well above their own overall rates of
 52\% and 55\%. The clearest stage effect is within a single model. gemini-3.5-flash
 falls from 87\% at S3 to 28\% (16--44, $n=36$) at causal target validation (S5), a
 swing whose confidence intervals do not overlap. The widest within-family spread
-is at screening (S2), where claude-opus-4-8 scores 50\% (31--69) and the older
-claude-opus-4-6 12\% (4--31).
+is at screening (S2), where claude-opus-4-8 scores 50\% (31--69, $n=24$) and the older
+claude-opus-4-6 12\% (4--31, $n=24$).
 
 \emph{Primary screening and hit prioritization (27\%)} is the hardest stage. Models are
 competent at the mechanical steps, such as robustly collapsing noisy replicates
@@ -538,25 +537,26 @@ and advanced on that false basis.
 
 \subsection{Some task categories remain far harder than others}
 
-Difficulty is governed more by the type of judgment a task requires than by its
+Difficulty depends more on the type of judgment a task requires than on its
 biological domain. Grouping the 100 evaluations by task type and restricting to
-the 14 categories backed by at least four evaluations (86 of the 100 evaluations),
-the mean Pi-harness pass rate across the 11 models spans 4.1-fold, from 71\% on
-exposure and PK tasks down to 19\% on hit prioritization and 17\% on
-cheminformatics (Figure~\ref{fig:by-task-type}). The split tracks answer structure
-rather than subject matter. The four highest categories all have a determinate
-target: exposure-PK (71\%), biomarker discovery (56\%), safety assessment (55\%),
-and target engagement (52\%) average 58\%, and each resolves to either a number
-computed and compared against a threshold or a single entity the evidence points
-to (a biomarker, or a binary safety or engagement call). The four lowest instead
-require selecting a calibrated subset from many candidates with no single answer to
-recover: target dependency (30\%), differential response (28\%), hit prioritization
-(19\%), and cheminformatics (17\%) average 24\%, a 34-percentage-point (2.5-fold)
-gap below the determinate group. These ask, respectively, which genes are selective
-dependencies, whether a response is shared or lineage-selective, which screen hits
-to advance, and which substructures are genuine safety liabilities. The ordering
-matches the failure taxonomy, where tasks with a definite target are tractable, while
-those that require committing to a calibrated cut under uncertainty are not.
+the 14 categories with at least four evaluations (86 of the 100 evaluations), the
+mean Pi-harness pass rate across the 11 models spans a 4.1-fold range, from 71\%
+on exposure and PK tasks to 19\% on hit prioritization and 17\% on cheminformatics
+(Figure~\ref{fig:by-task-type}). Performance separates by the structure of the
+required answer rather than by subject matter. The four highest categories,
+exposure-PK (71\%), biomarker discovery (56\%), safety assessment (55\%), and target
+engagement (52\%), each resolve to a determinate target and average 58\%. In each,
+the answer is either a number computed and compared against a threshold or a single
+entity identified by the evidence (a biomarker, or a binary safety or engagement
+call). The four lowest categories, target dependency (30\%), differential response
+(28\%), hit prioritization (19\%), and cheminformatics (17\%), instead require
+selecting a calibrated subset from many candidates with no unique answer, and average
+24\%. These tasks ask which genes are selective dependencies, whether a response is
+shared or lineage-selective, which screen hits to advance, and which substructures
+are genuine safety liabilities. The two groups differ by 34 percentage points
+(2.5-fold), and the ordering matches the failure taxonomy, in which tasks with a
+definite target are tractable while those requiring a calibrated cut under
+uncertainty are not.
 
 \EndBody
 
@@ -574,12 +574,14 @@ those that require committing to a calibrated cut under uncertainty are not.
 \StartBody
 
 Splitting performance by model and task type (Figure~\ref{fig:task-heatmap}) shows
-the two effects act largely independently. Across a row, overall model strength
-dominates, with the strongest models (claude-opus-4-8, gpt-5.5) high across most
-categories and the weakest (grok-4.3, grok-4.20-reasoning) low throughout. Down a
-column, the task sets a ceiling that a better model does not overcome. On the two
-hardest categories, hit prioritization and cheminformatics, no model exceeds 45\%,
-which points to a limit shared across current models.
+that the two effects are largely separable. Within a model (a row of the matrix),
+overall model strength dominates, with the strongest models (claude-opus-4-8,
+gpt-5.5) scoring high across most categories and the weakest (grok-4.3,
+grok-4.20-reasoning) scoring low across all of them. Within a task type (a column),
+difficulty imposes a
+ceiling that a stronger model does not overcome. On the two hardest categories, hit
+prioritization and cheminformatics, no model exceeds 45\%, indicating a limit shared
+across current models.
 
 \EndBody
 
@@ -599,46 +601,50 @@ which points to a limit shared across current models.
 \subsection{Among strong models, accuracy tracks process discipline rather than effort}
 
 Pass rate is only weakly and non-monotonically related to expended effort
-(Figure~\ref{fig:frontier}). Across the 11 models, mean agent steps and strict
-pass rate correlate at Spearman $\rho=0.54$, falling to $\rho=0.32$ once the two
-low-engagement Grok models are excluded. Those two models set a floor: grok-4.3
-(mean \$0.02, median 6 steps per evaluation) and grok-4.20-reasoning (\$0.11,
-median 11 steps) score lowest, at 18.3\% and 19.7\%, and their failures are
-dominated by under-investment (32\% and 17\% of failures, against 0--1\% for every
-other model; Figure~\ref{fig:failure-taxonomy}C). Above this floor, effort and
-accuracy decouple: gemini-3.5-flash runs the longest (median 43 steps, $\approx$
-2.5$\times$ opus-4-8's 17) yet reaches 51.3\% against opus-4-8's 59.3\%; gpt-5.5
-exceeds gpt-5.4 (55.3\% vs.\ 49.7\%) at fewer steps (median 15 vs.\ 24); and
-claude-opus-4-6 reaches 44.7\% at a median of 10 steps, above claude-sonnet-4-6
-(36.0\%) and kimi-k2p6 (29.7\%) at higher step counts.
+(Figure~\ref{fig:frontier}). Across the 11 models, mean agent steps and strict pass
+rate correlate at Spearman $\rho=0.54$, dropping to $\rho=0.32$ when the two
+low-engagement Grok models are excluded. grok-4.3 (mean
+\$0.02, median 6 steps) and grok-4.20-reasoning (\$0.11, median 11 steps) score
+lowest, at 18.3\% and 19.7\%, and under-investment drives 32\% and 17\% of their
+failures, against 0--1\% for every other model (Figure~\ref{fig:failure-taxonomy}C).
+Above the floor, effort and accuracy decouple. gemini-3.5-flash takes the most steps
+(median 43, $\approx$2.5$\times$ opus-4-8's 17) but reaches only 51.3\%, below
+opus-4-8's 59.3\%. gpt-5.5 beats gpt-5.4 (55.3\% vs.\ 49.7\%) with fewer steps
+(median 15 vs.\ 24). claude-opus-4-6 reaches 44.7\% at a median of 10 steps, above
+claude-sonnet-4-6 (36.0\%) and kimi-k2p6 (29.7\%) despite their higher step counts.
 
-What separates the strong models is instead the composition of their failures,
-not their analytic ceiling (Figure~\ref{fig:failure-taxonomy}C). The top Claude
-models fail almost entirely through engaged-but-incorrect analysis: 73--77\% of
-their failures are analytical, leaving only 23--27\% non-analytical
-(claude-opus-4-6 the cleanest, 23.0\% of $n=165$ failures; opus-4-7 26.8\%,
-opus-4-8 26.7\%). The GPT models reach comparable accuracy along a more
-process-laden path. Weak commitment (gpt-5.5 12\%, gpt-5.4 16\%) and
-abandoned-correct (17\% and 15\%) raise their non-analytical share to 39.7\%
-(gpt-5.5, $n=126$) and 41.8\% (gpt-5.4, $n=146$). Their remaining headroom is
-therefore concentrated in finalization---verifying the read and committing to the
-answer the analysis already supports---more than in raw analytic capability.
-Under-investment is effectively absent from every strong model ($\leq$1\% of
-failures) and appears only in the two cheapest.
+Strong models differ mainly in the composition of their failures, not in their
+analytic ceiling (Figure~\ref{fig:failure-taxonomy}C). The top Claude models fail
+almost entirely through engaged-but-incorrect analysis. Analytical errors account
+for 73--77\% of their failures, leaving 23--27\% non-analytical (claude-opus-4-6
+cleanest at 23.0\% of $n=165$ failures, opus-4-7 at 26.8\%, opus-4-8 at 26.7\%). The
+GPT models reach comparable accuracy by a more process-laden route. Weak commitment
+(gpt-5.5 12\%, gpt-5.4 16\%) and abandoned-correct answers (17\% and 15\%) raise
+their non-analytical share to 39.7\% (gpt-5.5, $n=126$) and 41.8\% (gpt-5.4,
+$n=146$). Their headroom therefore lies in finalization, verifying the read and
+committing to the answer the analysis already supports, not in raw analytic
+capability. Under-investment is effectively absent from every strong model
+($\leq$1\% of failures) and appears only in the two cheapest.
 
 These quantitative patterns correspond to identifiable behaviors on individual
-tasks. The most accurate runs reason through the question's scientific intent,
-draw a calibrated cut, verify intermediate results against the data, and commit to
-a single answer. On the bosutinib task, claude-opus-4-8 set aside the compound's
-documented BCR-ABL and SRC activity and reported the non-canonical off-target
-engagement the data show---the distinction that determines whether a program
-attributes the compound's activity to its reputed targets or to the ones it
-actually engages---and on the crizotinib control it applied only the threshold the
-task specified, rather than the additional gate other models introduced that
-removes five genuine engagement hits. gpt-5.5, best-calibrated on
-precision-sensitive tasks, established the panel layout and marker assignments
-before quantifying EGFR/phospho-MEK co-activation in code, the readout that decides
-whether the compound is advanced as on-pathway.
+tasks. The most accurate runs reason through the scientific intent, draw a
+calibrated cut, verify against the data, and commit to one answer. The pattern is
+clearest on hard tasks, where most runs fail but the strongest still succeed, and
+each hinges on a concrete drug-program decision. For instance, Bosutinib is an approved
+BCR-ABL/SRC inhibitor, but a program must credit its activity to the targets it
+actually engages in the chemoproteomics panel. On this task
+(32\% of runs passing), claude-opus-4-8 overrode the clinical prior and committed to
+the non-canonical profile the panel supports, while other models anchored to the label
+returned the canonical ABL/SRC answer. The crizotinib control (21\%) asks whether a
+separate broad-spectrum control compound justifies dropping genuinely engaged
+targets in a live-cell NanoBRET screen. It does not, and claude-opus-4-8 kept five
+engaged targets that other models discarded behind an invented quality-control gate,
+an error that wouldhave removed real hits from medicinal-chemistry follow-up. The
+EGFR/phospho-MEK task (44\%) asks whether EGFR productively drives downstream MEK
+signaling in a BRAF-mutant colorectal-cancer organoid, the call that decides whether
+the compound advances as on-pathway. gpt-5.5 quantified the co-positive cell share
+in code rather than calling it from total marker abundance, reaching the supported
+conclusion.
 
 \EndBody
 
@@ -663,33 +669,33 @@ The evaluations that most resemble a real pipeline gate are the program
 decisions, which hand the agent several assay readouts at once and ask for a
 single advance, hold, or prioritize call. The current suite has seven such
 advancement decisions, and across 230 runs models pass only 35\% of them
-(Figure~\ref{fig:program-decisions}). When the evidence package is clean the
-agents integrate it well, but on the harder gates they fail in both directions,
-by advancing weak candidates or discarding strong ones.
+(Figure~\ref{fig:program-decisions}). Models perform well when the evidence package is clean and consistent, but struggle on more challenging gates, either advancing weak candidates or discarding strong ones.
 
-The organoid program go/no-go is the clean case. Given a primary screen, a
-mechanism image, a tox counterscreen, and DMPK exposure for eight blinded
-compounds, the supported action is to advance the one compound that shows the
-desired cytostatic mechanism together with an adequate safety margin and covering
-exposure, and most models do (82\%). On the decision-gate task the agent must
-assemble a set of models with convergent support across several endpoints, but
-models rank on a single synergy metric and nominate a model that is an artifact of
-that one number (27\%), so the program's next experiments are built on the wrong
-models. On the safety advancement task the supported call is that no candidate
-moves forward, because none pairs activity with healthy-tissue sparing, yet models
-advance one on activity alone or on a relative tumour-versus-healthy index (36\%),
-putting an unsafe compound into the pipeline. The reverse error also appears. On
-the long-term combination task, models read a strong colony-stain reduction as a
-complete kill and drop a model the combination still supports
-(\texttt{HAI2027\_FIG1\_DUR01}, 48\%).
+\emph{Clean correct.} The organoid program go/no-go is the clean case
+(Figure~\ref{fig:program-decisions}). Given a primary screen, a mechanism image, a
+tox counterscreen, and DMPK exposure for eight blinded compounds, the supported
+action is to advance the one compound that shows the desired cytostatic mechanism
+together with an adequate safety margin and covering exposure, and most models do
+(82\%).
 
-Most models can compute the individual pieces and diverge at the commitment
-step, where the analysis has to become one advance-or-hold call, and that step
-reorders the leaderboard. Ranking the eleven models by their pass rate on the
-six multi-evidence advancement decisions (18 runs each) yields an order almost
+\emph{Wrong synthesis.} On the decision-gate task the agent must assemble a set of
+models with convergent support across several endpoints, but models rank on a single
+synergy metric and nominate a model that is an artifact of that one number (27\%),
+so the program's next experiments are built on the wrong models.
+
+\emph{False-go.} On the safety advancement task the supported call is that no
+candidate moves forward, because none pairs activity with healthy-tissue sparing,
+yet models advance one on activity alone or on a relative tumour-versus-healthy
+index (36\%), putting an unsafe compound into the pipeline.
+
+\emph{False no-go.} The reverse error also appears. On the long-term combination
+task, models read a strong colony-stain reduction as a complete kill and drop a
+model the combination still supports (\texttt{HAI2027\_FIG1\_DUR01}, 48\%).
+
+Leading the benchmark does not
+predict making the better program call. Six multi-evidence advancement decisions (18 runs each) yields an order almost
 unrelated to overall accuracy (Spearman $\rho = 0.08$;
-Figure~\ref{fig:program-model-compare}A), so leading the benchmark does not
-predict making the better program call. claude-opus-4-8, first overall at 60\%,
+Figure~\ref{fig:program-model-compare}A). claude-opus-4-8, first overall at 60\%,
 ranks last on these decisions at 22\% (4/18). It clears both single-compound
 calls, advancing the one qualifying organoid compound (2/3) and holding when no
 candidate is safe (2/3), but it fails all four decisions that instead ask which
