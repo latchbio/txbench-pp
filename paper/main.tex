@@ -419,12 +419,11 @@ fraction of passing runs in parentheses.
 Overall, the ordering of models at each stage closely mirrors their overall performance
 (Figure~\ref{fig:by-stage}C; mean Spearman $\rho = 0.80$ across stages, ranging from 0.56 at S7 to 0.92 at S8), with the two Grok models ranking lowest at every stage.
 Three features stand out against this baseline. The two highest cells in the
-matrix are gemini-3.5-flash and gpt-5.5 at drug response (S3), at 87\% (95\% CI
+matrix are gemini-3.5-flash and gpt-5.5 at drug response, at 87\% (95\% CI
 70--95, $n=30$) and 86\% (69--95, $n=29$), well above their own overall rates of
 52\% and 55\%. The clearest stage effect is within a single model. gemini-3.5-flash
-falls from 87\% at S3 to 28\% (16--44, $n=36$) at causal target validation (S5), a
-swing whose confidence intervals do not overlap. The widest within-family spread
-is at screening (S2), where claude-opus-4-8 scores 50\% (31--69, $n=24$) and the older
+falls from 87\% at S3 to 28\% (16--44, $n=36$) at causal target validation. The widest within-family spread
+is at hit screening, where claude-opus-4-8 scores 50\% (31--69, $n=24$) and the older
 claude-opus-4-6 12\% (4--31, $n=24$).
 
 \emph{Primary screening and hit prioritization (27\%)} is the hardest stage. Models are
