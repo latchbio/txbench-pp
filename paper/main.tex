@@ -30,7 +30,7 @@ whether agents can recover decision-relevant conclusions from supplied assay
 evidence rather than recalling drug labels, ranking by a single metric, or
 applying generic checklists. The current task inventory maps 70 evaluations to
 a nine-stage Assays Roadmap. Seven stages have coverage, with strongest current
-coverage in causal target validation and perturbational mechanism-of-action /
+coverage in causal target validation and mechanism-of-action /
 pharmacodynamic reasoning, single-source coverage in screening,
 pharmacogenomics, safety, and translational efficacy, and a near-empty
 compound-target characterization stage. Agents receive realistic workflow
@@ -109,8 +109,8 @@ number.
 
 \TwoColParaBreak
 The current benchmark maps 70 evaluations to a nine-stage Assays Roadmap.
-Coverage is strongest in causal target validation and perturbational
-mechanism-of-action / pharmacodynamic reasoning; the clearest build gap is
+Coverage is strongest in causal target validation and mechanism-of-action /
+pharmacodynamic reasoning; the clearest build gap is
 compound-target characterization. The underlying sources still matter:
 several covered stages are dominated by a small number of datasets, so
 diversifying assay sources is a central part of the benchmark roadmap.
@@ -181,8 +181,8 @@ handled by GenomicsBench.
 \par
 
 The roadmap view changes the benchmark story. Coverage is broad by stage count,
-but narrow by dataset diversity. Causal target validation and perturbational
-MoA/PD are ready for v1. Screening, pharmacogenomics, safety, and translational
+but narrow by dataset diversity. Causal target validation and MoA/PD are ready
+for v1. Screening, pharmacogenomics, safety, and translational
 efficacy have useful coverage but are single-source dominated. The largest
 in-scope gap is S7 compound-target characterization: binding, potency,
 selectivity, and cellular target engagement are almost absent.
@@ -234,7 +234,7 @@ GWAS, QTL, colocalization, Mendelian randomization, and tissue-of-action matchin
 S5. Causal target validation & 12 & Ready &
 Strong v1 coverage. Optional expansion: Perturb-CITE-seq, rescue assays, variant-function classification, and FACS sort-bin screens. \\
 \addlinespace
-S6. Perturbational MoA / PD & 17 & Ready &
+S6. MoA / pharmacodynamics & 17 & Ready &
 Strong v1 coverage. Optional expansion: LINCS/CMap, DRUG-seq, Seahorse, cytokine panels, reporter dose-response, and washout PD. \\
 \addlinespace
 S7. Compound-target characterization & 1 & Build &
