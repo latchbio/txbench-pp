@@ -647,6 +647,13 @@ Ground each in an exact eval name once the public manifest is frozen.}
 
 \subsection{The agent harness has a surprising impact on model performance}
 
+Although a harness serves merely as a wrapper around a fixed model—utilizing the same checkpoint, task text, and answer-submission protocol. We found that it exerts a surprisingly large and consistent effect on overall performance. In within-model matched comparisons, which provided the only unconfounded contrast since each harness evaluated a distinct set of models, Pi outperformed Claude Code by 4.4 percentage points (95\% CI: 1.2–7.8) on the shared Opus models. Similarly, Pi outperformed OpenAI Codex by 5.5 percentage points (95\% CI: 1.2–9.8) on the shared GPT models. Notably, Pi achieved a higher score on every shared model, rather than merely winning on average.
+
+The magnitude of this improvement is comparable to a model-generation upgrade. For instance, transitioning from Opus version 4.6 to 4.7 yielded only a 4.6-point increase on Pi. Consequently, the choice of harness is roughly as consequential as upgrading to a newer model version. Furthermore, this advantage was relatively uniform across both image-based and non-image tasks, indicating that the performance gains were not primarily attributable to visual access. For context, Claude Code rendered figures to the model in 100\% of image-bearing tasks compared to 84\% for Pi, whereas OpenAI Codex, which lacks vision capabilities, never rendered figures.
+
+Instead, the residual performance differences can be traced to subtler scaffolding properties. For example, Pi's lean, three-tool loop failed on only 0.6\% of runs—compared to 1.8\% for Claude Code—and reached an answer in fewer steps. Conversely, OpenAI Codex's lack of a vision pathway further penalized its performance on figure-decisive tasks. Although these effects are modest in absolute terms and present wide confidence intervals, they are directionally robust and persist across different model families. Ultimately, an implementation detail nominally orthogonal to the model itself can shift the endpoint pass rate by a margin equivalent to a full model generation.
+
+
 \todo{From the harness-effect comparison (\texttt{fig4\_harness\_effect}):
 running the same model under different scaffolds (Pi vs Codex/CC) shifts the
 task-matched pass rate by roughly 3--12 points, with some models far more
