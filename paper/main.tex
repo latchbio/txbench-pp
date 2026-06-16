@@ -435,7 +435,7 @@ positive-control wells, discarding real biology as a technical artifact. On an
 oncology drugs repurposing prioritization task (\texttt{PRISM\_S2\_11}, 0\%) they rank by breadth of
 killing and nominate a pan-cytotoxic compound rather than a selective hit.
 
-\emph{Drug response and pharmacogenomics (55\%)} is one of the easier stages but exposes a consistent weakness in unsupervised mechanism recovery. Models
+\emph{Drug response (55\%)} is one of the easier stages but exposes a consistent weakness in unsupervised mechanism recovery. Models
 do well on direct evidence checks, such as separating a causal mediator from a
 correlated biomarker (\texttt{PRISM\_S4\_06}, 76\%). They fail when asked to
 cluster compounds by mechanism from their response profiles. Across the
@@ -536,8 +536,7 @@ and advanced on that false basis.
 
 \subsection{Some task categories remain far harder than others}
 
-Difficulty depends more on the type of judgment a task requires than on its
-biological domain. Grouping the 100 evaluations by task type and restricting to
+Tasks become more difficult when they require nuanced biological reasoning and judgment. Grouping the 100 evaluations by task type and restricting to
 the 14 categories with at least four evaluations (86 of the 100 evaluations), the
 mean Pi-harness pass rate across the 11 models spans a 4.1-fold range, from 71\%
 on exposure and PK tasks to 19\% on hit prioritization and 17\% on cheminformatics
@@ -554,7 +553,7 @@ selecting a calibrated subset from many candidates with no unique answer, and av
 shared or lineage-selective, which screen hits to advance, and which substructures
 are genuine safety liabilities. The two groups differ by 34 percentage points
 (2.5-fold), and the ordering matches the failure taxonomy, in which tasks with a
-definite target are tractable while those requiring a calibrated cut under
+definite target are tractable for today's models while those requiring a calibrated cut under
 uncertainty are not.
 
 \EndBody
