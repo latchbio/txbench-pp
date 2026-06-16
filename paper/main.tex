@@ -28,15 +28,14 @@ of a broader TherapeuticsBench effort organized across drug-discovery stages
 and therapeutic modalities. It targets recurring cluster-style decisions:
 whether agents can recover decision-relevant conclusions from supplied assay
 evidence rather than recalling drug labels, ranking by a single metric, or
-applying generic checklists. The current task inventory is organized around
-five evidence sources: decryptM dose-resolved phosphoproteomics, decryptE
-expression proteomics, Kinobeads chemoproteomics target engagement,
-TG-GATEs/DrugMatrix in vivo toxicogenomics, and a curated ADMET/DMPK/PK panel.
-Together these datasets cover a small-molecule preclinical pharmacology spine:
-mechanism of action and pharmacodynamics, compound-target engagement, ADMET
-and PK, safety interpretation, and partial PK/PD translation. Agents receive
-realistic workflow snapshots, inspect files in a coding environment, and return
-structured answers graded deterministically. \todo{Replace this final
+applying generic checklists. The current task inventory maps 70 evaluations to
+a nine-stage Assays Roadmap. Seven stages have coverage, with strongest current
+coverage in causal target validation and perturbational mechanism-of-action /
+pharmacodynamic reasoning, single-source coverage in screening,
+pharmacogenomics, safety, and translational efficacy, and a near-empty
+compound-target characterization stage. Agents receive realistic workflow
+snapshots, inspect files in a coding environment, and return structured answers
+graded deterministically. \todo{Replace this final
 paragraph with model-run results: number of evaluations, model-harness pairs,
 trajectories, top pass rates, and the main failure pattern.}
 \end{PreprintAbstract}
@@ -109,10 +108,12 @@ it can recall a drug class, run a default workflow, or optimize for a single
 number.
 
 \TwoColParaBreak
-The current benchmark centers on five data sources: decryptM, decryptE,
-Kinobeads, TG-GATEs/DrugMatrix, and curated PK/ADMET fixtures. These datasets
-cover mechanism and pharmacodynamic readouts, compound-target engagement,
-in vivo toxicology, source reconciliation, and exposure-aware prioritization.
+The current benchmark maps 70 evaluations to a nine-stage Assays Roadmap.
+Coverage is strongest in causal target validation and perturbational
+mechanism-of-action / pharmacodynamic reasoning; the clearest build gap is
+compound-target characterization. The underlying sources still matter:
+several covered stages are dominated by a small number of datasets, so
+diversifying assay sources is a central part of the benchmark roadmap.
 \todo{Add final run summary once result aggregation is complete.}
 
 \end{minipage}\hfill
@@ -171,23 +172,20 @@ diagnostic analysis after endpoint grading.
 \section{Evaluation Inventory}
 
 \begin{multicols}{2}
-The current suite is organized by assay evidence rather than by a generic drug
-discovery checklist. decryptM and decryptE map to discovery-stage mechanism,
-pathway, and pharmacodynamic reasoning from dose-resolved proteomic readouts.
-Kinobeads sits at the discovery/development bridge by testing direct
-target-engagement reasoning, including contaminant rejection and cluster-boundary
-selection. PK/ADMET tasks map to development-stage exposure, clearance,
-protein-binding, permeability, and source-reconciliation decisions. TG-GATEs
-and DrugMatrix map to translation-facing safety interpretation across chemistry,
-pathology, survival, and protocol context.
+The current suite is organized around the Assays Roadmap rather than around
+source datasets. Each evaluation is assigned to the roadmap stage that best
+matches its primary biological skill. The current inventory includes 70
+evaluations across seven of the nine stages. S1 disease/model characterization
+and S4 human genetic target support are deferred for this release; S4 is better
+handled by GenomicsBench.
 \par
 
-The inventory intentionally leaves major parts of TherapeuticsBench outside the
-current scope. Target genetics, disease-model characterization, broad
-pharmacogenomics, primary screening QC, biologics developability, antibody-drug
-conjugates, degraders, oligonucleotides, and cell or gene therapies are natural
-future extensions, but are not required to define the small-molecule
-preclinical pharmacology slice tested here.
+The roadmap view changes the benchmark story. Coverage is broad by stage count,
+but narrow by dataset diversity. Causal target validation and perturbational
+MoA/PD are ready for v1. Screening, pharmacogenomics, safety, and translational
+efficacy have useful coverage but are single-source dominated. The largest
+in-scope gap is S7 compound-target characterization: binding, potency,
+selectivity, and cellular target engagement are almost absent.
 \par
 \end{multicols}
 }
@@ -195,46 +193,70 @@ preclinical pharmacology slice tested here.
 \begin{center}
   \includegraphics[width=0.94\textwidth]{figures/fig2_inventory.pdf}
 
-  \captionof{figure}{\textbf{Evaluation inventory by evidence source.}
-  Current TxBench-PP tasks are drawn from five small-molecule preclinical
-  pharmacology evidence sources. Approximate evaluation counts come from the
-  planning documents and should be replaced with frozen counts before
-  submission.}
+  \captionof{figure}{\textbf{Evaluation inventory by Assays Roadmap stage.}
+  Current TxBench-PP evaluations are mapped to the roadmap stage that best
+  captures the biological skill being tested. The inventory is broad across
+  stages but uneven across assay families: S5 and S6 are ready for v1, S7 is
+  the clearest build gap, and S2, S3, S8, and S9 need source diversification.}
   \label{fig:evaluation-inventory}
 \end{center}
 
+\clearpage
+
 \begin{center}
-\fontsize{7.0}{8.5}\selectfont
-\setlength{\tabcolsep}{3.2pt}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.13\linewidth}
+\fontsize{6.25}{7.45}\selectfont
+\setlength{\tabcolsep}{2.6pt}
+\captionof{table}{\textbf{Roadmap-stage inventory.}
+Counts are from the Assays Roadmap coverage mapping of 70 current evaluations.
+``Ready'' stages are sufficient for v1; ``Diversify'' stages have useful but
+source-narrow coverage; ``Build'' marks the largest missing pillar.}
+\label{tab:evaluation-inventory}
+\vspace{0.5em}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.22\linewidth}
                 >{\centering\arraybackslash}p{0.055\linewidth}
-                >{\raggedright\arraybackslash}p{0.25\linewidth}
-                >{\raggedright\arraybackslash}p{0.43\linewidth}@{}}
+                >{\raggedright\arraybackslash}p{0.13\linewidth}
+                >{\raggedright\arraybackslash}p{0.50\linewidth}@{}}
 \toprule
-Evidence source & Evals & Assay evidence & Decision themes \\
+Roadmap stage & Evals & Status & Assay emphasis and next gap \\
 \midrule
-decryptM & 48 & dose-resolved phosphoproteomics &
-Mechanism-of-action inference, pathway-coherent signalling, artifact rejection \\
+S1. Disease / model characterization & 0 & Deferred &
+Model subtype, expression, mutation/CNV context, pathway state, IHC/IF, RNAscope, and model QC are out of the current build queue. \\
 \addlinespace
-decryptE & 12 & dose-resolved expression proteomics &
-Expression-proteomic pathway response, reliable target signal selection, single-feature artifact avoidance \\
+S2. Primary screening / hit confirmation & 7 & Diversify &
+PRISM-heavy. Add biochemical or reporter HTS, Z-prime and signal-window plate QC, counterscreens, and frequent-hitter filtering. \\
 \addlinespace
-Kinobeads & 2 & chemoproteomics target engagement &
-Direct target selection, contaminant removal, engaged-cluster boundary detection \\
+S3. Drug response / pharmacogenomics & 11 & Diversify &
+Mostly PRISM. Add GDSC, CTRP, CCLE, Beat AML, organoid screens, single-cell perturbation, and censored-curve handling. \\
 \addlinespace
-TG-GATEs / DrugMatrix & $\sim$20 & in vivo rat toxicogenomics and safety &
-Integrated toxicity calls, pathology and chemistry reconciliation, survivor bias, species-specific artifacts \\
+S4. Human genetic target support & 0 & Deferred &
+GWAS, QTL, colocalization, Mendelian randomization, and tissue-of-action matching are assigned to GenomicsBench. \\
 \addlinespace
-PK / ADMET panel & $\sim$45 & ADMET, DMPK, PK, literature measurements &
-Clearance source reconciliation, free-drug exposure, safety margins, potency-adjusted prioritization \\
+S5. Causal target validation & 12 & Ready &
+Strong v1 coverage. Optional expansion: Perturb-CITE-seq, rescue assays, variant-function classification, and FACS sort-bin screens. \\
+\addlinespace
+S6. Perturbational MoA / PD & 17 & Ready &
+Strong v1 coverage. Optional expansion: LINCS/CMap, DRUG-seq, Seahorse, cytokine panels, reporter dose-response, and washout PD. \\
+\addlinespace
+S7. Compound-target characterization & 1 & Build &
+Highest-priority gap. Add ChEMBL/BindingDB potency curation, selectivity panels, CETSA/NanoBRET, Kinobeads, and biochemical-to-cellular potency comparison. \\
+\addlinespace
+S8. Developability / safety & 16 & Diversify &
+Cardiotox dominated. Add measured hERG, DILI, Ames/micronucleus, permeability, metabolic stability, CYP/DDI, Tox21/ToxCast, and therapeutic-index reasoning. \\
+\addlinespace
+S9. Translational efficacy & 6 & Diversify &
+Single NSCLC source. Add organoid/patient concordance, PDX pharmacology, immune co-culture, ctDNA, responder-fraction, and exposure-response PK/PD. \\
 \bottomrule
 \end{tabular}
-\captionof{table}{\textbf{Draft TxBench-PP inventory.}
-The current benchmark should be described as a small-molecule preclinical
-pharmacology suite. Counts marked with $\sim$ should be replaced when the final
-evaluation manifest is frozen.}
-\label{tab:evaluation-inventory}
 \end{center}
+
+{\fontsize{8.0}{11.0}\selectfont\RaggedRight
+\noindent\textbf{Cross-stage gap.} The roadmap also identifies a missing
+class of end-to-end go/no-go evaluations: tasks that require an agent to weigh
+efficacy, selectivity, target engagement, exposure, and safety together. The
+current inventory covers many of these component decisions, but future
+TxBench-PP tasks should test multi-stage synthesis across at least three
+evidence blocks.
+\par}
 
 \StartBody
 

@@ -215,47 +215,63 @@ def fig_pipeline() -> None:
 
 
 def fig_inventory() -> None:
-    datasets = [
-        ("DM", "decryptM", "dose-resolved phosphoproteomics", 48, "MoA / pathway readouts", ACCENT),
-        ("DE", "decryptE", "dose-resolved expression proteomics", 12, "MoA + target reliability", VIOLET),
-        ("KB", "Kinobeads", "chemoproteomics target engagement", 2, "direct target selection", GOLD),
-        ("TG", "TG-GATEs", "in vivo rat toxicogenomics", 20, "safety / tox calls", RED),
-        ("PK", "PK/ADMET", "curated ADMET, DMPK, PK", 45, "free exposure + source choice", TEAL),
+    stages = [
+        ("S1", "Disease / model\ncharacterization", 0, "Deferred", "out of v1 scope", GRAY_DARK),
+        ("S2", "Primary screening\n& hit confirmation", 7, "Diversify", "PRISM-heavy", GOLD),
+        ("S3", "Drug response /\npharmacogenomics", 11, "Diversify", "mostly PRISM", GOLD),
+        ("S4", "Human genetic\ntarget support", 0, "Deferred", "GenomicsBench", GRAY_DARK),
+        ("S5", "Causal target\nvalidation", 12, "Ready", "v1 coverage", TEAL),
+        ("S6", "Perturbational\nMoA / PD", 17, "Ready", "strongest coverage", TEAL),
+        ("S7", "Compound-target\ncharacterization", 1, "Build", "largest gap", RED),
+        ("S8", "Developability\n& safety", 16, "Diversify", "cardiotox-heavy", ACCENT),
+        ("S9", "Translational\nefficacy", 6, "Diversify", "one NSCLC source", ACCENT),
     ]
-    max_eval = max(d[3] for d in datasets)
-    fig, ax = plt.subplots(figsize=(7.35, 4.35))
+    max_eval = max(d[2] for d in stages)
+    fig, ax = plt.subplots(figsize=(7.35, 4.65))
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.axis("off")
-    label(ax, 0.055, 0.955, "Evaluation inventory follows assay evidence, not a generic drug-discovery checklist", size=10.5, bold=True)
 
-    headers = ["Dataset", "Assay evidence", "Approx. evals", "Decision tested"]
-    xs = [0.055, 0.285, 0.555, 0.745]
+    label(ax, 0.055, 0.955, "Evaluation inventory follows the nine-stage Assays Roadmap", size=10.4, bold=True)
+    label(ax, 0.055, 0.905, "Coverage is broad by stage count, but several covered stages remain single-source dominated.", size=7.0, color=MUTED)
+
+    summary = [("70", "evals"), ("7/9", "stages covered"), ("S7", "build gap")]
+    widths = [0.135, 0.165, 0.150]
+    starts = [0.055, 0.210, 0.395]
+    for i, (big, small) in enumerate(summary):
+        x = starts[i]
+        rounded_box(ax, (x, 0.807), widths[i], 0.065, fc=CREAM, ec=LINE, radius=0.012)
+        label(ax, x + 0.022, 0.842, big, size=9.0, bold=True, mono=True, color=ACCENT if i == 2 else TEXT)
+        label(ax, x + 0.068, 0.842, small, size=5.9, color=MUTED, bold=True if i == 2 else False)
+
+    headers = ["Stage", "Evals", "Status", "Roadmap interpretation"]
+    xs = [0.055, 0.455, 0.598, 0.735]
     for x, h in zip(xs, headers):
-        label(ax, x, 0.87, h, size=6.7, color=MUTED, bold=True, mono=True)
-    ax.plot([0.05, 0.955], [0.838, 0.838], color=LINE, lw=0.9)
+        label(ax, x, 0.750, h, size=6.2, color=MUTED, bold=True, mono=True)
+    ax.plot([0.05, 0.955], [0.725, 0.725], color=LINE, lw=0.9)
 
-    row_h = 0.138
-    y0 = 0.755
-    for i, (code, name, assay, n, decision, c) in enumerate(datasets):
+    row_h = 0.071
+    y0 = 0.678
+    for i, (code, name, n, status, note, c) in enumerate(stages):
         y = y0 - i * row_h
-        rounded_box(ax, (0.045, y - 0.044), 0.91, 0.092, fc=WHITE if i % 2 else CREAM, ec=LINE, lw=0.35, radius=0.012)
-        rounded_box(ax, (0.058, y - 0.030), 0.043, 0.060, fc=c, ec="none", radius=0.010)
-        label(ax, 0.0795, y, code, size=7.0, color=WHITE, bold=True, ha="center", mono=True)
-        label(ax, 0.112, y + 0.008, name, size=7.0, bold=True)
-        label(ax, 0.285, y, wrap(assay, 28), size=6.1)
-        bar_w = 0.120 * n / max_eval
-        ax.add_patch(Rectangle((0.558, y - 0.015), 0.120, 0.030, facecolor="#ECE7DF", edgecolor="none"))
-        ax.add_patch(Rectangle((0.558, y - 0.015), bar_w, 0.030, facecolor=c, edgecolor="none"))
-        label(ax, 0.692, y, f"{n}", size=6.4, mono=True, bold=True, ha="right")
-        label(ax, 0.745, y, wrap(decision, 24), size=6.2)
+        rounded_box(ax, (0.045, y - 0.030), 0.91, 0.058, fc=WHITE if i % 2 else CREAM, ec=LINE, lw=0.30, radius=0.010)
+        rounded_box(ax, (0.058, y - 0.020), 0.038, 0.040, fc=c, ec="none", radius=0.008)
+        label(ax, 0.077, y, code, size=6.2, color=WHITE, bold=True, ha="center", mono=True)
+        label(ax, 0.108, y, name, size=5.65, bold=True)
+        ax.add_patch(Rectangle((0.455, y - 0.010), 0.098, 0.020, facecolor="#ECE7DF", edgecolor="none"))
+        if n > 0:
+            ax.add_patch(Rectangle((0.455, y - 0.010), 0.098 * n / max_eval, 0.020, facecolor=c, edgecolor="none"))
+        label(ax, 0.568, y, f"{n}", size=5.6, mono=True, bold=True, ha="right")
+        rounded_box(ax, (0.598, y - 0.018), 0.100, 0.036, fc=c, ec="none", radius=0.009)
+        label(ax, 0.648, y, status, size=5.0, color=WHITE, bold=True, ha="center", mono=True)
+        label(ax, 0.735, y, note, size=5.55, color=TEXT if status != "Deferred" else MUTED)
 
     label(
         ax,
         0.05,
-        0.052,
-        "Counts are approximate where the planning documents specify a target range. Replace with finalized inventory counts after task freeze.",
-        size=6.3,
+        0.030,
+        "Counts and statuses are from the Assays Roadmap coverage mapping. S1 and S4 are intentionally deferred for this release.",
+        size=5.8,
         color=MUTED,
     )
     save(fig, "fig2_inventory")
