@@ -11,7 +11,7 @@
 \preprintKicker{bioRxiv preprint}
 \preprintCategory{Computational Biology}
 \preprintDate{June 2026}
-\preprintTitle{TxBench-PP: Verifiable Evaluation of AI Agents on Preclinical Pharmacology}
+\preprintTitle{Analyzing AI Agent Performance on Preclinical Pharmacology}
 \preprintAuthors{Hannah Le\preprintSup{1,*}, Ramesh Ramasamy\preprintSup{1,*}, Alex Urrutia\preprintSup{1,*}, Mahsa Yazdani\preprintSup{1,*}, Tim Proctor\preprintSup{1}, Kenny Workman\preprintSup{1}}
 \preprintAffiliations{\preprintSup{1}LatchBio, San Francisco, CA, USA\\
 \preprintSup{*}These authors contributed equally.}
@@ -22,50 +22,56 @@
 \PreprintHeader
 
 \begin{PreprintAbstract}
-We introduce TxBench-PP, a verifiable benchmark for evaluating AI agents on
-small-molecule preclinical pharmacology. TxBench-PP is the first focused slice
-of a broader TherapeuticsBench effort organized across drug-discovery stages
-and therapeutic modalities. It targets recurring cluster-style decisions:
-whether agents can recover decision-relevant conclusions from supplied assay
-evidence rather than recalling drug labels, ranking by a single metric, or
-applying generic checklists. The current task inventory maps 70 evaluations to
-a nine-stage Assays Roadmap. Seven stages have coverage, with strongest current
-coverage in causal target validation and mechanism-of-action /
-pharmacodynamic reasoning, single-source coverage in screening,
-pharmacogenomics, safety, and translational efficacy, and a near-empty
-compound-target characterization stage. Agents receive realistic workflow
+AI agents promise to accelerate drug discovery by compressing interpretation
+and decision-making loops, but practical deployment requires trusted evaluation
+on realistic program decisions. We introduce TherapeuticsBench Preclinical
+Pharmacology (TxBench-PP), a verifiable benchmark for small-molecule
+preclinical pharmacology and the first focused slice of a broader
+TherapeuticsBench effort across drug-discovery stages and therapeutic
+modalities. TxBench-PP tests whether agents can recover accurate conclusions
+from real world assay data rather than memorized facts from literature. The
+benchmark contains 100 evaluations indexed by program stage, assay evidence,
+and task type, spanning mechanism-of-action and pharmacodynamic reasoning,
+compound-target engagement, causal target validation, developability and
+safety, and translational efficacy. Agents receive realistic workflow
 snapshots, inspect files in a coding environment, and return structured answers
-graded deterministically. \todo{Replace this final
-paragraph with model-run results: number of evaluations, model-harness pairs,
-trajectories, top pass rates, and the main failure pattern.}
+graded deterministically. Across 16 model--harness configurations, comprising
+11 models and 4,800 trajectories, no system reliably recovered preclinical
+pharmacology decisions. The strongest configuration, Claude Opus 4.8 / Pi,
+passed 59.3\% of trajectories, followed by GPT-5.5 / Pi at 55.3\%.
 \end{PreprintAbstract}
 
 \vfill
 \clearpage
 
-\section*{TxBench-PP in TherapeuticsBench}
+\section*{TxBench-PP: Overview}
 
 {\fontsize{9.1}{12.8}\selectfont
-TxBench-PP is the current small-molecule preclinical pharmacology slice of a
-broader TherapeuticsBench roadmap. The full benchmark family is organized by
-drug-discovery stage and therapeutic modality; this paper focuses on repeated,
-verifiable cluster decisions in small-molecule programs. These decisions sit
-between initial discovery and clinical development: whether a molecule engages
-the intended biology, whether the evidence supports its mechanism, whether
-exposure can cover the relevant potency range, and whether safety signals block
-advancement.
+TxBench-PP is the small-molecule preclinical pharmacology slice of
+TherapeuticsBench. It does not try to cover the full drug-discovery lifecycle.
+Instead, it focuses on local decisions that determine whether a target or
+compound should advance, hold, or fail: whether the intended biology is
+engaged, whether the assay evidence supports a mechanism, whether exposure can
+cover the relevant potency range, and whether a safety signal blocks
+progression.
+
+TherapeuticsBench is the broader roadmap across development phases and
+therapeutic modalities. The schematic below places TxBench-PP within that map.
+The stage labels identify the main evidence type tested by each evaluation;
+they are not a required chronology for every program.
 \par}
 
 \begin{center}
   \includegraphics[width=0.96\textwidth]{figures/fig1_pipeline.pdf}
 
-  \captionof{figure}{\textbf{TxBench-PP as a TherapeuticsBench slice.}
-  TherapeuticsBench is intended to span discovery, development, and
-  translation across small molecules, biologics, and oligonucleotides.
-  TxBench-PP covers the small-molecule preclinical pharmacology slice as a
-  cluster benchmark: repeated local decisions across assay families and
-  compounds. Program-story benchmarks that follow one therapeutic program
-  across discovery, development, and translation are reserved for future work.}
+  \captionof{figure}{\textbf{TxBench-PP scope and topline performance.}
+  \textbf{A}, TxBench-PP is a focused small-molecule preclinical pharmacology
+  slice of a broader TherapeuticsBench roadmap. The dotted boundary marks the
+  task groups covered in this release; biologics, oligonucleotides, and full
+  program histories are out of scope. \textbf{B}, Endpoint pass rates across 16
+  model--harness configurations, with 95\% confidence intervals computed over
+  task-level pass rates. \textbf{C}, Mean cost per task against endpoint pass
+  rate.}
   \label{fig:pipeline-scope}
 \end{center}
 
@@ -79,42 +85,53 @@ advancement.
 
 \section{Introduction}
 
-In preclinical drug discovery, experiments are slow and expensive, but many
-program-limiting decisions are interpretive: which signal is real, which
-compound should advance, and which liability should block a program.
-Preclinical pharmacology converts assay evidence into these decisions. A
-compound can have an attractive potency value and still be a poor candidate
-because the apparent mechanism is an artifact, the engaged protein is a complex
-contaminant, the safety signal is protocol-specific, or total exposure does not
-translate into unbound target coverage.
+While experiments are rate-limited by natural processes, human decisions and
+organizational consensus often make up significant components of program
+timelines in drug discovery. Agents in drug discovery promise to accelerate
+discovery, development, and translation by compressing these interpretation and
+decision-making loops. Specific knowledge from constituent steps of the
+drug-development pipeline can be encoded into frontier models through
+post-training, tool use, and domain-specific scaffolding, then deployed into
+practical data interpretation workflows.
 
 \TwoColParaBreak
-AI agents can inspect files, write analysis scripts, and invoke scientific
-software, but their conclusions often remain vulnerable to plausible shortcuts.
-In drug discovery, those shortcuts have familiar forms: importing the known
-mechanism of a blinded compound, trusting the largest apparent effect without
-quality control, ranking by potency or total exposure alone, or applying a
-textbook safety threshold outside the protocol where it was defined.
+However, the practical use of agentic systems in industrial workflows requires
+standard and trusted methods of evaluating performance. This is especially
+challenging because the drug-discovery ecosystem is a sprawling landscape of
+assay categories, development stages, therapeutic modalities, and decision
+types. Benchmarks must therefore measure realistic tasks while providing
+focused treatment of the many local scientific judgments that tile the biotech
+ecosystem.
 
 \TwoColParaBreak
-We introduce TxBench-PP, a benchmark for small-molecule preclinical
-pharmacology decisions. It should be read as a focused cluster benchmark within
-the broader TherapeuticsBench roadmap rather than as a complete test of drug
-discovery. Each evaluation supplies the agent with realistic analysis artifacts
-from one stage of the preclinical pharmacology evidence chain and asks for a
-structured, deterministically gradable conclusion. The benchmark tests whether
-an agent can recover the result supported by the provided evidence, not whether
-it can recall a drug class, run a default workflow, or optimize for a single
-number.
+Preclinical small-molecule pharmacology is one important piece of this
+landscape. Potency, target engagement, mechanism-of-action evidence,
+pharmacodynamic response, exposure, safety, and in vivo efficacy are converted
+into practical decisions about whether to advance, hold, repeat, or kill a
+candidate. These decisions sit upstream of costly medicinal chemistry, animal
+studies, and human experiments. They are easy to get wrong and often depend on
+fragmented expert judgment.
 
 \TwoColParaBreak
-The current benchmark maps 70 evaluations to a nine-stage Assays Roadmap.
-Coverage is strongest in causal target validation and mechanism-of-action /
-pharmacodynamic reasoning; the clearest build gap is
-compound-target characterization. The underlying sources still matter:
-several covered stages are dominated by a small number of datasets, so
-diversifying assay sources is a central part of the benchmark roadmap.
-\todo{Add final run summary once result aggregation is complete.}
+We introduce TxBench-PP, a verifiable benchmark for evaluating AI agents on
+small-molecule preclinical pharmacology. TxBench-PP is best understood as a
+focused benchmark within the broader TherapeuticsBench roadmap rather than a
+complete evaluation of drug discovery holistically. Each evaluation supplies
+realistic workflow artifacts from a local preclinical decision point and asks
+the agent to return a structured, deterministically gradable answer.
+Importantly, the benchmark tests if agents can recover decisions from supplied
+data instead of leaning on well-understood mechanisms and literature knowledge,
+with many tasks intentionally designed to penalize systems that do this.
+
+\TwoColParaBreak
+TxBench-PP contains 100 evaluations indexed by program stage, assay type, and
+task structure. Tasks span mechanism-of-action and pharmacodynamic reasoning,
+compound-target engagement, causal target validation, developability and safety,
+and translational efficacy. Other parts of the therapeutic ecosystem, including
+clinical program stages and non-small-molecule modalities, are left to future
+TherapeuticsBench efforts. The benchmark offers a measuring stick by which
+scientists can evaluate agentic systems on local preclinical pharmacology
+decisions toward practical deployment in drug-discovery programs.
 
 \end{minipage}\hfill
 \begin{minipage}[t]{0.47\textwidth}
@@ -123,45 +140,50 @@ diversifying assay sources is a central part of the benchmark roadmap.
 
 \section{Benchmark Construction}
 
-To construct TxBench-PP, we decompose preclinical pharmacology workflows into
-short, gradeable scientific decisions. Examples include identifying a
-pathway-coherent mechanism from dose-resolved phosphoproteomics, separating
-true chemoproteomic target engagement from complex contaminants, reconciling
-conflicting clearance measurements, and integrating blood chemistry, pathology,
-and survival into an in vivo safety call.
+Agents are evaluated on realistic preclinical pharmacology decisions over 100
+evaluations spanning eight program stages: disease and model context, screening
+and hit confirmation, drug response, causal target validation, compound-target
+characterization, MoA/PD, developability/safety/PK, and translational efficacy.
+Human genetics tasks are reserved for future benchmarking work. Across the
+benchmark, evaluations draw on assay types including drug-response screens,
+genetic perturbation, transcriptomic and proteomic profiling, chemoproteomic and
+live-cell target engagement, imaging, DMPK/ADMET panels, toxicogenomics, and in
+vivo efficacy or safety studies.
 
 \TwoColParaBreak
-This makes TxBench-PP a cluster-style benchmark: the same kind of decision is
-tested repeatedly across assay contexts, compounds, and evidence sources.
-Future TherapeuticsBench story evaluations can test the complementary skill of
-following one therapeutic program across discovery, development, and
-translation. TxBench-PP instead asks whether agents can make the local
-scientific decisions that those longer program stories depend on.
+The benchmark is built around recurring local decisions in small-molecule
+programs. Candidate tasks begin as specific analysis points where assay data
+might be turned into decisions. Examples include identifying a pathway mechanism
+from dose-resolved phosphoproteomics, separating true chemoproteomic target
+engagement from complex contaminants, and interpreting in vivo safety data.
 
 \TwoColParaBreak
-Each task includes a snapshot of assay outputs immediately before a target
-decision, metadata needed to interpret the files, a high-level task
-description, and a deterministic grader. Tasks specify what result should be
-recovered rather than prescribing the exact analysis method. Procedural details
-are included only when they are part of the scientific decision, such as
-whether free or total exposure should be compared to a pharmacologic threshold.
+Each evaluation includes the data artifacts needed for that decision, metadata
+needed to interpret the files, a task description, and a structured answer.
+Task context is calibrated to approximate what a scientist would know at the
+point of analysis. We avoid prescribing a method unless the method is part of
+the scientific decision. The intended answer is a result supported by the
+supplied data, not some fact or mechanism well understood in the literature.
+Many tasks are designed to intentionally trap systems that overfit on trained
+knowledge without empirical exploration.
 
 \TwoColParaBreak
-The benchmark follows three design criteria. First, tasks must be verifiable:
-answers are checked by structured label matching, numerical tolerances,
-rank-order checks, or all-of field comparisons. Second, tasks should be
-decision-relevant: the answer should correspond to a real go/no-go or
-prioritization judgment in preclinical pharmacology. Third, tasks should resist
-shortcuts: agents should need to inspect the supplied evidence, account for
-quality issues, and avoid relying on memorized drug labels or generic
-checklists.
+Candidate evaluations are refined through manual review and model trajectory
+inspection. We remove tasks when the answer can be recovered by an obvious
+shortcut, when the prompt over-specifies the analysis, or when plausible
+analysis choices produce answers that break grading assumptions. The retained
+tasks are tagged by program stage, assay type, and task structure.
 
 \TwoColParaBreak
-We separately track decision-blocking gaps: issues that should change the
-program decision if recognized, such as a tox-species mismatch, insufficient
-free-drug coverage, a hook effect, a contaminated chemoproteomic hit, or
-survivor bias in pathology sampling. These labels are intended to support
-diagnostic analysis after endpoint grading.
+Grading uses deterministic functions over structured final answers. Depending
+on the task, graders check label sets, numerical tolerances, rank-order
+relationships, categorical choices, or all required fields. Manual trajectory
+inspection is part of benchmark construction. We track decision-blocking gaps
+that should change the program decision if recognized: tox-species mismatch,
+insufficient free-drug coverage, hook effects, contaminated chemoproteomic
+signals, survivor bias in pathology sampling, and related failure points. These
+annotations are not exposed to agents; they are used to interpret failures
+after endpoint grading and to guide future benchmark updates.
 
 \end{minipage}
 }
@@ -169,23 +191,31 @@ diagnostic analysis after endpoint grading.
 \clearpage
 
 {\fontsize{9.1}{12.8}\selectfont
-\section{Evaluation Inventory}
+\section{Benchmark Anatomy}
 
 \begin{multicols}{2}
-The current suite is organized around the Assays Roadmap rather than around
-source datasets. Each evaluation is assigned to the roadmap stage that best
-matches its primary biological skill. The current inventory includes 70
-evaluations across seven of the nine stages. S1 disease/model characterization
-and S4 human genetic target support are deferred for this release; S4 is better
-handled by GenomicsBench.
+TxBench-PP is organized around the anatomy of a practical preclinical
+pharmacology decision. Each evaluation is tagged along three axes: where the
+decision sits in a small-molecule program, the assay type that generated the
+data, and the structure of the task.
 \par
 
-The roadmap view changes the benchmark story. Coverage is broad by stage count,
-but narrow by dataset diversity. Causal target validation and MoA/PD are ready
-for v1. Screening, pharmacogenomics, safety, and translational
-efficacy have useful coverage but are single-source dominated. The largest
-in-scope gap is S7 compound-target characterization: binding, potency,
-selectivity, and cellular target engagement are almost absent.
+The program-stage axis follows a rough temporal ordering: disease and model
+context, human genetic target support, causal target validation, screening and
+hit confirmation, compound-target characterization, MoA/PD, drug response,
+developability/safety/PK, and translational efficacy. Human genetic target
+support is reserved for future benchmarking work because adequately measuring
+this category requires a separate focused benchmark. The order gives readers
+context for task progression; it does not imply that every small-molecule
+program proceeds through this strict sequence in practice.
+\par
+
+The assay and task axes describe the actual work required. Assay labels collapse
+source kits into measurement families such as drug-response screens, protein or
+PTM measurements, genetic perturbation, target engagement, molecular state,
+safety profiling, and in vivo experiments. Task labels describe broad families
+of decisions: mechanism inference, QC, dependency calls, differential response,
+safety assessment, imaging, hit prioritization, and related judgments.
 \par
 \end{multicols}
 }
@@ -193,70 +223,16 @@ selectivity, and cellular target engagement are almost absent.
 \begin{center}
   \includegraphics[width=0.94\textwidth]{figures/fig2_inventory.pdf}
 
-  \captionof{figure}{\textbf{Evaluation inventory by Assays Roadmap stage.}
-  Current TxBench-PP evaluations are mapped to the roadmap stage that best
-  captures the biological skill being tested. The inventory is broad across
-  stages but uneven across assay families: S5 and S6 are ready for v1, S7 is
-  the clearest build gap, and S2, S3, S8, and S9 need source diversification.}
-  \label{fig:evaluation-inventory}
+  \captionof{figure}{\textbf{Benchmark anatomy.}
+  \textbf{A}, Program stage labels place evaluations along a roughly ordered
+  small-molecule evidence spine; the asterisk marks a stage reserved for future
+  benchmarking work. \textbf{B}, Assay-type labels summarize the measurement
+  families represented in the source data. \textbf{C}, Task-structure labels
+  describe the operation or judgment required for a passing answer.}
+  \label{fig:benchmark-anatomy}
 \end{center}
 
 \clearpage
-
-\begin{center}
-\fontsize{6.25}{7.45}\selectfont
-\setlength{\tabcolsep}{2.6pt}
-\captionof{table}{\textbf{Roadmap-stage inventory.}
-Counts are from the Assays Roadmap coverage mapping of 70 current evaluations.
-``Ready'' stages are sufficient for v1; ``Diversify'' stages have useful but
-source-narrow coverage; ``Build'' marks the largest missing pillar.}
-\label{tab:evaluation-inventory}
-\vspace{0.5em}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.22\linewidth}
-                >{\centering\arraybackslash}p{0.055\linewidth}
-                >{\raggedright\arraybackslash}p{0.13\linewidth}
-                >{\raggedright\arraybackslash}p{0.50\linewidth}@{}}
-\toprule
-Roadmap stage & Evals & Status & Assay emphasis and next gap \\
-\midrule
-S1. Disease / model characterization & 0 & Deferred &
-Model subtype, expression, mutation/CNV context, pathway state, IHC/IF, RNAscope, and model QC are out of the current build queue. \\
-\addlinespace
-S2. Primary screening / hit confirmation & 7 & Diversify &
-PRISM-heavy. Add biochemical or reporter HTS, Z-prime and signal-window plate QC, counterscreens, and frequent-hitter filtering. \\
-\addlinespace
-S3. Drug response / pharmacogenomics & 11 & Diversify &
-Mostly PRISM. Add GDSC, CTRP, CCLE, Beat AML, organoid screens, single-cell perturbation, and censored-curve handling. \\
-\addlinespace
-S4. Human genetic target support & 0 & Deferred &
-GWAS, QTL, colocalization, Mendelian randomization, and tissue-of-action matching are assigned to GenomicsBench. \\
-\addlinespace
-S5. Causal target validation & 12 & Ready &
-Strong v1 coverage. Optional expansion: Perturb-CITE-seq, rescue assays, variant-function classification, and FACS sort-bin screens. \\
-\addlinespace
-S6. MoA / pharmacodynamics & 17 & Ready &
-Strong v1 coverage. Optional expansion: LINCS/CMap, DRUG-seq, Seahorse, cytokine panels, reporter dose-response, and washout PD. \\
-\addlinespace
-S7. Compound-target characterization & 1 & Build &
-Highest-priority gap. Add ChEMBL/BindingDB potency curation, selectivity panels, CETSA/NanoBRET, Kinobeads, and biochemical-to-cellular potency comparison. \\
-\addlinespace
-S8. Developability / safety & 16 & Diversify &
-Cardiotox dominated. Add measured hERG, DILI, Ames/micronucleus, permeability, metabolic stability, CYP/DDI, Tox21/ToxCast, and therapeutic-index reasoning. \\
-\addlinespace
-S9. Translational efficacy & 6 & Diversify &
-Single NSCLC source. Add organoid/patient concordance, PDX pharmacology, immune co-culture, ctDNA, responder-fraction, and exposure-response PK/PD. \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-{\fontsize{8.0}{11.0}\selectfont\RaggedRight
-\noindent\textbf{Cross-stage gap.} The roadmap also identifies a missing
-class of end-to-end go/no-go evaluations: tasks that require an agent to weigh
-efficacy, selectivity, target engagement, exposure, and safety together. The
-current inventory covers many of these component decisions, but future
-TxBench-PP tasks should test multi-stage synthesis across at least three
-evidence blocks.
-\par}
 
 \StartBody
 
@@ -286,9 +262,7 @@ Thus, across providers, model generations, and agent harnesses, no system approa
   \label{fig:leaderboard}
 \end{center}
 
-\StartBody
-
-\begin{table}[ht]
+\begin{center}
     \centering
     \begin{tabular}{lcccc}
     \toprule
@@ -312,9 +286,19 @@ Thus, across providers, model generations, and agent harnesses, no system approa
     Grok 4.3 / Pi & 18.3\% (55/300; 11.9--24.8) & 30/100 & 15/100 & 10/100 \\
     \bottomrule
     \end{tabular}
-    \caption{Table x: Pass rates by model–harness configuration. ass rates are reported as percentages, with the numerator and denominator shown as passing trajectories out of 300 total trajectories per configuration, together with 95\% confidence intervals. Confidence intervals were computed across task-level mean pass rates over the 100 preclinical pharmacology tasks. The final three columns report the number of tasks, out of 100, for which at least one, at least two, or all three independent attempts passed. Runtime and cost are included as operational diagnostics rather than leaderboard columns.}
+    \captionof{table}{\textbf{Pass rates by model--harness configuration.}
+    Pass rates are reported as percentages, with the numerator and denominator
+    shown as passing trajectories out of 300 total trajectories per
+    configuration, together with 95\% confidence intervals. Confidence intervals
+    were computed across task-level mean pass rates over the 100 preclinical
+    pharmacology tasks. The final three columns report the number of tasks, out
+    of 100, for which at least one, at least two, or all three independent
+    attempts passed. Runtime and cost are included as operational diagnostics
+    rather than leaderboard columns.}
     \label{tab:passrates}
-\end{table}
+\end{center}
+
+\StartBody
 
 \subsection{Most failures map to a compact failure-mode taxonomy}
 
@@ -776,7 +760,7 @@ Instead, the residual performance differences can be traced to subtler scaffoldi
 TxBench-PP measures a narrow but important part of drug discovery: whether an
 agent can turn preclinical pharmacology evidence into a defensible local
 decision. This scope is intentionally smaller than end-to-end therapeutic
-discovery. It is a small-molecule cluster benchmark within the broader
+discovery. It is a small-molecule task-group benchmark within the broader
 TherapeuticsBench roadmap, not a claim to cover every stage or modality. It
 does not yet test target genetics, full disease-model selection, primary
 screening operations, broad clinical translation, or non-small-molecule
@@ -801,7 +785,7 @@ characterization, and across modalities to antibodies, ADCs, degraders,
 oligonucleotides, cell therapies, and gene therapies. A complementary
 long-horizon TherapeuticsBench track can follow program stories across
 discovery, development, and translation. For the current paper, the clean claim
-should remain: TxBench-PP is a verifiable cluster benchmark for small-molecule
+should remain: TxBench-PP is a verifiable task-group benchmark for small-molecule
 preclinical pharmacology decisions.
 
 \section{Methods}
