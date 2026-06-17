@@ -313,11 +313,10 @@ intent. We classify each failure along two complementary axes: the
 
 The scientific axis comprises five recurring error families
 (Figure~\ref{fig:failure-taxonomy}A, restricted to the $n=1{,}436$ failures
-that contain a scientific error). The largest family, flawed method, resolves into
-two main subcategories and a small residual category. A \emph{skipped-QC} error
-(17\%) omits a required preprocessing or quality-control step: in one case, a
-model aggregated clustered regularly interspaced short palindromic repeat
-(CRISPR) guides to gene-level scores without first dropping guides that map to
+that contain a scientific error). The largest family, flawed method, resolves into two
+main subcategories and a small residual category. A \emph{skipped-QC} error (17\%) omits a
+required preprocessing or quality-control step: in one case, a model aggregated
+clustered regularly interspaced short palindromic repeat (CRISPR) guides to gene-level scores without first dropping guides that map to
 multiple loci, so paralog-family artifacts flooded the essential-gene list. A
 \emph{wrong-reference-frame} error (21\%) runs the analysis correctly but uses
 an incorrect reference statistic. The small \emph{wrong-assay-layer} tail (2\%)
@@ -380,7 +379,7 @@ scientific errors regardless of pass rate.  \EndBody
   \textbf{(B)} The behavioral-cause axis (how the model failed) shows that a third
   of failures are non-analytical: a prior-driven override of the model's own
   evidence, plus three process breakdowns (weak commitment, abandoned-correct,
-  under-investment). \textbf{(C)} The behavior-error mix is model-specific:
+  under-investment).   \textbf{(C)} The behavior-error mix differs by model:
   under-investment dominates only the weakest model, while the strongest models
   fail almost entirely through engaged, analytically wrong reasoning.
   \textbf{(D)} The scientific-error mix, by contrast, is largely model-invariant:
@@ -618,8 +617,8 @@ supports. Under-investment is effectively absent from every strong model
 ($\leq$1\% of failures) and appears only in the two cheapest.
 
 These quantitative patterns correspond to identifiable behaviors on individual
-tasks. Successful runs reason through the scientific intent, identify the
-relevant result, verify against the data, and commit to one answer. The pattern is
+tasks. Successful runs identify the scientific intent, identify the relevant
+result, verify against the data, and commit to one answer. The pattern is
 clearest on hard tasks, where most runs fail but the strongest still succeed, and
 each hinges on a concrete drug-program decision. For instance, Bosutinib is an approved
 BCR-ABL/SRC inhibitor, but a program must credit its activity to the targets it
@@ -660,8 +659,8 @@ several assay readouts at once and asking for a single advance, hold, or
 prioritize call. The current suite includes seven such advancement decisions;
 across 230 runs, models pass only 35\% of them
 (Figure~\ref{fig:program-decisions}). Models perform well when the data are
-clean and consistent, but struggle on more challenging cases,
-either advancing weak candidates or discarding strong ones.
+clean and consistent, but struggle on more challenging cases, either advancing
+weak candidates or discarding strong ones.
 
 \emph{Clean correct.} The organoid program go/no-go is the clean case
 (Figure~\ref{fig:program-decisions}). Given a primary screen, a mechanism image, a
