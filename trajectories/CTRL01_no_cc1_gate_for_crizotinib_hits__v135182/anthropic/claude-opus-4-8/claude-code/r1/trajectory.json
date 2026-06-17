@@ -1,0 +1,2205 @@
+[
+  {
+    "type": "system",
+    "subtype": "init",
+    "cwd": "/workspace",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "tools": [
+      "Task",
+      "AskUserQuestion",
+      "Bash",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "DesignSync",
+      "Edit",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "Read",
+      "ScheduleWakeup",
+      "Skill",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskOutput",
+      "TaskStop",
+      "TaskUpdate",
+      "ToolSearch",
+      "WebFetch",
+      "WebSearch",
+      "Workflow",
+      "Write"
+    ],
+    "mcp_servers": [],
+    "model": "claude-opus-4-8",
+    "permissionMode": "bypassPermissions",
+    "slash_commands": [
+      "deep-research",
+      "design-sync",
+      "update-config",
+      "verify",
+      "debug",
+      "code-review",
+      "simplify",
+      "batch",
+      "fewer-permission-prompts",
+      "loop",
+      "claude-api",
+      "run",
+      "run-skill-generator",
+      "clear",
+      "compact",
+      "context",
+      "heapdump",
+      "init",
+      "reload-skills",
+      "review",
+      "security-review",
+      "usage",
+      "insights",
+      "goal",
+      "team-onboarding"
+    ],
+    "apiKeySource": "ANTHROPIC_API_KEY",
+    "claude_code_version": "2.1.174",
+    "output_style": "default",
+    "agents": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "skills": [
+      "deep-research",
+      "design-sync",
+      "update-config",
+      "verify",
+      "debug",
+      "code-review",
+      "simplify",
+      "batch",
+      "fewer-permission-prompts",
+      "loop",
+      "claude-api",
+      "run",
+      "run-skill-generator"
+    ],
+    "plugins": [],
+    "analytics_disabled": false,
+    "product_feedback_disabled": false,
+    "uuid": "b67086c8-8a6b-4020-9283-7121d0148051",
+    "memory_paths": {
+      "auto": "/root/.claude/projects/-workspace/memory/"
+    },
+    "fast_mode_state": "off"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 50,
+    "estimated_tokens_delta": 50,
+    "uuid": "fdd84759-447c-4592-8588-2298eb8a77e9",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 204,
+    "estimated_tokens_delta": 154,
+    "uuid": "8b1828a3-cf7d-4d05-a511-aa45cbc51d50",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-8",
+      "id": "msg_01NyXVSSvCE4zSfZi8Gkm4d6",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "",
+          "signature": "EqYGCmMIDhgCKkAo7shVE6EqrpTjbl9mgnT7wSn5BnUAUloLdlFzv0/Xm0OqnAjeXveU+wfhjGNhKHevJHKTQQYBVcbtjlXuk/zMMg9jbGF1ZGUtb3B1cy00LTg4AEIIdGhpbmtpbmcSDHnmhS8BAiX07CPKrRoMR/D7VP+AgSLoIMqvIjBiboMFYrjDqSb6BQt2O6dGwKs1Iq8j1ZqdnbiC+GKARzyWsbNV9ZuME4nkGE2Hmyoq8AROIP5uEO3gmNSEtUcP0TSnU1NYf/8ZKIuUmLGqAq3vEXZYiCS9zusS9MPnzFbX4p3hx57PeNP+thpJ1EIcDrS7FPCxHaeWqZTqkKp3eAwsOduBrmEXg/Y3Q/cPUiXhCg/JJB/xpjduJabXpjgQ5smLK4FcJxg5szLFylymclHzuWm0Vx7x6UOYEpa5hf8z5nD96widaSmQBabB9C3MY722/KyiPUF7q5w3qBTS9p2DmLRp0yQ6BJMRNSah4QcFqNPH35D+1xSzfDqZlVXSq+nPiK38alyzg/XqUXADD0zt5FVkqZcRrYMV9kvRXi+hWuiF4YkHPtB/01wTa1bFCLgWQplrsFLeXtxRUElrAfT99qlFF0nlf/ZjuUBU56uzPOktU8/4Yp4n4WZtADJUAJitvDRkINaFIAgKgR1x9w3HQoYREAc80ASBQoDKCXPyeCUTCwG9dXsEjxhY0lZRw/GUMAs4pFqdxFz+uro1VXQbbjugiQ82eWI4S69hnJajWGEr6OsEV7ubYfBNrcezR+ppo429yUV65gEB3pQM5N2lrVW/DnFEXvBdDsomLp4spJWgZcSiCZTvFTBHIESD9N3HcDQ2PNi3t91PoC5nopa7NBRIV5HMkkjvFaTw2p4iyMGyKPcwJuPHrnrXUodlBG4ot3k1jpF9E5cGKb0N0isnvypCwCQR72FDtSSArmVVm6dwvDr4iFhy/Qt4HrguniCuKsJ2AB+7bICeJ+bFGAJZB/IGALKmbB9m5H/nXVeUQMWJ/43cHh3wnPiLZEjJclY9dQmqNiDIbdWLcJZ1vboWJm7PwUiubL8P7InsgH22LR4YAQ=="
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 4040,
+        "cache_read_input_tokens": 15819,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 4040,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 5,
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "diagnostics": null,
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "79b8f7c6-5fa9-4c75-97a8-95d92003203b",
+    "request_id": "req_011Cc4DwSX3F89E9PQLdJgoS"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-8",
+      "id": "msg_01NyXVSSvCE4zSfZi8Gkm4d6",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "I'll start by exploring the data directory to understand what's provided."
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 4040,
+        "cache_read_input_tokens": 15819,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 4040,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 5,
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "diagnostics": null,
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "483db6d2-3611-48b8-8041-97c9118ea895",
+    "request_id": "req_011Cc4DwSX3F89E9PQLdJgoS"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-8",
+      "id": "msg_01NyXVSSvCE4zSfZi8Gkm4d6",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_01921YioYsgjVrDyZzjDAYnX",
+          "name": "Bash",
+          "input": {
+            "command": "ls -la /workspace/data/ && echo \"---\" && du -sh /workspace/data/* 2>/dev/null",
+            "description": "List data directory contents and sizes"
+          },
+          "caller": {
+            "type": "direct"
+          }
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 4040,
+        "cache_read_input_tokens": 15819,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 4040,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 5,
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "diagnostics": null,
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "de169956-a2fc-4576-8c17-8f03f748f28d",
+    "request_id": "req_011Cc4DwSX3F89E9PQLdJgoS"
+  },
+  {
+    "type": "user",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "tool_use_id": "toolu_01921YioYsgjVrDyZzjDAYnX",
+          "type": "tool_result",
+          "content": "total 24\ndrwxr-xr-x 2 root root  4096 Jun 15 02:03 .\ndrwxr-xr-x 3 root root  4096 Jun 15 02:03 ..\n-rw-r--r-- 2 root root 14750 Jun 15 02:03 Robers2021_control_compound_interpretation.csv\n---\n16K\t/workspace/data/Robers2021_control_compound_interpretation.csv",
+          "is_error": false
+        }
+      ]
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "90aa4d69-2c7f-4bcc-9e39-47f33fc0e0c9",
+    "timestamp": "2026-06-15T02:03:35.641Z",
+    "tool_use_result": {
+      "stdout": "total 24\ndrwxr-xr-x 2 root root  4096 Jun 15 02:03 .\ndrwxr-xr-x 3 root root  4096 Jun 15 02:03 ..\n-rw-r--r-- 2 root root 14750 Jun 15 02:03 Robers2021_control_compound_interpretation.csv\n---\n16K\t/workspace/data/Robers2021_control_compound_interpretation.csv",
+      "stderr": "",
+      "interrupted": false,
+      "isImage": false,
+      "noOutputExpected": false
+    }
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-8",
+      "id": "msg_01Jb2GLmqoJcKuhDafDNCX6n",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "",
+          "signature": "EvIBCmMIDhgCKkDCSZhpxuOakfHK564cs31MHPeaWVAoAdcIRcJn7LRrH1VyyWADZ0One7lzx7eAhFzLfogc8lItFW5jwj7SiNNCMg9jbGF1ZGUtb3B1cy00LTg4AEIIdGhpbmtpbmcSDAQ7BFMb29BEAWFgXhoM1tS3kAogEHXpZH1WIjCdZEXZz8HfWOOde4gyQKKMGIcm5YnK1hHSqc7uznQlDrssj9XpKNQIw+yAWIl03z0qPSXHuxnNUC0Iq1V5aqKcFKgL2KYq4U5v7dmZI9jzUlDpYQlE9h50cJr1CbfMjYnPttl5htaJ1TvZtNdz3ywYAQ=="
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 2314,
+        "cache_read_input_tokens": 18047,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 2314,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 2,
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "diagnostics": null,
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "04aea465-f55c-42f5-a915-208aa9143aa9",
+    "request_id": "req_011Cc4DwsqoANGWQNcuE4B9A"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-8",
+      "id": "msg_01Jb2GLmqoJcKuhDafDNCX6n",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_01UgxPyHCNyxKBKC3NUUmd3b",
+          "name": "Bash",
+          "input": {
+            "command": "cat /workspace/data/Robers2021_control_compound_interpretation.csv",
+            "description": "Print the full CSV file"
+          },
+          "caller": {
+            "type": "direct"
+          }
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 2314,
+        "cache_read_input_tokens": 18047,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 2314,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 2,
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "diagnostics": null,
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "faa95e38-9f3b-48d1-95bd-d7c5f3067727",
+    "request_id": "req_011Cc4DwsqoANGWQNcuE4B9A"
+  },
+  {
+    "type": "user",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "tool_use_id": "toolu_01UgxPyHCNyxKBKC3NUUmd3b",
+          "type": "tool_result",
+          "content": "target_id,construct_id,diluent_dna,nluc_orientation,tracer_k10_nm,bret_signal_to_background,cc1_occupancy_pct_300_nm,cc1_stdev,crizotinib_occupancy_pct_1_um,crizotinib_stdev\nKINASE_001,CONSTRUCT_001,Transfection Carrier,C,25.0,3.7,98.0,2.0,-9.0,15.2\nKINASE_002,CONSTRUCT_002,Transfection Carrier,N,25.0,7.4,99.0,0.8,2.0,2.4\nKINASE_003,CONSTRUCT_003,Transfection Carrier,N,25.0,4.5,98.0,0.8,42.0,4.4\nKINASE_004,CONSTRUCT_004,Transfection Carrier,C,25.0,3.7,90.0,1.0,37.0,4.7\nKINASE_005,CONSTRUCT_005,Transfection Carrier,N,25.0,10.0,94.0,0.8,-6.0,4.1\nKINASE_006,CONSTRUCT_006,Transfection Carrier,N,25.0,14.9,97.0,0.5,-14.0,1.5\nKINASE_007,CONSTRUCT_007,Transfection Carrier,N,25.0,26.8,97.0,1.2,-12.0,3.4\nKINASE_008,CONSTRUCT_008,Transfection Carrier,N,25.0,12.2,99.0,0.3,-14.0,0.9\nKINASE_009,CONSTRUCT_009,Transfection Carrier,C,25.0,6.8,93.0,1.0,30.0,7.7\nKINASE_010,CONSTRUCT_010,Transfection Carrier,C,25.0,10.6,92.0,1.8,48.0,4.2\nKINASE_011,CONSTRUCT_011,Transfection Carrier,C,25.0,10.7,94.0,1.6,46.0,5.9\nKINASE_012,CONSTRUCT_012,Transfection Carrier,N,25.0,3.4,98.0,2.4,36.0,6.6\nKINASE_013,CONSTRUCT_013,Transfection Carrier,C,25.0,5.0,79.0,7.1,-10.0,6.2\nKINASE_014,CONSTRUCT_014,Transfection Carrier,N,25.0,3.6,97.0,0.9,-7.0,7.7\nKINASE_015,CONSTRUCT_015,Transfection Carrier,N,25.0,16.9,99.0,0.5,0.0,3.4\nKINASE_016,CONSTRUCT_016,Transfection Carrier,C,25.0,6.2,99.0,0.4,-16.0,8.3\nKINASE_017,CONSTRUCT_017,Transfection Carrier,C,250.0,2.9,63.0,3.8,68.0,1.5\nKINASE_018,CONSTRUCT_018,Transfection Carrier,C,250.0,3.4,84.0,4.1,14.0,6.8\nKINASE_019,CONSTRUCT_019,Transfection Carrier,C,250.0,3.4,79.0,3.7,-4.0,8.6\nKINASE_020,CONSTRUCT_020,Transfection Carrier,C,250.0,2.1,78.0,3.8,18.0,8.2\nKINASE_021,CONSTRUCT_021,Transfection Carrier,C,250.0,2.9,83.0,2.5,20.0,2.1\nKINASE_022,CONSTRUCT_022,Transfection Carrier,C,250.0,4.2,76.0,3.6,32.0,9.8\nKINASE_023,CONSTRUCT_023,Transfection Carrier,N,250.0,4.6,78.0,1.4,-7.0,6.7\nKINASE_024,CONSTRUCT_024,Transfection Carrier,C,250.0,9.9,67.0,7.2,35.0,9.9\nKINASE_025,CONSTRUCT_025,Transfection Carrier,N,250.0,7.3,98.0,0.7,0.0,3.4\nKINASE_026,CONSTRUCT_026,Transfection Carrier,N,250.0,4.1,90.0,4.4,41.0,5.6\nKINASE_027,CONSTRUCT_027,Transfection Carrier,N,250.0,7.9,65.0,5.2,1.0,5.4\nKINASE_028,CONSTRUCT_028,Transfection Carrier,N,250.0,16.1,44.0,9.6,-2.0,14.5\nKINASE_029,CONSTRUCT_029,Transfection Carrier,C,250.0,4.6,82.0,4.9,-3.0,1.7\nKINASE_030,CONSTRUCT_030,Transfection Carrier,N,250.0,7.1,89.0,3.8,-6.0,6.5\nKINASE_031,CONSTRUCT_031,Transfection Carrier,N,250.0,10.5,78.0,8.0,-1.0,1.9\nKINASE_032,CONSTRUCT_032,Transfection Carrier,N,250.0,23.1,72.0,5.2,2.0,6.5\nKINASE_033,CONSTRUCT_033,Transfection Carrier,N,250.0,8.3,78.0,7.1,-1.0,4.0\nKINASE_034,CONSTRUCT_034,Transfection Carrier,N,250.0,4.5,54.0,3.3,-1.0,4.4\nKINASE_035,CONSTRUCT_035,Transfection Carrier,N,250.0,2.9,60.0,4.3,-1.0,6.2\nKINASE_036,CONSTRUCT_036,Transfection Carrier,C,250.0,8.5,72.0,9.1,-8.0,6.4\nKINASE_037,CONSTRUCT_037,Transfection Carrier,N,250.0,5.9,86.0,3.1,-3.0,6.3\nKINASE_038,CONSTRUCT_038,Transfection Carrier,N,250.0,3.1,90.0,3.4,-3.0,3.9\nKINASE_039,CONSTRUCT_039,Transfection Carrier,N,250.0,4.8,67.0,2.4,11.0,7.6\nKINASE_040,CONSTRUCT_040,Transfection Carrier,C,250.0,2.8,5.0,1.9,-5.0,3.8\nKINASE_041,CONSTRUCT_041,Transfection Carrier,C,100.0,3.3,95.0,1.8,0.0,3.8\nKINASE_042,CONSTRUCT_042,Transfection Carrier,C,100.0,3.5,94.0,0.7,10.0,1.8\nKINASE_043,CONSTRUCT_043,Transfection Carrier,C,100.0,3.3,89.0,4.3,80.0,2.8\nKINASE_044,CONSTRUCT_044,Transfection Carrier,C,100.0,4.1,68.0,4.5,71.0,2.5\nKINASE_045,CONSTRUCT_045,Transfection Carrier,C,100.0,6.0,90.0,1.5,4.0,4.5\nKINASE_046,CONSTRUCT_046,Transfection Carrier,C,100.0,4.6,80.0,3.4,85.0,2.3\nKINASE_047,CONSTRUCT_047,Transfection Carrier,C,100.0,6.8,73.0,4.0,13.0,6.7\nKINASE_048,CONSTRUCT_048,Transfection Carrier,C,100.0,4.2,71.0,4.3,87.0,0.9\nKINASE_049,CONSTRUCT_049,Transfection Carrier,C,100.0,3.9,39.0,5.8,-4.0,3.9\nKINASE_050,CONSTRUCT_050,Transfection Carrier,C,100.0,6.5,98.0,1.4,6.0,7.0\nKINASE_051,CONSTRUCT_051,Transfection Carrier,N,100.0,3.4,92.0,1.8,-1.0,6.2\nKINASE_052,CONSTRUCT_052,Transfection Carrier,C,100.0,3.3,90.0,2.8,65.0,8.3\nKINASE_053,CONSTRUCT_053,Transfection Carrier,N,100.0,4.6,71.0,4.9,0.0,6.0\nKINASE_054,CONSTRUCT_054,Transfection Carrier,N,100.0,3.3,88.0,1.2,40.0,4.0\nKINASE_055,CONSTRUCT_055,Transfection Carrier,C,100.0,3.7,100.0,0.6,-2.0,1.2\nKINASE_056,CONSTRUCT_056,Transfection Carrier,C,100.0,2.2,91.0,2.2,47.0,5.1\nKINASE_057,CONSTRUCT_057,Transfection Carrier,N,100.0,8.9,94.0,1.6,11.0,6.0\nKINASE_058,CONSTRUCT_058,Transfection Carrier,N,100.0,16.2,85.0,1.2,-6.0,2.1\nKINASE_059,CONSTRUCT_059,Transfection Carrier,N,100.0,13.4,85.0,1.9,-13.0,6.2\nKINASE_060,CONSTRUCT_060,Transfection Carrier,N,100.0,7.5,78.0,4.2,-7.0,10.8\nKINASE_061,CONSTRUCT_061,Transfection Carrier,N,100.0,14.2,94.0,1.9,-1.0,5.5\nKINASE_062,CONSTRUCT_062,Transfection Carrier,N,100.0,4.5,76.0,2.0,77.0,10.7\nKINASE_063,CONSTRUCT_063,Transfection Carrier,C,100.0,5.3,91.0,1.0,-9.0,2.5\nKINASE_064,CONSTRUCT_064,Transfection Carrier,C,100.0,6.1,99.0,0.7,-8.0,8.4\nKINASE_065,CONSTRUCT_065,Transfection Carrier,N,100.0,4.4,90.0,2.0,-15.0,4.5\nKINASE_066,CONSTRUCT_066,Transfection Carrier,N,100.0,11.3,92.0,1.5,-1.0,4.9\nKINASE_067,CONSTRUCT_067,Transfection Carrier,N,100.0,12.6,97.0,0.3,-6.0,2.2\nKINASE_068,CONSTRUCT_068,Transfection Carrier,N,100.0,7.9,89.0,1.9,-6.0,2.5\nKINASE_069,CONSTRUCT_069,Transfection Carrier,N,100.0,4.7,79.0,4.2,-7.0,7.5\nKINASE_070,CONSTRUCT_070,Transfection Carrier,N,100.0,6.6,85.0,0.7,-11.0,6.0\nKINASE_071,CONSTRUCT_071,Transfection Carrier,N,100.0,3.0,89.0,2.3,-10.0,7.3\nKINASE_072,CONSTRUCT_072,Transfection Carrier,N,100.0,10.2,93.0,1.6,-4.0,4.7\nKINASE_073,CONSTRUCT_073,Transfection Carrier,C,100.0,2.5,101.0,1.4,-19.0,4.6\nKINASE_074,CONSTRUCT_074,Transfection Carrier,N,100.0,5.8,70.0,7.8,-16.0,4.2\nKINASE_075,CONSTRUCT_075,Transfection Carrier,N,100.0,9.4,70.0,6.4,-11.0,2.1\nKINASE_076,CONSTRUCT_076,Transfection Carrier,N,100.0,7.7,74.0,5.2,21.0,2.8\nKINASE_077,CONSTRUCT_077,Transfection Carrier,C,100.0,5.1,68.0,5.7,-10.0,3.9\nKINASE_078,CONSTRUCT_078,Transfection Carrier,C,100.0,3.6,65.0,4.9,-14.0,7.9\nKINASE_079,CONSTRUCT_079,Transfection Carrier,C,100.0,5.5,87.0,3.0,-14.0,5.8\nKINASE_080,CONSTRUCT_080,Transfection Carrier,N,100.0,7.8,97.0,0.4,-9.0,6.1\nKINASE_081,CONSTRUCT_081,Transfection Carrier,C,1000.0,2.8,80.0,3.4,35.0,3.0\nKINASE_082,CONSTRUCT_082,Transfection Carrier,C,1000.0,3.5,68.0,4.0,3.0,1.6\nKINASE_083,CONSTRUCT_083,Transfection Carrier,N,1000.0,3.9,70.0,4.5,14.0,4.1\nKINASE_084,CONSTRUCT_084,Transfection Carrier,C,1000.0,2.2,48.0,3.9,58.0,3.3\nKINASE_085,CONSTRUCT_085,Transfection Carrier,C,1000.0,5.1,42.0,8.5,95.0,1.1\nKINASE_086,CONSTRUCT_086,Transfection Carrier,C,1000.0,3.9,32.0,9.9,86.0,4.8\nKINASE_087,CONSTRUCT_087,Transfection Carrier,C,1000.0,2.5,47.0,0.5,49.0,2.2\nKINASE_088,CONSTRUCT_088,Transfection Carrier,C,1000.0,3.8,78.0,4.2,36.0,5.7\nKINASE_089,CONSTRUCT_089,Transfection Carrier,C,1000.0,5.2,69.0,5.6,29.0,5.5\nKINASE_090,CONSTRUCT_090,Transfection Carrier,C,1000.0,3.3,74.0,3.2,75.0,2.2\nKINASE_091,CONSTRUCT_091,Transfection Carrier,C,1000.0,2.8,33.0,5.2,53.0,4.4\nKINASE_092,CONSTRUCT_092,Transfection Carrier,C,1000.0,3.9,38.0,1.7,64.0,5.1\nKINASE_093,CONSTRUCT_093,Transfection Carrier,C,1000.0,4.4,51.0,4.6,38.0,2.4\nKINASE_094,CONSTRUCT_094,Transfection Carrier,C,1000.0,3.4,65.0,2.4,68.0,2.0\nKINASE_095,CONSTRUCT_095,Transfection Carrier,C,1000.0,3.1,53.0,4.9,62.0,3.6\nKINASE_096,CONSTRUCT_096,Transfection Carrier,C,1000.0,3.9,65.0,7.5,-2.0,12.3\nKINASE_097,CONSTRUCT_097,Transfection Carrier,N,1000.0,2.9,72.0,5.5,43.0,3.9\nKINASE_098,CONSTRUCT_098,Transfection Carrier,C,1000.0,4.5,60.0,6.3,7.0,4.3\nKINASE_099,CONSTRUCT_099,Transfection Carrier,C,1000.0,6.8,75.0,4.4,1.0,1.3\nKINASE_100,CONSTRUCT_100,Transfection Carrier,C,1000.0,2.8,66.0,4.9,16.0,7.9\nKINASE_101,CONSTRUCT_101,Transfection Carrier,C,1000.0,3.0,43.0,7.6,1.0,2.5\nKINASE_102,CONSTRUCT_102,Transfection Carrier,C,1000.0,4.7,45.0,4.8,2.0,4.4\nKINASE_103,CONSTRUCT_103,Transfection Carrier,N,1000.0,2.7,18.0,4.3,0.0,4.9\nKINASE_104,CONSTRUCT_104,Transfection Carrier,C,1000.0,2.6,60.0,13.1,18.0,2.8\nKINASE_105,CONSTRUCT_105,Transfection Carrier,C,1000.0,4.1,89.0,2.2,1.0,4.7\nKINASE_106,CONSTRUCT_106,Transfection Carrier,N,1000.0,2.6,78.0,4.4,0.0,5.3\nKINASE_107,CONSTRUCT_107,Transfection Carrier,N,1000.0,3.3,87.0,3.6,0.0,2.1\nKINASE_108,CONSTRUCT_108,Transfection Carrier,C,1000.0,3.6,83.0,1.3,-3.0,8.1\nKINASE_109,CONSTRUCT_109,Transfection Carrier,C,1000.0,5.3,61.0,7.4,-9.0,13.9\nKINASE_110,CONSTRUCT_110,Transfection Carrier,N,1000.0,3.3,82.0,2.8,5.0,4.4\nKINASE_111,CONSTRUCT_111,Transfection Carrier,N,1000.0,1.9,70.0,14.3,-4.0,14.6\nKINASE_112,CONSTRUCT_112,Transfection Carrier,N,1000.0,2.6,47.0,11.0,3.0,15.4\nKINASE_113,CONSTRUCT_113,CycB1 (NV260A),C,1000.0,3.0,71.0,7.1,7.0,2.9\nKINASE_114,CONSTRUCT_114,CycE1 (NV264A),C,1000.0,12.5,80.0,4.0,3.0,1.6\nKINASE_115,CONSTRUCT_115,CycE1 (NV264A),C,1000.0,6.9,85.0,3.5,6.0,1.3\nKINASE_116,CONSTRUCT_116,CycD3 (NV263A),N,1000.0,8.2,93.0,2.2,4.0,4.2\nKINASE_117,CONSTRUCT_117,CDK5R1 (NV282A,C,1000.0,13.3,85.0,3.6,1.0,0.8\nKINASE_118,CONSTRUCT_118,CycD1 (NV262A),N,1000.0,4.1,89.0,2.2,0.0,3.0\nKINASE_119,CONSTRUCT_119,Transfection Carrier,N,1000.0,3.3,83.0,4.1,32.0,1.3\nKINASE_120,CONSTRUCT_120,CycK (NV266A),N,1000.0,3.8,68.0,4.1,4.0,5.5\nKINASE_121,CONSTRUCT_121,CycL2 (NV267A),C,1000.0,2.9,50.0,3.7,8.0,0.5\nKINASE_122,CONSTRUCT_122,CycY (NV269A),C,1000.0,4.3,82.0,1.3,0.0,2.4\nKINASE_123,CONSTRUCT_123,CycY (NV269A),N,1000.0,3.5,78.0,2.1,3.0,2.8\nKINASE_124,CONSTRUCT_124,CycY (NV269A),C,1000.0,7.2,96.0,0.6,2.0,0.4\nKINASE_125,CONSTRUCT_125,CycY (NV269A),C,1000.0,9.6,95.0,0.8,3.0,3.6\nKINASE_126,CONSTRUCT_126,CycY (NV269A),C,1000.0,11.4,86.0,1.4,2.0,2.1\nKINASE_127,CONSTRUCT_127,Transfection Carrier,N,1000.0,6.7,95.0,1.3,21.0,0.7\nKINASE_128,CONSTRUCT_128,CycH (NV265A),N,1000.0,4.3,54.0,4.9,-11.0,5.0\nKINASE_129,CONSTRUCT_129,Transfection Carrier,N,1000.0,5.1,64.0,3.2,2.0,0.9\nKINASE_130,CONSTRUCT_130,Transfection Carrier,C,1000.0,2.8,64.0,2.6,5.0,6.7\nKINASE_131,CONSTRUCT_131,Transfection Carrier,N,1000.0,2.2,83.0,4.5,8.0,2.0\nKINASE_132,CONSTRUCT_132,Transfection Carrier,N,1000.0,4.6,84.0,1.3,4.0,1.8\nKINASE_133,CONSTRUCT_133,Transfection Carrier,C,1000.0,3.1,36.0,3.9,-4.0,0.8\nKINASE_134,CONSTRUCT_134,Transfection Carrier,N,1000.0,5.4,35.0,2.3,0.0,2.6\nKINASE_135,CONSTRUCT_135,Transfection Carrier,C,1000.0,3.7,22.0,1.5,0.0,1.7\nKINASE_136,CONSTRUCT_136,Transfection Carrier,C,1000.0,3.2,30.0,3.4,-1.0,3.5\nKINASE_137,CONSTRUCT_137,Transfection Carrier,N,1000.0,3.9,52.0,4.2,7.0,3.6\nKINASE_138,CONSTRUCT_138,Transfection Carrier,N,1000.0,5.9,38.0,1.7,3.0,4.1\nKINASE_139,CONSTRUCT_139,Transfection Carrier,N,1000.0,3.4,46.0,2.7,6.0,6.1\nKINASE_140,CONSTRUCT_140,Transfection Carrier,N,1000.0,3.8,25.0,0.8,-12.0,5.6\nKINASE_141,CONSTRUCT_141,Transfection Carrier,C,1000.0,11.1,25.0,5.5,1.0,2.4\nKINASE_142,CONSTRUCT_142,Transfection Carrier,N,1000.0,7.6,50.0,1.4,8.0,1.5\nKINASE_143,CONSTRUCT_143,Transfection Carrier,N,1000.0,3.5,81.0,2.3,-1.0,0.9\nKINASE_144,CONSTRUCT_144,Transfection Carrier,N,1000.0,2.5,87.0,3.8,36.0,2.9\nKINASE_145,CONSTRUCT_145,Transfection Carrier,N,1000.0,2.5,53.0,3.4,3.0,1.6\nKINASE_146,CONSTRUCT_146,Transfection Carrier,C,1000.0,3.2,47.0,2.9,6.0,1.7\nKINASE_147,CONSTRUCT_147,Transfection Carrier,N,1000.0,3.0,71.0,3.2,4.0,8.5\nKINASE_148,CONSTRUCT_148,Transfection Carrier,N,1000.0,3.2,52.0,0.8,4.0,1.9\nKINASE_149,CONSTRUCT_149,Transfection Carrier,N,1000.0,8.6,52.0,3.9,4.0,1.2\nKINASE_150,CONSTRUCT_150,Transfection Carrier,C,1000.0,3.4,60.0,5.9,16.0,3.3\nKINASE_151,CONSTRUCT_151,Transfection Carrier,C,1000.0,1.9,56.0,2.5,0.0,3.8\nKINASE_152,CONSTRUCT_152,Transfection Carrier,C,1000.0,3.7,1.0,3.9,0.0,3.2\nKINASE_153,CONSTRUCT_153,Transfection Carrier,N,1000.0,15.9,79.0,2.5,3.0,2.4\nKINASE_154,CONSTRUCT_154,Transfection Carrier,N,1000.0,4.2,76.0,1.7,4.0,2.1\nKINASE_155,CONSTRUCT_155,Transfection Carrier,N,1000.0,5.8,43.0,6.8,-2.0,2.4\nKINASE_156,CONSTRUCT_156,Transfection Carrier,N,1000.0,3.6,19.0,4.3,-6.0,2.9\nKINASE_157,CONSTRUCT_157,Transfection Carrier,N,1000.0,3.5,30.0,2.3,-4.0,1.4\nKINASE_158,CONSTRUCT_158,Transfection Carrier,N,1000.0,3.4,47.0,1.2,1.0,2.8\nKINASE_159,CONSTRUCT_159,Transfection Carrier,N,1000.0,12.8,62.0,0.8,0.0,3.3\nKINASE_160,CONSTRUCT_160,Transfection Carrier,N,1000.0,4.0,68.0,3.7,-4.0,7.7\nKINASE_161,CONSTRUCT_161,Transfection Carrier,N,1000.0,2.4,54.0,2.5,7.0,2.6\nKINASE_162,CONSTRUCT_162,Transfection Carrier,N,1000.0,5.8,64.0,0.7,3.0,2.3\nKINASE_163,CONSTRUCT_163,Transfection Carrier,N,1000.0,5.7,68.0,1.3,3.0,2.2\nKINASE_164,CONSTRUCT_164,Transfection Carrier,C,1000.0,2.4,40.0,4.4,0.0,5.0\nKINASE_165,CONSTRUCT_165,Transfection Carrier,C,1000.0,2.4,61.0,2.7,0.0,3.4\nKINASE_166,CONSTRUCT_166,Transfection Carrier,N,1000.0,2.6,64.0,3.0,1.0,4.6\nKINASE_167,CONSTRUCT_167,Transfection Carrier,N,1000.0,2.7,50.0,1.4,3.0,2.5\nKINASE_168,CONSTRUCT_168,Transfection Carrier,C,1000.0,3.1,36.0,3.3,4.0,1.9\nKINASE_169,CONSTRUCT_169,Transfection Carrier,N,1000.0,7.1,31.0,3.4,9.0,6.8\nKINASE_170,CONSTRUCT_170,Transfection Carrier,C,1000.0,3.2,26.0,1.2,36.0,4.0\nKINASE_171,CONSTRUCT_171,Transfection Carrier,N,1000.0,2.5,44.0,8.8,-1.0,6.6\nKINASE_172,CONSTRUCT_172,Transfection Carrier,N,1000.0,2.2,46.0,6.0,6.0,6.4\nKINASE_173,CONSTRUCT_173,Transfection Carrier,N,1000.0,3.8,18.0,4.3,-1.0,1.9\nKINASE_174,CONSTRUCT_174,Transfection Carrier,N,1000.0,3.9,43.0,3.5,1.0,8.8\nKINASE_175,CONSTRUCT_175,Transfection Carrier,C,1000.0,6.8,24.0,0.5,1.0,2.2\nKINASE_176,CONSTRUCT_176,Transfection Carrier,C,1000.0,3.9,20.0,2.1,5.0,2.8\nKINASE_177,CONSTRUCT_177,Transfection Carrier,C,1000.0,3.3,24.0,13.4,-7.0,23.7\nKINASE_178,CONSTRUCT_178,Transfection Carrier,C,1000.0,3.5,22.0,1.7,-1.0,4.7\nKINASE_179,CONSTRUCT_179,Transfection Carrier,C,1000.0,2.6,30.0,1.1,6.0,1.7\nKINASE_180,CONSTRUCT_180,Transfection Carrier,C,1000.0,6.9,56.0,3.1,-1.0,1.4\nKINASE_181,CONSTRUCT_181,Transfection Carrier,C,1000.0,3.6,26.0,3.5,5.0,3.5\nKINASE_182,CONSTRUCT_182,Transfection Carrier,C,1000.0,3.3,30.0,8.1,-6.0,6.1\nKINASE_183,CONSTRUCT_183,Transfection Carrier,C,1000.0,3.0,43.0,4.5,-1.0,1.1\nKINASE_184,CONSTRUCT_184,Transfection Carrier,N,1000.0,2.8,69.0,2.7,-4.0,2.6\nKINASE_185,CONSTRUCT_185,Transfection Carrier,N,1000.0,2.8,25.0,1.8,23.0,3.9\nKINASE_186,CONSTRUCT_186,Transfection Carrier,N,1000.0,9.1,64.0,1.5,43.0,0.5\nKINASE_187,CONSTRUCT_187,Transfection Carrier,C,1000.0,4.0,65.0,0.9,85.0,1.4\nKINASE_188,CONSTRUCT_188,Transfection Carrier,N,1000.0,4.4,62.0,5.4,-3.0,8.7\nKINASE_189,CONSTRUCT_189,Transfection Carrier,N,1000.0,3.7,39.0,1.0,12.0,6.8\nKINASE_190,CONSTRUCT_190,Transfection Carrier,C,1000.0,3.0,8.0,4.4,6.0,5.7\nKINASE_191,CONSTRUCT_191,Transfection Carrier,N,1000.0,3.2,33.0,0.6,3.0,5.3\nKINASE_192,CONSTRUCT_192,Transfection Carrier,C,1000.0,4.8,90.0,1.7,-1.0,2.6",
+          "is_error": false
+        }
+      ]
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "fc97c5ef-361a-43e5-b178-d36524408385",
+    "timestamp": "2026-06-15T02:03:40.452Z",
+    "tool_use_result": {
+      "stdout": "target_id,construct_id,diluent_dna,nluc_orientation,tracer_k10_nm,bret_signal_to_background,cc1_occupancy_pct_300_nm,cc1_stdev,crizotinib_occupancy_pct_1_um,crizotinib_stdev\nKINASE_001,CONSTRUCT_001,Transfection Carrier,C,25.0,3.7,98.0,2.0,-9.0,15.2\nKINASE_002,CONSTRUCT_002,Transfection Carrier,N,25.0,7.4,99.0,0.8,2.0,2.4\nKINASE_003,CONSTRUCT_003,Transfection Carrier,N,25.0,4.5,98.0,0.8,42.0,4.4\nKINASE_004,CONSTRUCT_004,Transfection Carrier,C,25.0,3.7,90.0,1.0,37.0,4.7\nKINASE_005,CONSTRUCT_005,Transfection Carrier,N,25.0,10.0,94.0,0.8,-6.0,4.1\nKINASE_006,CONSTRUCT_006,Transfection Carrier,N,25.0,14.9,97.0,0.5,-14.0,1.5\nKINASE_007,CONSTRUCT_007,Transfection Carrier,N,25.0,26.8,97.0,1.2,-12.0,3.4\nKINASE_008,CONSTRUCT_008,Transfection Carrier,N,25.0,12.2,99.0,0.3,-14.0,0.9\nKINASE_009,CONSTRUCT_009,Transfection Carrier,C,25.0,6.8,93.0,1.0,30.0,7.7\nKINASE_010,CONSTRUCT_010,Transfection Carrier,C,25.0,10.6,92.0,1.8,48.0,4.2\nKINASE_011,CONSTRUCT_011,Transfection Carrier,C,25.0,10.7,94.0,1.6,46.0,5.9\nKINASE_012,CONSTRUCT_012,Transfection Carrier,N,25.0,3.4,98.0,2.4,36.0,6.6\nKINASE_013,CONSTRUCT_013,Transfection Carrier,C,25.0,5.0,79.0,7.1,-10.0,6.2\nKINASE_014,CONSTRUCT_014,Transfection Carrier,N,25.0,3.6,97.0,0.9,-7.0,7.7\nKINASE_015,CONSTRUCT_015,Transfection Carrier,N,25.0,16.9,99.0,0.5,0.0,3.4\nKINASE_016,CONSTRUCT_016,Transfection Carrier,C,25.0,6.2,99.0,0.4,-16.0,8.3\nKINASE_017,CONSTRUCT_017,Transfection Carrier,C,250.0,2.9,63.0,3.8,68.0,1.5\nKINASE_018,CONSTRUCT_018,Transfection Carrier,C,250.0,3.4,84.0,4.1,14.0,6.8\nKINASE_019,CONSTRUCT_019,Transfection Carrier,C,250.0,3.4,79.0,3.7,-4.0,8.6\nKINASE_020,CONSTRUCT_020,Transfection Carrier,C,250.0,2.1,78.0,3.8,18.0,8.2\nKINASE_021,CONSTRUCT_021,Transfection Carrier,C,250.0,2.9,83.0,2.5,20.0,2.1\nKINASE_022,CONSTRUCT_022,Transfection Carrier,C,250.0,4.2,76.0,3.6,32.0,9.8\nKINASE_023,CONSTRUCT_023,Transfection Carrier,N,250.0,4.6,78.0,1.4,-7.0,6.7\nKINASE_024,CONSTRUCT_024,Transfection Carrier,C,250.0,9.9,67.0,7.2,35.0,9.9\nKINASE_025,CONSTRUCT_025,Transfection Carrier,N,250.0,7.3,98.0,0.7,0.0,3.4\nKINASE_026,CONSTRUCT_026,Transfection Carrier,N,250.0,4.1,90.0,4.4,41.0,5.6\nKINASE_027,CONSTRUCT_027,Transfection Carrier,N,250.0,7.9,65.0,5.2,1.0,5.4\nKINASE_028,CONSTRUCT_028,Transfection Carrier,N,250.0,16.1,44.0,9.6,-2.0,14.5\nKINASE_029,CONSTRUCT_029,Transfection Carrier,C,250.0,4.6,82.0,4.9,-3.0,1.7\nKINASE_030,CONSTRUCT_030,Transfection Carrier,N,250.0,7.1,89.0,3.8,-6.0,6.5\nKINASE_031,CONSTRUCT_031,Transfection Carrier,N,250.0,10.5,78.0,8.0,-1.0,1.9\nKINASE_032,CONSTRUCT_032,Transfection Carrier,N,250.0,23.1,72.0,5.2,2.0,6.5\nKINASE_033,CONSTRUCT_033,Transfection Carrier,N,250.0,8.3,78.0,7.1,-1.0,4.0\nKINASE_034,CONSTRUCT_034,Transfection Carrier,N,250.0,4.5,54.0,3.3,-1.0,4.4\nKINASE_035,CONSTRUCT_035,Transfection Carrier,N,250.0,2.9,60.0,4.3,-1.0,6.2\nKINASE_036,CONSTRUCT_036,Transfection Carrier,C,250.0,8.5,72.0,9.1,-8.0,6.4\nKINASE_037,CONSTRUCT_037,Transfection Carrier,N,250.0,5.9,86.0,3.1,-3.0,6.3\nKINASE_038,CONSTRUCT_038,Transfection Carrier,N,250.0,3.1,90.0,3.4,-3.0,3.9\nKINASE_039,CONSTRUCT_039,Transfection Carrier,N,250.0,4.8,67.0,2.4,11.0,7.6\nKINASE_040,CONSTRUCT_040,Transfection Carrier,C,250.0,2.8,5.0,1.9,-5.0,3.8\nKINASE_041,CONSTRUCT_041,Transfection Carrier,C,100.0,3.3,95.0,1.8,0.0,3.8\nKINASE_042,CONSTRUCT_042,Transfection Carrier,C,100.0,3.5,94.0,0.7,10.0,1.8\nKINASE_043,CONSTRUCT_043,Transfection Carrier,C,100.0,3.3,89.0,4.3,80.0,2.8\nKINASE_044,CONSTRUCT_044,Transfection Carrier,C,100.0,4.1,68.0,4.5,71.0,2.5\nKINASE_045,CONSTRUCT_045,Transfection Carrier,C,100.0,6.0,90.0,1.5,4.0,4.5\nKINASE_046,CONSTRUCT_046,Transfection Carrier,C,100.0,4.6,80.0,3.4,85.0,2.3\nKINASE_047,CONSTRUCT_047,Transfection Carrier,C,100.0,6.8,73.0,4.0,13.0,6.7\nKINASE_048,CONSTRUCT_048,Transfection Carrier,C,100.0,4.2,71.0,4.3,87.0,0.9\nKINASE_049,CONSTRUCT_049,Transfection Carrier,C,100.0,3.9,39.0,5.8,-4.0,3.9\nKINASE_050,CONSTRUCT_050,Transfection Carrier,C,100.0,6.5,98.0,1.4,6.0,7.0\nKINASE_051,CONSTRUCT_051,Transfection Carrier,N,100.0,3.4,92.0,1.8,-1.0,6.2\nKINASE_052,CONSTRUCT_052,Transfection Carrier,C,100.0,3.3,90.0,2.8,65.0,8.3\nKINASE_053,CONSTRUCT_053,Transfection Carrier,N,100.0,4.6,71.0,4.9,0.0,6.0\nKINASE_054,CONSTRUCT_054,Transfection Carrier,N,100.0,3.3,88.0,1.2,40.0,4.0\nKINASE_055,CONSTRUCT_055,Transfection Carrier,C,100.0,3.7,100.0,0.6,-2.0,1.2\nKINASE_056,CONSTRUCT_056,Transfection Carrier,C,100.0,2.2,91.0,2.2,47.0,5.1\nKINASE_057,CONSTRUCT_057,Transfection Carrier,N,100.0,8.9,94.0,1.6,11.0,6.0\nKINASE_058,CONSTRUCT_058,Transfection Carrier,N,100.0,16.2,85.0,1.2,-6.0,2.1\nKINASE_059,CONSTRUCT_059,Transfection Carrier,N,100.0,13.4,85.0,1.9,-13.0,6.2\nKINASE_060,CONSTRUCT_060,Transfection Carrier,N,100.0,7.5,78.0,4.2,-7.0,10.8\nKINASE_061,CONSTRUCT_061,Transfection Carrier,N,100.0,14.2,94.0,1.9,-1.0,5.5\nKINASE_062,CONSTRUCT_062,Transfection Carrier,N,100.0,4.5,76.0,2.0,77.0,10.7\nKINASE_063,CONSTRUCT_063,Transfection Carrier,C,100.0,5.3,91.0,1.0,-9.0,2.5\nKINASE_064,CONSTRUCT_064,Transfection Carrier,C,100.0,6.1,99.0,0.7,-8.0,8.4\nKINASE_065,CONSTRUCT_065,Transfection Carrier,N,100.0,4.4,90.0,2.0,-15.0,4.5\nKINASE_066,CONSTRUCT_066,Transfection Carrier,N,100.0,11.3,92.0,1.5,-1.0,4.9\nKINASE_067,CONSTRUCT_067,Transfection Carrier,N,100.0,12.6,97.0,0.3,-6.0,2.2\nKINASE_068,CONSTRUCT_068,Transfection Carrier,N,100.0,7.9,89.0,1.9,-6.0,2.5\nKINASE_069,CONSTRUCT_069,Transfection Carrier,N,100.0,4.7,79.0,4.2,-7.0,7.5\nKINASE_070,CONSTRUCT_070,Transfection Carrier,N,100.0,6.6,85.0,0.7,-11.0,6.0\nKINASE_071,CONSTRUCT_071,Transfection Carrier,N,100.0,3.0,89.0,2.3,-10.0,7.3\nKINASE_072,CONSTRUCT_072,Transfection Carrier,N,100.0,10.2,93.0,1.6,-4.0,4.7\nKINASE_073,CONSTRUCT_073,Transfection Carrier,C,100.0,2.5,101.0,1.4,-19.0,4.6\nKINASE_074,CONSTRUCT_074,Transfection Carrier,N,100.0,5.8,70.0,7.8,-16.0,4.2\nKINASE_075,CONSTRUCT_075,Transfection Carrier,N,100.0,9.4,70.0,6.4,-11.0,2.1\nKINASE_076,CONSTRUCT_076,Transfection Carrier,N,100.0,7.7,74.0,5.2,21.0,2.8\nKINASE_077,CONSTRUCT_077,Transfection Carrier,C,100.0,5.1,68.0,5.7,-10.0,3.9\nKINASE_078,CONSTRUCT_078,Transfection Carrier,C,100.0,3.6,65.0,4.9,-14.0,7.9\nKINASE_079,CONSTRUCT_079,Transfection Carrier,C,100.0,5.5,87.0,3.0,-14.0,5.8\nKINASE_080,CONSTRUCT_080,Transfection Carrier,N,100.0,7.8,97.0,0.4,-9.0,6.1\nKINASE_081,CONSTRUCT_081,Transfection Carrier,C,1000.0,2.8,80.0,3.4,35.0,3.0\nKINASE_082,CONSTRUCT_082,Transfection Carrier,C,1000.0,3.5,68.0,4.0,3.0,1.6\nKINASE_083,CONSTRUCT_083,Transfection Carrier,N,1000.0,3.9,70.0,4.5,14.0,4.1\nKINASE_084,CONSTRUCT_084,Transfection Carrier,C,1000.0,2.2,48.0,3.9,58.0,3.3\nKINASE_085,CONSTRUCT_085,Transfection Carrier,C,1000.0,5.1,42.0,8.5,95.0,1.1\nKINASE_086,CONSTRUCT_086,Transfection Carrier,C,1000.0,3.9,32.0,9.9,86.0,4.8\nKINASE_087,CONSTRUCT_087,Transfection Carrier,C,1000.0,2.5,47.0,0.5,49.0,2.2\nKINASE_088,CONSTRUCT_088,Transfection Carrier,C,1000.0,3.8,78.0,4.2,36.0,5.7\nKINASE_089,CONSTRUCT_089,Transfection Carrier,C,1000.0,5.2,69.0,5.6,29.0,5.5\nKINASE_090,CONSTRUCT_090,Transfection Carrier,C,1000.0,3.3,74.0,3.2,75.0,2.2\nKINASE_091,CONSTRUCT_091,Transfection Carrier,C,1000.0,2.8,33.0,5.2,53.0,4.4\nKINASE_092,CONSTRUCT_092,Transfection Carrier,C,1000.0,3.9,38.0,1.7,64.0,5.1\nKINASE_093,CONSTRUCT_093,Transfection Carrier,C,1000.0,4.4,51.0,4.6,38.0,2.4\nKINASE_094,CONSTRUCT_094,Transfection Carrier,C,1000.0,3.4,65.0,2.4,68.0,2.0\nKINASE_095,CONSTRUCT_095,Transfection Carrier,C,1000.0,3.1,53.0,4.9,62.0,3.6\nKINASE_096,CONSTRUCT_096,Transfection Carrier,C,1000.0,3.9,65.0,7.5,-2.0,12.3\nKINASE_097,CONSTRUCT_097,Transfection Carrier,N,1000.0,2.9,72.0,5.5,43.0,3.9\nKINASE_098,CONSTRUCT_098,Transfection Carrier,C,1000.0,4.5,60.0,6.3,7.0,4.3\nKINASE_099,CONSTRUCT_099,Transfection Carrier,C,1000.0,6.8,75.0,4.4,1.0,1.3\nKINASE_100,CONSTRUCT_100,Transfection Carrier,C,1000.0,2.8,66.0,4.9,16.0,7.9\nKINASE_101,CONSTRUCT_101,Transfection Carrier,C,1000.0,3.0,43.0,7.6,1.0,2.5\nKINASE_102,CONSTRUCT_102,Transfection Carrier,C,1000.0,4.7,45.0,4.8,2.0,4.4\nKINASE_103,CONSTRUCT_103,Transfection Carrier,N,1000.0,2.7,18.0,4.3,0.0,4.9\nKINASE_104,CONSTRUCT_104,Transfection Carrier,C,1000.0,2.6,60.0,13.1,18.0,2.8\nKINASE_105,CONSTRUCT_105,Transfection Carrier,C,1000.0,4.1,89.0,2.2,1.0,4.7\nKINASE_106,CONSTRUCT_106,Transfection Carrier,N,1000.0,2.6,78.0,4.4,0.0,5.3\nKINASE_107,CONSTRUCT_107,Transfection Carrier,N,1000.0,3.3,87.0,3.6,0.0,2.1\nKINASE_108,CONSTRUCT_108,Transfection Carrier,C,1000.0,3.6,83.0,1.3,-3.0,8.1\nKINASE_109,CONSTRUCT_109,Transfection Carrier,C,1000.0,5.3,61.0,7.4,-9.0,13.9\nKINASE_110,CONSTRUCT_110,Transfection Carrier,N,1000.0,3.3,82.0,2.8,5.0,4.4\nKINASE_111,CONSTRUCT_111,Transfection Carrier,N,1000.0,1.9,70.0,14.3,-4.0,14.6\nKINASE_112,CONSTRUCT_112,Transfection Carrier,N,1000.0,2.6,47.0,11.0,3.0,15.4\nKINASE_113,CONSTRUCT_113,CycB1 (NV260A),C,1000.0,3.0,71.0,7.1,7.0,2.9\nKINASE_114,CONSTRUCT_114,CycE1 (NV264A),C,1000.0,12.5,80.0,4.0,3.0,1.6\nKINASE_115,CONSTRUCT_115,CycE1 (NV264A),C,1000.0,6.9,85.0,3.5,6.0,1.3\nKINASE_116,CONSTRUCT_116,CycD3 (NV263A),N,1000.0,8.2,93.0,2.2,4.0,4.2\nKINASE_117,CONSTRUCT_117,CDK5R1 (NV282A,C,1000.0,13.3,85.0,3.6,1.0,0.8\nKINASE_118,CONSTRUCT_118,CycD1 (NV262A),N,1000.0,4.1,89.0,2.2,0.0,3.0\nKINASE_119,CONSTRUCT_119,Transfection Carrier,N,1000.0,3.3,83.0,4.1,32.0,1.3\nKINASE_120,CONSTRUCT_120,CycK (NV266A),N,1000.0,3.8,68.0,4.1,4.0,5.5\nKINASE_121,CONSTRUCT_121,CycL2 (NV267A),C,1000.0,2.9,50.0,3.7,8.0,0.5\nKINASE_122,CONSTRUCT_122,CycY (NV269A),C,1000.0,4.3,82.0,1.3,0.0,2.4\nKINASE_123,CONSTRUCT_123,CycY (NV269A),N,1000.0,3.5,78.0,2.1,3.0,2.8\nKINASE_124,CONSTRUCT_124,CycY (NV269A),C,1000.0,7.2,96.0,0.6,2.0,0.4\nKINASE_125,CONSTRUCT_125,CycY (NV269A),C,1000.0,9.6,95.0,0.8,3.0,3.6\nKINASE_126,CONSTRUCT_126,CycY (NV269A),C,1000.0,11.4,86.0,1.4,2.0,2.1\nKINASE_127,CONSTRUCT_127,Transfection Carrier,N,1000.0,6.7,95.0,1.3,21.0,0.7\nKINASE_128,CONSTRUCT_128,CycH (NV265A),N,1000.0,4.3,54.0,4.9,-11.0,5.0\nKINASE_129,CONSTRUCT_129,Transfection Carrier,N,1000.0,5.1,64.0,3.2,2.0,0.9\nKINASE_130,CONSTRUCT_130,Transfection Carrier,C,1000.0,2.8,64.0,2.6,5.0,6.7\nKINASE_131,CONSTRUCT_131,Transfection Carrier,N,1000.0,2.2,83.0,4.5,8.0,2.0\nKINASE_132,CONSTRUCT_132,Transfection Carrier,N,1000.0,4.6,84.0,1.3,4.0,1.8\nKINASE_133,CONSTRUCT_133,Transfection Carrier,C,1000.0,3.1,36.0,3.9,-4.0,0.8\nKINASE_134,CONSTRUCT_134,Transfection Carrier,N,1000.0,5.4,35.0,2.3,0.0,2.6\nKINASE_135,CONSTRUCT_135,Transfection Carrier,C,1000.0,3.7,22.0,1.5,0.0,1.7\nKINASE_136,CONSTRUCT_136,Transfection Carrier,C,1000.0,3.2,30.0,3.4,-1.0,3.5\nKINASE_137,CONSTRUCT_137,Transfection Carrier,N,1000.0,3.9,52.0,4.2,7.0,3.6\nKINASE_138,CONSTRUCT_138,Transfection Carrier,N,1000.0,5.9,38.0,1.7,3.0,4.1\nKINASE_139,CONSTRUCT_139,Transfection Carrier,N,1000.0,3.4,46.0,2.7,6.0,6.1\nKINASE_140,CONSTRUCT_140,Transfection Carrier,N,1000.0,3.8,25.0,0.8,-12.0,5.6\nKINASE_141,CONSTRUCT_141,Transfection Carrier,C,1000.0,11.1,25.0,5.5,1.0,2.4\nKINASE_142,CONSTRUCT_142,Transfection Carrier,N,1000.0,7.6,50.0,1.4,8.0,1.5\nKINASE_143,CONSTRUCT_143,Transfection Carrier,N,1000.0,3.5,81.0,2.3,-1.0,0.9\nKINASE_144,CONSTRUCT_144,Transfection Carrier,N,1000.0,2.5,87.0,3.8,36.0,2.9\nKINASE_145,CONSTRUCT_145,Transfection Carrier,N,1000.0,2.5,53.0,3.4,3.0,1.6\nKINASE_146,CONSTRUCT_146,Transfection Carrier,C,1000.0,3.2,47.0,2.9,6.0,1.7\nKINASE_147,CONSTRUCT_147,Transfection Carrier,N,1000.0,3.0,71.0,3.2,4.0,8.5\nKINASE_148,CONSTRUCT_148,Transfection Carrier,N,1000.0,3.2,52.0,0.8,4.0,1.9\nKINASE_149,CONSTRUCT_149,Transfection Carrier,N,1000.0,8.6,52.0,3.9,4.0,1.2\nKINASE_150,CONSTRUCT_150,Transfection Carrier,C,1000.0,3.4,60.0,5.9,16.0,3.3\nKINASE_151,CONSTRUCT_151,Transfection Carrier,C,1000.0,1.9,56.0,2.5,0.0,3.8\nKINASE_152,CONSTRUCT_152,Transfection Carrier,C,1000.0,3.7,1.0,3.9,0.0,3.2\nKINASE_153,CONSTRUCT_153,Transfection Carrier,N,1000.0,15.9,79.0,2.5,3.0,2.4\nKINASE_154,CONSTRUCT_154,Transfection Carrier,N,1000.0,4.2,76.0,1.7,4.0,2.1\nKINASE_155,CONSTRUCT_155,Transfection Carrier,N,1000.0,5.8,43.0,6.8,-2.0,2.4\nKINASE_156,CONSTRUCT_156,Transfection Carrier,N,1000.0,3.6,19.0,4.3,-6.0,2.9\nKINASE_157,CONSTRUCT_157,Transfection Carrier,N,1000.0,3.5,30.0,2.3,-4.0,1.4\nKINASE_158,CONSTRUCT_158,Transfection Carrier,N,1000.0,3.4,47.0,1.2,1.0,2.8\nKINASE_159,CONSTRUCT_159,Transfection Carrier,N,1000.0,12.8,62.0,0.8,0.0,3.3\nKINASE_160,CONSTRUCT_160,Transfection Carrier,N,1000.0,4.0,68.0,3.7,-4.0,7.7\nKINASE_161,CONSTRUCT_161,Transfection Carrier,N,1000.0,2.4,54.0,2.5,7.0,2.6\nKINASE_162,CONSTRUCT_162,Transfection Carrier,N,1000.0,5.8,64.0,0.7,3.0,2.3\nKINASE_163,CONSTRUCT_163,Transfection Carrier,N,1000.0,5.7,68.0,1.3,3.0,2.2\nKINASE_164,CONSTRUCT_164,Transfection Carrier,C,1000.0,2.4,40.0,4.4,0.0,5.0\nKINASE_165,CONSTRUCT_165,Transfection Carrier,C,1000.0,2.4,61.0,2.7,0.0,3.4\nKINASE_166,CONSTRUCT_166,Transfection Carrier,N,1000.0,2.6,64.0,3.0,1.0,4.6\nKINASE_167,CONSTRUCT_167,Transfection Carrier,N,1000.0,2.7,50.0,1.4,3.0,2.5\nKINASE_168,CONSTRUCT_168,Transfection Carrier,C,1000.0,3.1,36.0,3.3,4.0,1.9\nKINASE_169,CONSTRUCT_169,Transfection Carrier,N,1000.0,7.1,31.0,3.4,9.0,6.8\nKINASE_170,CONSTRUCT_170,Transfection Carrier,C,1000.0,3.2,26.0,1.2,36.0,4.0\nKINASE_171,CONSTRUCT_171,Transfection Carrier,N,1000.0,2.5,44.0,8.8,-1.0,6.6\nKINASE_172,CONSTRUCT_172,Transfection Carrier,N,1000.0,2.2,46.0,6.0,6.0,6.4\nKINASE_173,CONSTRUCT_173,Transfection Carrier,N,1000.0,3.8,18.0,4.3,-1.0,1.9\nKINASE_174,CONSTRUCT_174,Transfection Carrier,N,1000.0,3.9,43.0,3.5,1.0,8.8\nKINASE_175,CONSTRUCT_175,Transfection Carrier,C,1000.0,6.8,24.0,0.5,1.0,2.2\nKINASE_176,CONSTRUCT_176,Transfection Carrier,C,1000.0,3.9,20.0,2.1,5.0,2.8\nKINASE_177,CONSTRUCT_177,Transfection Carrier,C,1000.0,3.3,24.0,13.4,-7.0,23.7\nKINASE_178,CONSTRUCT_178,Transfection Carrier,C,1000.0,3.5,22.0,1.7,-1.0,4.7\nKINASE_179,CONSTRUCT_179,Transfection Carrier,C,1000.0,2.6,30.0,1.1,6.0,1.7\nKINASE_180,CONSTRUCT_180,Transfection Carrier,C,1000.0,6.9,56.0,3.1,-1.0,1.4\nKINASE_181,CONSTRUCT_181,Transfection Carrier,C,1000.0,3.6,26.0,3.5,5.0,3.5\nKINASE_182,CONSTRUCT_182,Transfection Carrier,C,1000.0,3.3,30.0,8.1,-6.0,6.1\nKINASE_183,CONSTRUCT_183,Transfection Carrier,C,1000.0,3.0,43.0,4.5,-1.0,1.1\nKINASE_184,CONSTRUCT_184,Transfection Carrier,N,1000.0,2.8,69.0,2.7,-4.0,2.6\nKINASE_185,CONSTRUCT_185,Transfection Carrier,N,1000.0,2.8,25.0,1.8,23.0,3.9\nKINASE_186,CONSTRUCT_186,Transfection Carrier,N,1000.0,9.1,64.0,1.5,43.0,0.5\nKINASE_187,CONSTRUCT_187,Transfection Carrier,C,1000.0,4.0,65.0,0.9,85.0,1.4\nKINASE_188,CONSTRUCT_188,Transfection Carrier,N,1000.0,4.4,62.0,5.4,-3.0,8.7\nKINASE_189,CONSTRUCT_189,Transfection Carrier,N,1000.0,3.7,39.0,1.0,12.0,6.8\nKINASE_190,CONSTRUCT_190,Transfection Carrier,C,1000.0,3.0,8.0,4.4,6.0,5.7\nKINASE_191,CONSTRUCT_191,Transfection Carrier,N,1000.0,3.2,33.0,0.6,3.0,5.3\nKINASE_192,CONSTRUCT_192,Transfection Carrier,C,1000.0,4.8,90.0,1.7,-1.0,2.6",
+      "stderr": "",
+      "interrupted": false,
+      "isImage": false,
+      "noOutputExpected": false
+    }
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 50,
+    "estimated_tokens_delta": 50,
+    "uuid": "0db37113-0e09-4f19-b2b9-f8d2576814ea",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 150,
+    "estimated_tokens_delta": 100,
+    "uuid": "805a5210-fcfc-4538-b370-89e0e0bc43f2",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 300,
+    "estimated_tokens_delta": 150,
+    "uuid": "074e4a5e-855e-45ac-b760-9c9eb2c9bd65",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 500,
+    "estimated_tokens_delta": 200,
+    "uuid": "b441333e-8e58-49d3-97ba-ad089979f8e1",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 600,
+    "estimated_tokens_delta": 100,
+    "uuid": "8b370940-fe6a-4f47-8bb2-316420ed80e0",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 750,
+    "estimated_tokens_delta": 150,
+    "uuid": "f7e0eac9-b4a8-46d1-a7e0-60bea09a6641",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 850,
+    "estimated_tokens_delta": 100,
+    "uuid": "3dfa16d1-583b-4650-956e-817bea9a2e00",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 1000,
+    "estimated_tokens_delta": 150,
+    "uuid": "bef0fb3c-34e2-4423-a326-cbb55b1d6670",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 1100,
+    "estimated_tokens_delta": 100,
+    "uuid": "ce10920e-241c-41a8-8c36-5b00ca5210e3",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 1200,
+    "estimated_tokens_delta": 100,
+    "uuid": "afeaa29c-c608-4cc7-9bef-73dc97777792",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 1350,
+    "estimated_tokens_delta": 150,
+    "uuid": "3c8bd868-7a13-4ca8-86ea-ec5b79d5900d",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 1450,
+    "estimated_tokens_delta": 100,
+    "uuid": "90b5a67c-908b-41cd-8b17-3ea091eb80e1",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 1550,
+    "estimated_tokens_delta": 100,
+    "uuid": "a222c153-4102-4181-a422-932e300247cc",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 1650,
+    "estimated_tokens_delta": 100,
+    "uuid": "6c8fab05-daef-4dfc-b605-1a61e8cee4ce",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 1800,
+    "estimated_tokens_delta": 150,
+    "uuid": "c3e11656-ecf9-4310-94d7-5283f02eb96e",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 1900,
+    "estimated_tokens_delta": 100,
+    "uuid": "5fc14aa6-51db-42ab-ad40-122d57c89ae9",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 2100,
+    "estimated_tokens_delta": 200,
+    "uuid": "f6b14b50-3bfc-495d-afbf-1973ddaee106",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 2250,
+    "estimated_tokens_delta": 150,
+    "uuid": "58846acc-37ca-482f-8329-16f460efd388",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 2400,
+    "estimated_tokens_delta": 150,
+    "uuid": "4ba9ad60-3f22-4d91-a55a-d7f384dd7827",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 2600,
+    "estimated_tokens_delta": 200,
+    "uuid": "c235674d-e071-49e9-a265-e4f8285f7e2a",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 2800,
+    "estimated_tokens_delta": 200,
+    "uuid": "0a741024-ae3d-4311-88d8-1e4b3d4b90d7",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 2900,
+    "estimated_tokens_delta": 100,
+    "uuid": "d14786ef-65d4-4298-9cfe-fc7e16dd165e",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 3000,
+    "estimated_tokens_delta": 100,
+    "uuid": "5a38d548-586f-447e-95a1-5ece2c6f26b6",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 3150,
+    "estimated_tokens_delta": 150,
+    "uuid": "5a7fb3a4-ecb1-44a0-8100-c04d957ee69a",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 3250,
+    "estimated_tokens_delta": 100,
+    "uuid": "9124a998-11c3-4790-b1ad-9aa2d2786a38",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 3350,
+    "estimated_tokens_delta": 100,
+    "uuid": "bf9444e5-4a07-45a6-bbcc-3419a34c30b0",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 3550,
+    "estimated_tokens_delta": 200,
+    "uuid": "f9c4a123-b33a-45ea-a418-510bdd2040f7",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 3650,
+    "estimated_tokens_delta": 100,
+    "uuid": "51dc29b4-d0b5-41eb-96f0-44eadbeccdbb",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 3800,
+    "estimated_tokens_delta": 150,
+    "uuid": "f97f2147-6599-4d81-876a-47a066c3f489",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 3900,
+    "estimated_tokens_delta": 100,
+    "uuid": "850353da-3400-48e3-9279-4d46129abf50",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 4050,
+    "estimated_tokens_delta": 150,
+    "uuid": "66babe0f-0eb6-45f8-ba3d-3a76c3ee4c8e",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 4150,
+    "estimated_tokens_delta": 100,
+    "uuid": "4437a8d7-aaaa-4650-a439-f95e491e321f",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 4350,
+    "estimated_tokens_delta": 200,
+    "uuid": "85432131-a72e-432d-8b74-bfcafe9b3745",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 4500,
+    "estimated_tokens_delta": 150,
+    "uuid": "bbe34849-9593-431f-bbfe-4c7ae41eead1",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 4600,
+    "estimated_tokens_delta": 100,
+    "uuid": "b65a3b48-a633-4abe-9f83-f7121481af26",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 4750,
+    "estimated_tokens_delta": 150,
+    "uuid": "5364cc40-f508-4b81-9bc8-fd604f08f479",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 4900,
+    "estimated_tokens_delta": 150,
+    "uuid": "be697fbd-8611-4c9b-8c40-a0ad4a0acf79",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 5000,
+    "estimated_tokens_delta": 100,
+    "uuid": "e0a4b9a2-543e-48f8-ade6-9467a6a5f2bf",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 5100,
+    "estimated_tokens_delta": 100,
+    "uuid": "313e36ec-1626-478e-aeef-3b3cab1974fe",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 5150,
+    "estimated_tokens_delta": 50,
+    "uuid": "b2a97866-1683-4e4f-8c06-7cd6e9372b28",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 5300,
+    "estimated_tokens_delta": 150,
+    "uuid": "5a79b025-415c-451e-8a87-1fb34aa2d979",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 5450,
+    "estimated_tokens_delta": 150,
+    "uuid": "b758a0c6-3377-43d8-8622-67e31e3f1758",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 5500,
+    "estimated_tokens_delta": 50,
+    "uuid": "00c8a70a-0aa7-48b9-81aa-f97aae9decd2",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 5600,
+    "estimated_tokens_delta": 100,
+    "uuid": "9af589b9-c465-4b10-81a7-67b4ad795376",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 5750,
+    "estimated_tokens_delta": 150,
+    "uuid": "aad43133-0911-4af1-82b8-8e7b5c501f99",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 5900,
+    "estimated_tokens_delta": 150,
+    "uuid": "4911fdf7-888f-485d-bc6c-2fef93dae5a2",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 6000,
+    "estimated_tokens_delta": 100,
+    "uuid": "fc02bc95-ab6c-444c-b576-e056ca7b0e9e",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 6100,
+    "estimated_tokens_delta": 100,
+    "uuid": "fea1a73e-8013-48c1-9d4c-7aa5b5f3a381",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 6200,
+    "estimated_tokens_delta": 100,
+    "uuid": "329da101-b05d-412f-a760-cdccf4e193d4",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 6400,
+    "estimated_tokens_delta": 200,
+    "uuid": "17d39d74-c4ff-4d9f-bf72-3509a5147b33",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 6500,
+    "estimated_tokens_delta": 100,
+    "uuid": "a1223f7a-1cb2-41ca-8dac-91f2ea37203b",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 6600,
+    "estimated_tokens_delta": 100,
+    "uuid": "b2dc4628-c357-4897-96fe-f729fe15dd87",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 6750,
+    "estimated_tokens_delta": 150,
+    "uuid": "9132e8cf-adb7-48e4-a969-9911b72b4c5c",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 6900,
+    "estimated_tokens_delta": 150,
+    "uuid": "441529cf-7285-4001-911e-22c252f599ed",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 7050,
+    "estimated_tokens_delta": 150,
+    "uuid": "19a239da-3e89-42bd-9721-c29a0fa91218",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 7150,
+    "estimated_tokens_delta": 100,
+    "uuid": "89613666-2f02-4956-a28d-044fdd5088f3",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 7250,
+    "estimated_tokens_delta": 100,
+    "uuid": "e5577177-c976-4448-bbb0-cd57261dfbbb",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 7400,
+    "estimated_tokens_delta": 150,
+    "uuid": "153c37a2-0cbb-4085-abf9-d9b597716c77",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 7500,
+    "estimated_tokens_delta": 100,
+    "uuid": "ed8732bd-6a42-4566-9d93-7b55cc920f69",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 7700,
+    "estimated_tokens_delta": 200,
+    "uuid": "2762dfbd-ded9-4af2-8be2-16f8cc9d69cc",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 7850,
+    "estimated_tokens_delta": 150,
+    "uuid": "0cc894d3-05bf-4983-9fd6-bb7eca28ebfa",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 7900,
+    "estimated_tokens_delta": 50,
+    "uuid": "25939f6b-b497-42dd-9e28-3c7c24c44e11",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 8050,
+    "estimated_tokens_delta": 150,
+    "uuid": "8c76a997-4f59-4c22-bbb7-247fe22b5c7d",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 8150,
+    "estimated_tokens_delta": 100,
+    "uuid": "69a0cf0c-22f6-414f-a0ac-3966d3a55c5c",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 8300,
+    "estimated_tokens_delta": 150,
+    "uuid": "1224f32e-9608-4a9e-973f-154d39473e47",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 8850,
+    "estimated_tokens_delta": 550,
+    "uuid": "d03b64f7-b495-43d4-a018-2f6c91abdd02",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 8900,
+    "estimated_tokens_delta": 50,
+    "uuid": "b33e9f32-c7af-43c1-8ffa-1e60d5fa44b4",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 8950,
+    "estimated_tokens_delta": 50,
+    "uuid": "3e9a6207-d3fc-41c1-b10a-45c9a02d4e11",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 9100,
+    "estimated_tokens_delta": 150,
+    "uuid": "90c1ecff-03d3-453a-95a7-d127255555e6",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 9300,
+    "estimated_tokens_delta": 200,
+    "uuid": "cdf8ff1b-7949-4322-87ad-47deeff37818",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 9400,
+    "estimated_tokens_delta": 100,
+    "uuid": "599e1353-67a0-4cbd-bd16-55b67b4a81f8",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 9550,
+    "estimated_tokens_delta": 150,
+    "uuid": "8301c0bd-bc2c-4121-9d29-f91f18fb36c1",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 9650,
+    "estimated_tokens_delta": 100,
+    "uuid": "09810338-245a-4d16-ab33-48c0e50e8b85",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 9800,
+    "estimated_tokens_delta": 150,
+    "uuid": "4e349fd6-d6e7-4c14-87b5-6b8ec8bdc32e",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 9900,
+    "estimated_tokens_delta": 100,
+    "uuid": "caed5fc7-3386-4cb3-aab1-1a8ba12da02f",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 10050,
+    "estimated_tokens_delta": 150,
+    "uuid": "9b1334f2-11b6-4f86-88e7-f0caf9d6dd4d",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 10150,
+    "estimated_tokens_delta": 100,
+    "uuid": "c24c8e0c-b3fa-4266-986d-6d8b348bd2b6",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 10300,
+    "estimated_tokens_delta": 150,
+    "uuid": "b7c9b827-63a0-4acb-b068-6f1a5c818495",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 10450,
+    "estimated_tokens_delta": 150,
+    "uuid": "b207050b-7794-4cc6-86a7-36bc35e010d2",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 10550,
+    "estimated_tokens_delta": 100,
+    "uuid": "c78910ea-5d13-4707-b729-f459871159da",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 10650,
+    "estimated_tokens_delta": 100,
+    "uuid": "cef044fa-bf40-4b57-aa43-f152f620bd10",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 10800,
+    "estimated_tokens_delta": 150,
+    "uuid": "a5db75c9-d6e4-4dba-9ff0-947969ce7b74",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 10900,
+    "estimated_tokens_delta": 100,
+    "uuid": "bfe85576-7fd2-4109-a6f4-f618369a4b3f",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 11000,
+    "estimated_tokens_delta": 100,
+    "uuid": "2686a5d2-3f16-4e31-84a7-d066d6b7eb11",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 11050,
+    "estimated_tokens_delta": 50,
+    "uuid": "6df28867-3e66-4bb1-b5c4-0f9dd658e6bd",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 11200,
+    "estimated_tokens_delta": 150,
+    "uuid": "69a33bfb-50da-4427-a881-2bbd0ad4b197",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 11300,
+    "estimated_tokens_delta": 100,
+    "uuid": "7e4cbbe4-2961-4966-bef2-b62f49f2f5eb",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 11400,
+    "estimated_tokens_delta": 100,
+    "uuid": "08acba4e-6813-4972-bf5f-a1942b09c4fe",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 11500,
+    "estimated_tokens_delta": 100,
+    "uuid": "68c5b109-07f3-4552-b70b-ef1999291078",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 11600,
+    "estimated_tokens_delta": 100,
+    "uuid": "e9739e70-ae7c-47ad-b49f-40132fa3d9fb",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 11750,
+    "estimated_tokens_delta": 150,
+    "uuid": "b4070d22-0553-46fb-ae57-535aac26fb24",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 11850,
+    "estimated_tokens_delta": 100,
+    "uuid": "59db3330-0524-404b-bc1c-8e0a398b0d43",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-8",
+      "id": "msg_01RRs8VsQybh5uLcVs6LZEHn",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "",
+          "signature": "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"
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 10594,
+        "cache_read_input_tokens": 20361,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 10594,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 5,
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "diagnostics": null,
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "acb3e86e-b718-4670-9a72-b824a9b2f3f0",
+    "request_id": "req_011Cc4DxEbTkqA5iiWXvCUqF"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-8",
+      "id": "msg_01RRs8VsQybh5uLcVs6LZEHn",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "I have a single CSV. Let me load it properly and understand the structure and columns."
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 10594,
+        "cache_read_input_tokens": 20361,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 10594,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 5,
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "diagnostics": null,
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "ea5560e9-806c-47e0-b68a-8323b27907e3",
+    "request_id": "req_011Cc4DxEbTkqA5iiWXvCUqF"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-8",
+      "id": "msg_01RRs8VsQybh5uLcVs6LZEHn",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_018K9boEk6H4vUHeqjD1VAqE",
+          "name": "Bash",
+          "input": {
+            "command": "python3 -c \"\nimport pandas as pd\ndf = pd.read_csv('data/Robers2021_control_compound_interpretation.csv')\nprint('shape:', df.shape)\nprint('columns:', list(df.columns))\nprint('n unique target_id:', df.target_id.nunique())\nprint('n unique construct_id:', df.construct_id.nunique())\nprint()\nprint(df.dtypes)\nprint()\nprint('diluent_dna value counts:')\nprint(df.diluent_dna.value_counts())\nprint()\nprint('tracer_k10_nm value counts:')\nprint(df.tracer_k10_nm.value_counts())\n\"",
+            "description": "Load CSV and summarize structure"
+          },
+          "caller": {
+            "type": "direct"
+          }
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 10594,
+        "cache_read_input_tokens": 20361,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 10594,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 5,
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "diagnostics": null,
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "b3d1d61d-d17e-424e-8fd5-6199f2f9c041",
+    "request_id": "req_011Cc4DxEbTkqA5iiWXvCUqF"
+  },
+  {
+    "type": "user",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "tool_use_id": "toolu_018K9boEk6H4vUHeqjD1VAqE",
+          "type": "tool_result",
+          "content": "shape: (192, 10)\ncolumns: ['target_id', 'construct_id', 'diluent_dna', 'nluc_orientation', 'tracer_k10_nm', 'bret_signal_to_background', 'cc1_occupancy_pct_300_nm', 'cc1_stdev', 'crizotinib_occupancy_pct_1_um', 'crizotinib_stdev']\nn unique target_id: 192\nn unique construct_id: 192\n\ntarget_id                         object\nconstruct_id                      object\ndiluent_dna                       object\nnluc_orientation                  object\ntracer_k10_nm                    float64\nbret_signal_to_background        float64\ncc1_occupancy_pct_300_nm         float64\ncc1_stdev                        float64\ncrizotinib_occupancy_pct_1_um    float64\ncrizotinib_stdev                 float64\ndtype: object\n\ndiluent_dna value counts:\ndiluent_dna\nTransfection Carrier    178\nCycY (NV269A)             5\nCycE1 (NV264A)            2\nCycB1 (NV260A)            1\nCDK5R1 (NV282A            1\nCycD3 (NV263A)            1\nCycD1 (NV262A)            1\nCycK (NV266A)             1\nCycL2 (NV267A)            1\nCycH (NV265A)             1\nName: count, dtype: int64\n\ntracer_k10_nm value counts:\ntracer_k10_nm\n1000.0    112\n100.0      40\n250.0      24\n25.0       16\nName: count, dtype: int64",
+          "is_error": false
+        }
+      ]
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "abe22241-1d72-4c16-81b5-8117610203b4",
+    "timestamp": "2026-06-15T02:06:09.915Z",
+    "tool_use_result": {
+      "stdout": "shape: (192, 10)\ncolumns: ['target_id', 'construct_id', 'diluent_dna', 'nluc_orientation', 'tracer_k10_nm', 'bret_signal_to_background', 'cc1_occupancy_pct_300_nm', 'cc1_stdev', 'crizotinib_occupancy_pct_1_um', 'crizotinib_stdev']\nn unique target_id: 192\nn unique construct_id: 192\n\ntarget_id                         object\nconstruct_id                      object\ndiluent_dna                       object\nnluc_orientation                  object\ntracer_k10_nm                    float64\nbret_signal_to_background        float64\ncc1_occupancy_pct_300_nm         float64\ncc1_stdev                        float64\ncrizotinib_occupancy_pct_1_um    float64\ncrizotinib_stdev                 float64\ndtype: object\n\ndiluent_dna value counts:\ndiluent_dna\nTransfection Carrier    178\nCycY (NV269A)             5\nCycE1 (NV264A)            2\nCycB1 (NV260A)            1\nCDK5R1 (NV282A            1\nCycD3 (NV263A)            1\nCycD1 (NV262A)            1\nCycK (NV266A)             1\nCycL2 (NV267A)            1\nCycH (NV265A)             1\nName: count, dtype: int64\n\ntracer_k10_nm value counts:\ntracer_k10_nm\n1000.0    112\n100.0      40\n250.0      24\n25.0       16\nName: count, dtype: int64",
+      "stderr": "",
+      "interrupted": false,
+      "isImage": false,
+      "noOutputExpected": false
+    }
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-8",
+      "id": "msg_01SyFX4g1qfxgVg18QPybEZ4",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "",
+          "signature": "EsICCmMIDhgCKkCIgZPcGaybpzXqRisX0rrIzq8jXrPoRWAR0T2/YDmVMtPJQ1vcYuigH19aKatVM8vU/qFBKtTsoDJuZJWW6gMwMg9jbGF1ZGUtb3B1cy00LTg4AEIIdGhpbmtpbmcSDMnGMY31zRtc8rijHxoMPX+PDf/7dV5R/c5LIjBLD/Ksq7PhlHB81QuMoVHcIkIzLuc5BsEcgfic4uJpc4At20vUyr8gmgvfUSrLc/IqjAEzcA8w0wJ8IIxRMBmQSyDc6D2BQ3esrL0e5lMc3FkM5hkabCWJjYogsf0iPP+mMoIqtrphZD+BwlbWOfXkfYQxcFdLQYTSKfhIpS0x4wkW4ecD+jbD+PcYqFDtz8zxhmOYX60NxMT099fTs7wdJc+k+m6OxSp0L6CEIT4GIQ9N26BxzlOh3emc1HYKSRgB"
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 12800,
+        "cache_read_input_tokens": 30955,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 12800,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 2,
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "diagnostics": null,
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "a3f7591f-8172-4ea7-8045-cb09196eb685",
+    "request_id": "req_011Cc4E9FQdu3Dhq4mi8kAwV"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-8",
+      "id": "msg_01SyFX4g1qfxgVg18QPybEZ4",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "192 distinct targets, one row each. Now let me compute the crizotinib-responsive set and examine the broad-control (cc1) values for those targets."
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 12800,
+        "cache_read_input_tokens": 30955,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 12800,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 2,
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "diagnostics": null,
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "7b502e8e-4ca9-4f80-849b-9386ae3ee982",
+    "request_id": "req_011Cc4E9FQdu3Dhq4mi8kAwV"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-8",
+      "id": "msg_01SyFX4g1qfxgVg18QPybEZ4",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_014qsNZcmJp3dj2wxYtr2W42",
+          "name": "Bash",
+          "input": {
+            "command": "python3 -c \"\nimport pandas as pd\npd.set_option('display.width', 200)\ndf = pd.read_csv('data/Robers2021_control_compound_interpretation.csv')\n\ncriz = 'crizotinib_occupancy_pct_1_um'\ncc1  = 'cc1_occupancy_pct_300_nm'\n\n# Crizotinib-responsive: occupancy at 1 uM >= 50\nresp = df[df[criz] >= 50].copy()\nprint('Crizotinib-responsive (criz_occ >= 50):', len(resp))\nprint()\nprint(resp[['target_id', cc1,'cc1_stdev', criz,'crizotinib_stdev','bret_signal_to_background','tracer_k10_nm','diluent_dna']].to_string(index=False))\nprint()\n# boundary checks\nprint('Exactly 50:', (df[criz]==50).sum())\nprint('At 49 (excluded):', (df[criz]==49).sum())\nprint('Between 45 and 55:')\nprint(df[(df[criz]>=45)&(df[criz]<=55)][['target_id',criz]].to_string(index=False))\n\"",
+            "description": "Count crizotinib-responsive targets and inspect their cc1 values"
+          },
+          "caller": {
+            "type": "direct"
+          }
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 12800,
+        "cache_read_input_tokens": 30955,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 12800,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 2,
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "diagnostics": null,
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "df14400d-ec24-43d6-8cea-c9d637204152",
+    "request_id": "req_011Cc4E9FQdu3Dhq4mi8kAwV"
+  },
+  {
+    "type": "user",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "tool_use_id": "toolu_014qsNZcmJp3dj2wxYtr2W42",
+          "type": "tool_result",
+          "content": "Crizotinib-responsive (criz_occ >= 50): 16\n\n target_id  cc1_occupancy_pct_300_nm  cc1_stdev  crizotinib_occupancy_pct_1_um  crizotinib_stdev  bret_signal_to_background  tracer_k10_nm          diluent_dna\nKINASE_017                      63.0        3.8                           68.0               1.5                        2.9          250.0 Transfection Carrier\nKINASE_043                      89.0        4.3                           80.0               2.8                        3.3          100.0 Transfection Carrier\nKINASE_044                      68.0        4.5                           71.0               2.5                        4.1          100.0 Transfection Carrier\nKINASE_046                      80.0        3.4                           85.0               2.3                        4.6          100.0 Transfection Carrier\nKINASE_048                      71.0        4.3                           87.0               0.9                        4.2          100.0 Transfection Carrier\nKINASE_052                      90.0        2.8                           65.0               8.3                        3.3          100.0 Transfection Carrier\nKINASE_062                      76.0        2.0                           77.0              10.7                        4.5          100.0 Transfection Carrier\nKINASE_084                      48.0        3.9                           58.0               3.3                        2.2         1000.0 Transfection Carrier\nKINASE_085                      42.0        8.5                           95.0               1.1                        5.1         1000.0 Transfection Carrier\nKINASE_086                      32.0        9.9                           86.0               4.8                        3.9         1000.0 Transfection Carrier\nKINASE_090                      74.0        3.2                           75.0               2.2                        3.3         1000.0 Transfection Carrier\nKINASE_091                      33.0        5.2                           53.0               4.4                        2.8         1000.0 Transfection Carrier\nKINASE_092                      38.0        1.7                           64.0               5.1                        3.9         1000.0 Transfection Carrier\nKINASE_094                      65.0        2.4                           68.0               2.0                        3.4         1000.0 Transfection Carrier\nKINASE_095                      53.0        4.9                           62.0               3.6                        3.1         1000.0 Transfection Carrier\nKINASE_187                      65.0        0.9                           85.0               1.4                        4.0         1000.0 Transfection Carrier\n\nExactly 50: 0\nAt 49 (excluded): 1\nBetween 45 and 55:\n target_id  crizotinib_occupancy_pct_1_um\nKINASE_010                           48.0\nKINASE_011                           46.0\nKINASE_056                           47.0\nKINASE_087                           49.0\nKINASE_091                           53.0",
+          "is_error": false
+        }
+      ]
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "dd302aca-88a6-41c5-b12f-2637c6e26054",
+    "timestamp": "2026-06-15T02:06:17.810Z",
+    "tool_use_result": {
+      "stdout": "Crizotinib-responsive (criz_occ >= 50): 16\n\n target_id  cc1_occupancy_pct_300_nm  cc1_stdev  crizotinib_occupancy_pct_1_um  crizotinib_stdev  bret_signal_to_background  tracer_k10_nm          diluent_dna\nKINASE_017                      63.0        3.8                           68.0               1.5                        2.9          250.0 Transfection Carrier\nKINASE_043                      89.0        4.3                           80.0               2.8                        3.3          100.0 Transfection Carrier\nKINASE_044                      68.0        4.5                           71.0               2.5                        4.1          100.0 Transfection Carrier\nKINASE_046                      80.0        3.4                           85.0               2.3                        4.6          100.0 Transfection Carrier\nKINASE_048                      71.0        4.3                           87.0               0.9                        4.2          100.0 Transfection Carrier\nKINASE_052                      90.0        2.8                           65.0               8.3                        3.3          100.0 Transfection Carrier\nKINASE_062                      76.0        2.0                           77.0              10.7                        4.5          100.0 Transfection Carrier\nKINASE_084                      48.0        3.9                           58.0               3.3                        2.2         1000.0 Transfection Carrier\nKINASE_085                      42.0        8.5                           95.0               1.1                        5.1         1000.0 Transfection Carrier\nKINASE_086                      32.0        9.9                           86.0               4.8                        3.9         1000.0 Transfection Carrier\nKINASE_090                      74.0        3.2                           75.0               2.2                        3.3         1000.0 Transfection Carrier\nKINASE_091                      33.0        5.2                           53.0               4.4                        2.8         1000.0 Transfection Carrier\nKINASE_092                      38.0        1.7                           64.0               5.1                        3.9         1000.0 Transfection Carrier\nKINASE_094                      65.0        2.4                           68.0               2.0                        3.4         1000.0 Transfection Carrier\nKINASE_095                      53.0        4.9                           62.0               3.6                        3.1         1000.0 Transfection Carrier\nKINASE_187                      65.0        0.9                           85.0               1.4                        4.0         1000.0 Transfection Carrier\n\nExactly 50: 0\nAt 49 (excluded): 1\nBetween 45 and 55:\n target_id  crizotinib_occupancy_pct_1_um\nKINASE_010                           48.0\nKINASE_011                           46.0\nKINASE_056                           47.0\nKINASE_087                           49.0\nKINASE_091                           53.0",
+      "stderr": "",
+      "interrupted": false,
+      "isImage": false,
+      "noOutputExpected": false
+    }
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 50,
+    "estimated_tokens_delta": 50,
+    "uuid": "9d363266-95ed-48b9-89ee-550da649e9a2",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 150,
+    "estimated_tokens_delta": 100,
+    "uuid": "fd9d4726-3c29-4f09-8c32-3128006f7f81",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 250,
+    "estimated_tokens_delta": 100,
+    "uuid": "07a561f0-c311-4e20-9b8a-fdab267672f4",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 350,
+    "estimated_tokens_delta": 100,
+    "uuid": "4ff59394-8653-4a9d-9b1b-527f46953937",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 450,
+    "estimated_tokens_delta": 100,
+    "uuid": "88675bef-2020-44b2-bec9-bd44f6fa7114",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 550,
+    "estimated_tokens_delta": 100,
+    "uuid": "a0954e59-c14b-460a-a62d-f72af2d3a6b6",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 650,
+    "estimated_tokens_delta": 100,
+    "uuid": "fe9fecc7-3f1a-43a6-a5e7-b2b398b4d5d2",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 800,
+    "estimated_tokens_delta": 150,
+    "uuid": "1a192ca6-49bb-4841-85f9-2658f36bbdb1",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 900,
+    "estimated_tokens_delta": 100,
+    "uuid": "ab3c36e5-b3fd-422f-99ed-bb5ca5c62b21",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 1050,
+    "estimated_tokens_delta": 150,
+    "uuid": "2e360e5c-7ed7-469c-bf67-24286c639cdf",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 1150,
+    "estimated_tokens_delta": 100,
+    "uuid": "79c1ae11-6a32-448c-86cd-cda42f1fd6d1",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 1250,
+    "estimated_tokens_delta": 100,
+    "uuid": "e98948e7-93a1-483d-a407-1a4d94527f72",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 1400,
+    "estimated_tokens_delta": 150,
+    "uuid": "abbdf3f9-b039-40f1-8d47-057459c32daa",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 1500,
+    "estimated_tokens_delta": 100,
+    "uuid": "6d145311-27e7-46ca-81a8-36ecb04e5082",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 1650,
+    "estimated_tokens_delta": 150,
+    "uuid": "71e678c9-160e-4122-9cf1-d852d7104285",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 1750,
+    "estimated_tokens_delta": 100,
+    "uuid": "eb041226-f55b-47fb-be2b-0971d1ece913",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 1900,
+    "estimated_tokens_delta": 150,
+    "uuid": "806b1f15-7a4e-41c7-93a9-f6a4ad427112",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 2000,
+    "estimated_tokens_delta": 100,
+    "uuid": "3c0de964-1803-430c-b7b5-48310931e358",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 2100,
+    "estimated_tokens_delta": 100,
+    "uuid": "9a4b851c-7a04-45a3-a237-a8cb886f3c5f",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 2200,
+    "estimated_tokens_delta": 100,
+    "uuid": "f34579fc-c1f9-4837-b0ee-eaf00dc62ad1",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 2300,
+    "estimated_tokens_delta": 100,
+    "uuid": "476c96a1-d2a9-4861-85bc-88a6141df1b6",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 2450,
+    "estimated_tokens_delta": 150,
+    "uuid": "ae7381a3-c164-4da2-b5d0-7f9bf75922c2",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 2550,
+    "estimated_tokens_delta": 100,
+    "uuid": "be9f0c23-26d0-4240-89d6-b8eff4371417",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-8",
+      "id": "msg_01VVXXjtTE3io3HvRuetS1wT",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "",
+          "signature": "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"
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 1486,
+        "cache_read_input_tokens": 43755,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 1486,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 2,
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "diagnostics": null,
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "e297fb3f-1a44-4909-aec4-88ff5ff25c5a",
+    "request_id": "req_011Cc4E9q7fY4ZFAbtC3HBjY"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-8",
+      "id": "msg_01VVXXjtTE3io3HvRuetS1wT",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "16 crizotinib-responsive targets. Let me verify the boundary is clean and examine what the broad-control compound (cc1) pattern actually means across the panel before deciding the gating question."
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 1486,
+        "cache_read_input_tokens": 43755,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 1486,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 2,
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "diagnostics": null,
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "fe9bd4ee-4b79-44ce-8e6e-496527efcc64",
+    "request_id": "req_011Cc4E9q7fY4ZFAbtC3HBjY"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-8",
+      "id": "msg_01VVXXjtTE3io3HvRuetS1wT",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_01MJCg3wJuFq2WJYLPc8a1ri",
+          "name": "Bash",
+          "input": {
+            "command": "python3 -c \"\nimport pandas as pd\ndf = pd.read_csv('data/Robers2021_control_compound_interpretation.csv')\ncriz='crizotinib_occupancy_pct_1_um'; cc1='cc1_occupancy_pct_300_nm'\n\n# Is cc1 a broad-spectrum POSITIVE control? Check its distribution panel-wide.\nprint('cc1 (broad control) occupancy across whole panel:')\nprint(df[cc1].describe()[['min','25%','50%','75%','max']].round(1).to_dict())\nprint('median cc1 by tracer conc (apparent occupancy drops as tracer rises above Kd):')\nprint(df.groupby('tracer_k10_nm')[cc1].median().round(1).to_dict())\nprint()\n# The 16 responsive; flag cc1<50 and show their tracer conc\nresp = df[df[criz]>=50].copy()\nlow = resp[resp[cc1]<50]\nprint('Responsive targets with cc1 < 50:', len(low))\nprint(low[['target_id','tracer_k10_nm',cc1,criz,'crizotinib_stdev']].to_string(index=False))\nprint()\nprint('-> all in tracer=1000nM group?', (low.tracer_k10_nm==1000).all())\nprint('Any responsive target with cc1 ~0 / negative (true assay failure)?', (resp[cc1]<=5).sum())\nprint('Min cc1 among responsive set:', resp[cc1].min())\n\"",
+            "description": "Characterize cc1 as broad positive control and test for any assay-failure among hits"
+          },
+          "caller": {
+            "type": "direct"
+          }
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 1486,
+        "cache_read_input_tokens": 43755,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 1486,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 2,
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "diagnostics": null,
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "4bbbcf8c-cd4a-4920-812a-4f61a5dd8110",
+    "request_id": "req_011Cc4E9q7fY4ZFAbtC3HBjY"
+  },
+  {
+    "type": "user",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "tool_use_id": "toolu_01MJCg3wJuFq2WJYLPc8a1ri",
+          "type": "tool_result",
+          "content": "cc1 (broad control) occupancy across whole panel:\n{'min': 1.0, '25%': 50.0, '50%': 71.0, '75%': 87.2, 'max': 101.0}\nmedian cc1 by tracer conc (apparent occupancy drops as tracer rises above Kd):\n{25.0: 97.0, 100.0: 89.0, 250.0: 78.0, 1000.0: 56.0}\n\nResponsive targets with cc1 < 50: 5\n target_id  tracer_k10_nm  cc1_occupancy_pct_300_nm  crizotinib_occupancy_pct_1_um  crizotinib_stdev\nKINASE_084         1000.0                      48.0                           58.0               3.3\nKINASE_085         1000.0                      42.0                           95.0               1.1\nKINASE_086         1000.0                      32.0                           86.0               4.8\nKINASE_091         1000.0                      33.0                           53.0               4.4\nKINASE_092         1000.0                      38.0                           64.0               5.1\n\n-> all in tracer=1000nM group? True\nAny responsive target with cc1 ~0 / negative (true assay failure)? 0\nMin cc1 among responsive set: 32.0",
+          "is_error": false
+        }
+      ]
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "6cf7c554-b5ca-44bc-b196-5ffb9c8e06db",
+    "timestamp": "2026-06-15T02:07:02.599Z",
+    "tool_use_result": {
+      "stdout": "cc1 (broad control) occupancy across whole panel:\n{'min': 1.0, '25%': 50.0, '50%': 71.0, '75%': 87.2, 'max': 101.0}\nmedian cc1 by tracer conc (apparent occupancy drops as tracer rises above Kd):\n{25.0: 97.0, 100.0: 89.0, 250.0: 78.0, 1000.0: 56.0}\n\nResponsive targets with cc1 < 50: 5\n target_id  tracer_k10_nm  cc1_occupancy_pct_300_nm  crizotinib_occupancy_pct_1_um  crizotinib_stdev\nKINASE_084         1000.0                      48.0                           58.0               3.3\nKINASE_085         1000.0                      42.0                           95.0               1.1\nKINASE_086         1000.0                      32.0                           86.0               4.8\nKINASE_091         1000.0                      33.0                           53.0               4.4\nKINASE_092         1000.0                      38.0                           64.0               5.1\n\n-> all in tracer=1000nM group? True\nAny responsive target with cc1 ~0 / negative (true assay failure)? 0\nMin cc1 among responsive set: 32.0",
+      "stderr": "",
+      "interrupted": false,
+      "isImage": false,
+      "noOutputExpected": false
+    }
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 50,
+    "estimated_tokens_delta": 50,
+    "uuid": "35b9268a-1d61-4096-9b89-ce48aedce773",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 150,
+    "estimated_tokens_delta": 100,
+    "uuid": "d87d1d18-91b3-4532-9c0b-f93712e063ef",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 250,
+    "estimated_tokens_delta": 100,
+    "uuid": "d4854b2a-8f4f-4d24-8057-1df2d682d8fb",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "system",
+    "subtype": "thinking_tokens",
+    "estimated_tokens": 339,
+    "estimated_tokens_delta": 89,
+    "uuid": "4d51f035-7c89-4add-8464-cfc1d4f0af1e",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-8",
+      "id": "msg_013SZSx1w2sFrx52iZPN4jQS",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "",
+          "signature": "EsMKCmMIDhgCKkC9qMXdJAk3idhSF6WIAoHYcvt0po/y8g++SgijNMRpmOhmFjivWXeefovAEwyxaM2eCt7/sDFOaxY8Pud7oqwAMg9jbGF1ZGUtb3B1cy00LTg4AEIIdGhpbmtpbmcSDAoC4KYcWpdzYyigFhoMDePha0OGbtnp4qxiIjACaMQ8tQulBUoaQMHtMVG72LrA7dRPNdmbV2OyL5TUI/6Y86KG47fLMc/4MeanpkIqjQl68dREC+cYNIYjNohAUZEIFOWJurJ+C+w+WJKHxW8KFczcxdJs864QhQrjyMPdAEe9xu0qEbwrc8zX4FDqrNV22XkeOk0uK7xiAURbTNWrsMZQ7aeqGR2YMS6o4UMwPMqPgGF6GKVLFvyERggCuLOJrYrLWDgW8sMhqppoaxsMt/bcBHt8lVIYufUjRqtIdn6b9+pNiqoqVfWneqeYSEhb4U+Pyl0L61wLmWpe8s6uJXhs36yXwSPG+eSlAGV3vyXJPdYm3/vK1uBG92Uxb1YAdtW+aHIGNCeCfArW1Fz/ztLFztSWJrBTzSaQiISKq5ouX5+i55fGtQo3KCYQ2bzp0PH6nKhEzdhtc4U8ORmI2IVrwo3wdulQpKVRpg44j/VyhvFgjZxHzNFMjtqXiQg0CIroZ3PejdA7/IwqOpRhfVXIyTzyk/28VA1WuSaYlOW4M7Yv6Cl8es6l1B+LJheXLCynmkzrO2uCdx6ikfFJcuJHT08tchiY8hC1VsfrqgSq3LhWoHJ++eMc8/BexNsir9/o4Vm7LBlDpwU5MA5sqgE6KULsmHm6kt+dNWlh8plNDR37vzFg4RrfHsY3l3AvxumDR5yf+669JBzbiQlCz1OMnmNaskbI+Lowy4N0JD+N7iyoZz1VLf71KWFsUraG5lOfsHQL3eHFJ8GnTZyqy3lBiZ3FJAcl7SB7stlKaQr5mqIVAuyUil/UioKTI7UrPWAVckIx7Fxd6he9TmajnT7wQt3TVb+qn0hgDJEv9FujxZXzrMwoX+0NmixQ01eCU24emwWLdCg4YX5vdE58jvE3Mhg5jyRukpPFkLRq8zU6KzotrZG9ibEh9bnPLKxLWHNeW4XlomtUYrzCF2j59ValsPXteFxpc021xiJAVGua12cy62VXa+LUr0J4A46RJjdZ3yhDjilbn5KNivJ3CoZfucgjuukOtW/ROQyfSSeZoNphSHs6tkGZLCjZHBuaCt1mulq6XWi/unTovNSyT2ndx7m2XXO3e2Dko+gHR+K0loOFwFCoO5f633YK5r8S8IP6OI2AaBGgzwfxgpF2cSlZJpCt4FABKyWlIyNewuiLlTUZXKwr7spUZi0uoaMleZwkpnoT6ODJPoyMyC23h+w4jD7kOzWyUc2s9LlwjCIDCL9MeXuicoKFTVrPOu14sosfyC9o8mE5f9dElS+fSqKixWb0LOTxVhCl99fDrFwq7KHcbuvgUjF+TOEvOcZuZbyWiODKsjwMWX8n93ri7VjGqyom/gaivqzQ8dksMncPlyWP1cRfVRGAV4P4ltaIU0I2laoZg14Y6OpxOOekND3LszVoz1m8qki8L/u1SHPfzRWLOm1Viy6wmhDO1EgppzoRgej6T92xT3vYqXgpF+7EzhJfKUkemmemH3JrNuFpnQWqprTnfHV5JvoCRnfV4g0ITl4/sHK4eQQhxmXO1IOrPThI2Vol3iWwxa7dSirEbCBpPS5Rbin+B5JyJfSFF208vDiGPrh3l99xCO/y3mBfR+xGRforOkJYufXUHWBmKFimn/uOUsmy0NPiGAE="
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 3728,
+        "cache_read_input_tokens": 45241,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 3728,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 2,
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "diagnostics": null,
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "30e86873-0743-4673-bf30-d6f3ad1bd70d",
+    "request_id": "req_011Cc4ED8dTFRK2P7SkRqPTw"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-8",
+      "id": "msg_013SZSx1w2sFrx52iZPN4jQS",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "Analysis is conclusive. Let me record the reasoning and write the answer.\n\n**Findings:**\n\n1. **Crizotinib-responsive count = 16.** 192 distinct targets, one row each. 16 have crizotinib occupancy at 1 \u00b5M \u2265 50%. The boundary is clean (next-lower values are 49, 48, 47, 46; no values exactly at 50), so the count is robust.\n\n2. **Broad-control (cc1) gating removes 0.** The cc1 column is a broad-spectrum **positive** control (panel median 71%, engaging most kinases). Its apparent occupancy falls predictably as tracer concentration rises (median 97% \u2192 56% from 25\u21921000 nM) \u2014 a pharmacological effect of competing more tracer, **not** assay failure. The broad-spectrum control's role is to validate *negative* results (distinguishing \"doesn't bind\" from \"assay broken\"); a *positive* crizotinib hit is self-validating (it proves the construct expresses, the tracer occupies the ATP site, and the signal is competable). Among the 16 hits, the lowest cc1 is 32% (none near zero \u2192 no assay failure), and all 5 with cc1 < 50% sit in the high-tracer (1000 nM) group where lower cc1 is expected by design. So the broad-control outcome gives no basis to remove any crizotinib-responsive target."
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 3728,
+        "cache_read_input_tokens": 45241,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 3728,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 2,
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "diagnostics": null,
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "3ef5bb7b-c625-4db0-9329-251037dd5934",
+    "request_id": "req_011Cc4ED8dTFRK2P7SkRqPTw"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-8",
+      "id": "msg_013SZSx1w2sFrx52iZPN4jQS",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_01S1dUjYjKMb8ejvwFYvkhcM",
+          "name": "Write",
+          "input": {
+            "file_path": "/workspace/eval_answer.json",
+            "content": "{\"crizotinib_responsive_count\": 16, \"cc1_gated_crizotinib_removed_count\": 0}\n"
+          },
+          "caller": {
+            "type": "direct"
+          }
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 3728,
+        "cache_read_input_tokens": 45241,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 3728,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 2,
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "diagnostics": null,
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "5adeb2f5-5fbb-4f0c-9011-ad9e14858ae8",
+    "request_id": "req_011Cc4ED8dTFRK2P7SkRqPTw"
+  },
+  {
+    "type": "user",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "tool_use_id": "toolu_01S1dUjYjKMb8ejvwFYvkhcM",
+          "type": "tool_result",
+          "content": "File created successfully at: /workspace/eval_answer.json (file state is current in your context \u2014 no need to Read it back)"
+        }
+      ]
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "cdc68c94-7886-471e-ab3e-0d85d50ba88b",
+    "timestamp": "2026-06-15T02:07:16.225Z",
+    "tool_use_result": {
+      "type": "create",
+      "filePath": "/workspace/eval_answer.json",
+      "content": "{\"crizotinib_responsive_count\": 16, \"cc1_gated_crizotinib_removed_count\": 0}\n",
+      "structuredPatch": [],
+      "originalFile": null,
+      "userModified": false
+    }
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-8",
+      "id": "msg_01SvBMrhZzweTVZVc8mtj47C",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "thinking",
+          "thinking": "",
+          "signature": "EuECCmMIDhgCKkDsuCsDwU3RoYYRf5epP8TTv7tX18wAFTcNdSEdHK3Qyc703INCEGLmCoW8Ju+sJS5ZwrCsj5e1yNREey1ubywmMg9jbGF1ZGUtb3B1cy00LTg4AEIIdGhpbmtpbmcSDCAfZXlRb0PWJjK6xhoMP9hUT11Py8RlNNtMIjDhcj9II/nZ7k8htwrYVN2d5mIbm48ByEe2bN+A2x2z0sr2SFH3L6GTGTXZLqz7ZZIqqwH0smI49AtL3DUc/zFJ/AH5i78oRE3Ok3KNFqrgopQ9UmQxXUTfn8hxZKu1B1OwIJcTzyAHhEU10eBi8TJLiTFhsCKdZfWHLeCbOMX9lBJX480doSLp8Bj9K7QZ4M4DWOT66Bto0Ym+obFEjRWHVp5HMCm3uTvZ0aBRZrpyquHvxx1TfvMh0TMLJzrvjjX7TfLnvaS1BSlP0ZmGMxc4txWuRDPKORON5Tt2vJgYAQ=="
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 131,
+        "cache_creation_input_tokens": 1050,
+        "cache_read_input_tokens": 48969,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 1050,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 2,
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "diagnostics": null,
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "b3128825-53a3-4af4-921b-3987f18899ca",
+    "request_id": "req_011Cc4EE8zKBwDQUHaFW7a3N"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-8",
+      "id": "msg_01SvBMrhZzweTVZVc8mtj47C",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_01KweLtUTaH4FuSTA5DrS26o",
+          "name": "Bash",
+          "input": {
+            "command": "cat /workspace/eval_answer.json",
+            "description": "Verify the answer file contents"
+          },
+          "caller": {
+            "type": "direct"
+          }
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 131,
+        "cache_creation_input_tokens": 1050,
+        "cache_read_input_tokens": 48969,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 1050,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 2,
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "diagnostics": null,
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "526cd026-c89e-4a61-97c5-ca55c22fbbbe",
+    "request_id": "req_011Cc4EE8zKBwDQUHaFW7a3N"
+  },
+  {
+    "type": "user",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "tool_use_id": "toolu_01KweLtUTaH4FuSTA5DrS26o",
+          "type": "tool_result",
+          "content": "{\"crizotinib_responsive_count\": 16, \"cc1_gated_crizotinib_removed_count\": 0}",
+          "is_error": false
+        }
+      ]
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "9bda3710-9823-47f1-bfbe-c9206fab5a88",
+    "timestamp": "2026-06-15T02:07:19.852Z",
+    "tool_use_result": {
+      "stdout": "{\"crizotinib_responsive_count\": 16, \"cc1_gated_crizotinib_removed_count\": 0}",
+      "stderr": "",
+      "interrupted": false,
+      "isImage": false,
+      "noOutputExpected": false
+    }
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-8",
+      "id": "msg_01PwwUyKZ7avmtwUPNDd316a",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "## Summary\n\nI analyzed the HTS live-cell NanoBRET kinase target-engagement control-compound data (`Robers2021_control_compound_interpretation.csv`, 192 distinct kinase targets, one row each).\n\n**Crizotinib-responsive targets (occupancy at 1 \u00b5M \u2265 50%): 16**\n- KINASE_017, 043, 044, 046, 048, 052, 062, 084, 085, 086, 090, 091, 092, 094, 095, 187\n- Clean threshold \u2014 the highest excluded value is 49% (KINASE_087), no values land exactly at 50%, so the count is stable.\n\n**Broad-control compound (cc1) basis to remove targets: 0**\n- cc1 is a broad-spectrum **positive** control (panel-wide median 71%, engaging most kinases). Its apparent occupancy declines predictably with tracer concentration (median 97% at 25 nM \u2192 56% at 1000 nM) \u2014 expected competition pharmacology, not assay failure.\n- A broad-spectrum positive control disambiguates *negative* results (\"doesn't bind\" vs. \"assay broken\"). A *positive* crizotinib hit is self-validating: it proves the construct expresses, the tracer occupies the ATP site, and the BRET signal is competable.\n- The lowest cc1 among the 16 hits is 32% (none near zero \u2192 no assay failure), and all 5 hits with cc1 < 50% fall in the high-tracer (1000 nM) bin where lower cc1 is expected by design. Gating these out would wrongly discard robust, well-validated engagement (e.g., KINASE_085: crizotinib 95 \u00b1 1.1%).\n\nTherefore the broad-control compound outcome does not change the crizotinib follow-up set.\n\n<EVAL_ANSWER>\n{\"crizotinib_responsive_count\": 16, \"cc1_gated_crizotinib_removed_count\": 0}\n</EVAL_ANSWER>"
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 309,
+        "cache_read_input_tokens": 50019,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 309,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 1,
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "diagnostics": null,
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "5a9be15d-177b-42b3-8f61-5afba878a9d7",
+    "request_id": "req_011Cc4EEQUyePpjuydqhynvh"
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-8",
+      "id": "msg_01PwwUyKZ7avmtwUPNDd316a",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "toolu_01WuK5uKvh4ED5XtJ86xgzqC",
+          "name": "Bash",
+          "input": {
+            "command": "echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT",
+            "description": "Issue completion signal"
+          },
+          "caller": {
+            "type": "direct"
+          }
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 309,
+        "cache_read_input_tokens": 50019,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 309,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 1,
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "diagnostics": null,
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "65b4fce7-4d53-4444-8159-86f76f73d0a4",
+    "request_id": "req_011Cc4EEQUyePpjuydqhynvh"
+  },
+  {
+    "type": "user",
+    "message": {
+      "role": "user",
+      "content": [
+        {
+          "tool_use_id": "toolu_01WuK5uKvh4ED5XtJ86xgzqC",
+          "type": "tool_result",
+          "content": "COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT",
+          "is_error": false
+        }
+      ]
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "0f10e9e6-a655-434c-a254-123b25d6fded",
+    "timestamp": "2026-06-15T02:07:29.726Z",
+    "tool_use_result": {
+      "stdout": "COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT",
+      "stderr": "",
+      "interrupted": false,
+      "isImage": false,
+      "noOutputExpected": false
+    }
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "model": "claude-opus-4-8",
+      "id": "msg_01BC8CbkyqFC93o4XiLynggb",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "Task complete. The results have been written to `/workspace/eval_answer.json`:\n\n- **`crizotinib_responsive_count`: 16** \u2014 targets with expected crizotinib occupancy at 1 \u00b5M \u2265 50%.\n- **`cc1_gated_crizotinib_removed_count`: 0** \u2014 the broad-spectrum control compound provides no basis to remove any crizotinib-responsive target, because a positive crizotinib hit is self-validating (the broad control validates negative results, not positive ones), and no responsive target shows a broad-control assay failure."
+        }
+      ],
+      "stop_reason": null,
+      "stop_sequence": null,
+      "stop_details": null,
+      "usage": {
+        "input_tokens": 2,
+        "cache_creation_input_tokens": 800,
+        "cache_read_input_tokens": 50328,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 800,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 7,
+        "service_tier": "standard",
+        "inference_geo": "global"
+      },
+      "diagnostics": null,
+      "context_management": null
+    },
+    "parent_tool_use_id": null,
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "uuid": "5044c7ec-0f94-43d6-a3f6-c900ab7413b8",
+    "request_id": "req_011Cc4EF8iUETxwwkpZGvfnZ"
+  },
+  {
+    "type": "result",
+    "subtype": "success",
+    "is_error": false,
+    "api_error_status": null,
+    "duration_ms": 243929,
+    "duration_api_ms": 242962,
+    "ttft_ms": 4902,
+    "ttft_stream_ms": 2541,
+    "time_to_request_ms": 30,
+    "num_turns": 9,
+    "result": "Task complete. The results have been written to `/workspace/eval_answer.json`:\n\n- **`crizotinib_responsive_count`: 16** \u2014 targets with expected crizotinib occupancy at 1 \u00b5M \u2265 50%.\n- **`cc1_gated_crizotinib_removed_count`: 0** \u2014 the broad-spectrum control compound provides no basis to remove any crizotinib-responsive target, because a positive crizotinib hit is self-validating (the broad control validates negative results, not positive ones), and no responsive target shows a broad-control assay failure.",
+    "stop_reason": "end_turn",
+    "session_id": "4e32695f-55aa-4a66-9b7c-2fac29e81c1e",
+    "total_cost_usd": 0.86386325,
+    "usage": {
+      "input_tokens": 147,
+      "cache_creation_input_tokens": 37121,
+      "cache_read_input_tokens": 323494,
+      "output_tokens": 18736,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 37121
+      },
+      "inference_geo": "global",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 186,
+          "cache_read_input_tokens": 50328,
+          "cache_creation_input_tokens": 800,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 800,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "modelUsage": {
+      "claude-haiku-4-5-20251001": {
+        "inputTokens": 870,
+        "outputTokens": 21,
+        "cacheReadInputTokens": 0,
+        "cacheCreationInputTokens": 0,
+        "webSearchRequests": 0,
+        "costUSD": 0.000975,
+        "contextWindow": 200000,
+        "maxOutputTokens": 32000
+      },
+      "claude-opus-4-8": {
+        "inputTokens": 147,
+        "outputTokens": 18736,
+        "cacheReadInputTokens": 323494,
+        "cacheCreationInputTokens": 37121,
+        "webSearchRequests": 0,
+        "costUSD": 0.8628882499999999,
+        "contextWindow": 1000000,
+        "maxOutputTokens": 64000
+      }
+    },
+    "permission_denials": [],
+    "terminal_reason": "completed",
+    "fast_mode_state": "off",
+    "uuid": "13912b5e-9f71-4437-a5c6-c819162cd80c"
+  }
+]
