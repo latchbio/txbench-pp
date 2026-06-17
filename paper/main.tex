@@ -11,7 +11,7 @@
 \preprintKicker{bioRxiv preprint}
 \preprintCategory{Computational Biology}
 \preprintDate{June 2026}
-\preprintTitle{TxBench-PP: Verifiable Evaluation of AI Agents on Preclinical Pharmacology}
+\preprintTitle{TxBench-PP: Analyzing AI Agent Performance on Preclinical Pharmacology}
 \preprintAuthors{Hannah Le\preprintSup{1,*}, Ramesh Ramasamy\preprintSup{1,*}, Alex Urrutia\preprintSup{1,*}, Mahsa Yazdani\preprintSup{1,*}, Tim Proctor\preprintSup{1}, Kenny Workman\preprintSup{1}}
 \preprintAffiliations{\preprintSup{1}LatchBio, San Francisco, CA, USA\\
 \preprintSup{*}These authors contributed equally.}
@@ -22,50 +22,54 @@
 \PreprintHeader
 
 \begin{PreprintAbstract}
-We introduce TxBench-PP, a verifiable benchmark for evaluating AI agents on
-small-molecule preclinical pharmacology. TxBench-PP is the first focused slice
-of a broader TherapeuticsBench effort organized across drug-discovery stages
-and therapeutic modalities. It targets recurring cluster-style decisions:
-whether agents can recover decision-relevant conclusions from supplied assay
-evidence rather than recalling drug labels, ranking by a single metric, or
-applying generic checklists. The current task inventory maps 70 evaluations to
-a nine-stage Assays Roadmap. Seven stages have coverage, with strongest current
-coverage in causal target validation and perturbational mechanism-of-action /
-pharmacodynamic reasoning, single-source coverage in screening,
-pharmacogenomics, safety, and translational efficacy, and a near-empty
-compound-target characterization stage. Agents receive realistic workflow
-snapshots, inspect files in a coding environment, and return structured answers
-graded deterministically. \todo{Replace this final
-paragraph with model-run results: number of evaluations, model-harness pairs,
-trajectories, top pass rates, and the main failure pattern.}
+Artificial intelligence (AI) agents promise to accelerate drug discovery by
+compressing interpretation and decision-making loops, but practical deployment
+requires trusted evaluation on realistic program decisions. We introduce
+TherapeuticsBench Preclinical Pharmacology (TxBench-PP), a verifiable benchmark
+for small-molecule
+preclinical pharmacology and the first focused slice of a broader
+TherapeuticsBench effort across drug-discovery stages and therapeutic
+modalities. TxBench-PP tests whether agents can recover accurate conclusions
+from real-world assay data rather than memorized facts from literature. The
+benchmark contains 100 evaluations indexed by program stage, assay type, and
+task structure, spanning mechanism-of-action (MoA) and pharmacodynamic (PD)
+reasoning, compound-target engagement, causal target validation,
+developability and safety, and translational efficacy. Agents receive realistic
+workflow snapshots, inspect files in a coding environment, and return
+structured answers graded deterministically. Across 16 model--harness
+configurations, comprising 11 models and 4,800 trajectories, no system reliably
+recovered preclinical
+pharmacology decisions. The strongest configuration, Claude Opus 4.8 / Pi,
+passed 59.3\% of trajectories, followed by GPT-5.5 / Pi at 55.3\%.
 \end{PreprintAbstract}
 
 \vfill
 \clearpage
 
-\section*{TxBench-PP in TherapeuticsBench}
+\section*{TxBench-PP: Overview}
 
 {\fontsize{9.1}{12.8}\selectfont
-TxBench-PP is the current small-molecule preclinical pharmacology slice of a
-broader TherapeuticsBench roadmap. The full benchmark family is organized by
-drug-discovery stage and therapeutic modality; this paper focuses on repeated,
-verifiable cluster decisions in small-molecule programs. These decisions sit
-between initial discovery and clinical development: whether a molecule engages
-the intended biology, whether the evidence supports its mechanism, whether
-exposure can cover the relevant potency range, and whether safety signals block
-advancement.
+TxBench-PP is a focused TherapeuticsBench benchmark for small-molecule
+preclinical pharmacology. Each evaluation supplies realistic workflow data
+from a local preclinical decision point and asks whether an agent can recover
+the result supported by the provided data.
+
+TherapeuticsBench is the broader roadmap across drug-discovery stages and
+therapeutic modalities. The schematic below contextualizes TxBench-PP with
+future work.
 \par}
 
 \begin{center}
   \includegraphics[width=0.96\textwidth]{figures/fig1_pipeline.pdf}
 
-  \captionof{figure}{\textbf{TxBench-PP as a TherapeuticsBench slice.}
-  TherapeuticsBench is intended to span discovery, development, and
-  translation across small molecules, biologics, and oligonucleotides.
-  TxBench-PP covers the small-molecule preclinical pharmacology slice as a
-  cluster benchmark: repeated local decisions across assay families and
-  compounds. Program-story benchmarks that follow one therapeutic program
-  across discovery, development, and translation are reserved for future work.}
+  \captionof{figure}{\textbf{TxBench-PP scope and topline performance.}
+  \textbf{A}, TxBench-PP places local small-molecule preclinical pharmacology
+  decisions within the broader TherapeuticsBench roadmap. The dotted boundary
+  marks the task groups in this release; biologics, oligonucleotides, and full
+  program histories are out of scope. \textbf{B}, Endpoint pass rates across 16
+  model--harness configurations, with 95\% confidence intervals computed over
+  task-level pass rates. \textbf{C}, Mean cost per task against endpoint pass
+  rate.}
   \label{fig:pipeline-scope}
 \end{center}
 
@@ -79,42 +83,53 @@ advancement.
 
 \section{Introduction}
 
-In preclinical drug discovery, experiments are slow and expensive, but many
-program-limiting decisions are interpretive: which signal is real, which
-compound should advance, and which liability should block a program.
-Preclinical pharmacology converts assay evidence into these decisions. A
-compound can have an attractive potency value and still be a poor candidate
-because the apparent mechanism is an artifact, the engaged protein is a complex
-contaminant, the safety signal is protocol-specific, or total exposure does not
-translate into unbound target coverage.
+While experiments are rate-limited by natural processes, human decisions and
+organizational consensus often make up significant components of program
+timelines in drug discovery. Agents in drug discovery promise to accelerate
+discovery, development, and translation by compressing these interpretation and
+decision-making loops. Specific knowledge from constituent steps of the
+drug-development pipeline can be encoded into advanced models through
+post-training, tool use, and domain-specific scaffolding, then deployed into
+practical data interpretation workflows.
 
 \TwoColParaBreak
-AI agents can inspect files, write analysis scripts, and invoke scientific
-software, but their conclusions often remain vulnerable to plausible shortcuts.
-In drug discovery, those shortcuts have familiar forms: importing the known
-mechanism of a blinded compound, trusting the largest apparent effect without
-quality control, ranking by potency or total exposure alone, or applying a
-textbook safety threshold outside the protocol where it was defined.
+However, the practical use of agentic systems in industrial workflows requires
+standard and trusted methods of evaluating performance. This is especially
+challenging because the drug-discovery ecosystem is a sprawling landscape of
+assay categories, development stages, therapeutic modalities, and decision
+types. Benchmarks must therefore measure realistic tasks while providing
+focused treatment of the many local scientific judgments that tile the biotech
+ecosystem.
 
 \TwoColParaBreak
-We introduce TxBench-PP, a benchmark for small-molecule preclinical
-pharmacology decisions. It should be read as a focused cluster benchmark within
-the broader TherapeuticsBench roadmap rather than as a complete test of drug
-discovery. Each evaluation supplies the agent with realistic analysis artifacts
-from one stage of the preclinical pharmacology evidence chain and asks for a
-structured, deterministically gradable conclusion. The benchmark tests whether
-an agent can recover the result supported by the provided evidence, not whether
-it can recall a drug class, run a default workflow, or optimize for a single
-number.
+Preclinical small-molecule pharmacology is one important piece of this
+landscape. Potency, target engagement, mechanism-of-action evidence,
+pharmacodynamic response, exposure, safety, and in vivo efficacy are converted
+into practical decisions about whether to advance, hold, repeat, or kill a
+candidate. These decisions sit upstream of costly medicinal chemistry, animal
+studies, and human experiments. They are easy to get wrong and often depend on
+fragmented expert judgment.
 
 \TwoColParaBreak
-The current benchmark maps 70 evaluations to a nine-stage Assays Roadmap.
-Coverage is strongest in causal target validation and perturbational
-mechanism-of-action / pharmacodynamic reasoning; the clearest build gap is
-compound-target characterization. The underlying sources still matter:
-several covered stages are dominated by a small number of datasets, so
-diversifying assay sources is a central part of the benchmark roadmap.
-\todo{Add final run summary once result aggregation is complete.}
+We introduce TxBench-PP, a verifiable benchmark for evaluating AI agents on
+small-molecule preclinical pharmacology. TxBench-PP is best understood as a
+focused benchmark within the broader TherapeuticsBench roadmap rather than a
+complete evaluation of drug discovery holistically. Each evaluation supplies
+realistic workflow artifacts from a local preclinical decision point and asks
+the agent to return a structured, deterministically gradable answer.
+Importantly, the benchmark tests if agents can recover decisions from supplied
+data instead of leaning on well-understood mechanisms and literature knowledge,
+with many tasks intentionally designed to penalize systems that do this.
+
+\TwoColParaBreak
+TxBench-PP contains 100 evaluations indexed by program stage, assay type, and
+task structure. Tasks span mechanism-of-action and pharmacodynamic reasoning,
+compound-target engagement, causal target validation, developability and safety,
+and translational efficacy. Other parts of the therapeutic ecosystem, including
+clinical program stages and non-small-molecule modalities, are left to future
+TherapeuticsBench efforts. The benchmark offers a measuring stick by which
+scientists can evaluate agentic systems on local preclinical pharmacology
+decisions toward practical deployment in drug-discovery programs.
 
 \end{minipage}\hfill
 \begin{minipage}[t]{0.47\textwidth}
@@ -123,45 +138,52 @@ diversifying assay sources is a central part of the benchmark roadmap.
 
 \section{Benchmark Construction}
 
-To construct TxBench-PP, we decompose preclinical pharmacology workflows into
-short, gradeable scientific decisions. Examples include identifying a
-pathway-coherent mechanism from dose-resolved phosphoproteomics, separating
-true chemoproteomic target engagement from complex contaminants, reconciling
-conflicting clearance measurements, and integrating blood chemistry, pathology,
-and survival into an in vivo safety call.
+Agents are evaluated on realistic preclinical pharmacology decisions over 100
+evaluations spanning eight program stages: disease and model context, screening
+and hit confirmation, drug response/pharmacogenomics, causal target validation,
+MoA/PD, compound-target characterization, developability/safety/pharmacokinetics
+(PK), and translational efficacy. Human genetic target-support tasks are
+reserved for future benchmarking work. Across the benchmark, evaluations draw on assay types
+including drug-response screens, genetic perturbation, transcriptomic and
+proteomic profiling, chemoproteomic and live-cell target engagement, imaging,
+drug metabolism and pharmacokinetics (DMPK) and absorption, distribution,
+metabolism, excretion, and toxicity (ADMET) panels, toxicogenomics, and in vivo
+efficacy or safety studies.
 
 \TwoColParaBreak
-This makes TxBench-PP a cluster-style benchmark: the same kind of decision is
-tested repeatedly across assay contexts, compounds, and evidence sources.
-Future TherapeuticsBench story evaluations can test the complementary skill of
-following one therapeutic program across discovery, development, and
-translation. TxBench-PP instead asks whether agents can make the local
-scientific decisions that those longer program stories depend on.
+The benchmark is built around recurring local decisions in small-molecule
+programs. Candidate tasks begin as specific analysis points where assay data
+might be turned into decisions. Examples include identifying a pathway mechanism
+from dose-resolved phosphoproteomics, separating true chemoproteomic target
+engagement from complex contaminants, and interpreting in vivo safety data.
 
 \TwoColParaBreak
-Each task includes a snapshot of assay outputs immediately before a target
-decision, metadata needed to interpret the files, a high-level task
-description, and a deterministic grader. Tasks specify what result should be
-recovered rather than prescribing the exact analysis method. Procedural details
-are included only when they are part of the scientific decision, such as
-whether free or total exposure should be compared to a pharmacologic threshold.
+Each evaluation includes the data artifacts needed for that decision, metadata
+needed to interpret the files, a task description, and a structured answer.
+Task context is calibrated to approximate what a scientist would know at the
+point of analysis. We avoid prescribing a method unless the method is part of
+the scientific decision. The intended answer is a result supported by the
+supplied data, not some fact or mechanism well understood in the literature.
+Many tasks are designed to intentionally trap systems that overfit on trained
+knowledge without empirical exploration.
 
 \TwoColParaBreak
-The benchmark follows three design criteria. First, tasks must be verifiable:
-answers are checked by structured label matching, numerical tolerances,
-rank-order checks, or all-of field comparisons. Second, tasks should be
-decision-relevant: the answer should correspond to a real go/no-go or
-prioritization judgment in preclinical pharmacology. Third, tasks should resist
-shortcuts: agents should need to inspect the supplied evidence, account for
-quality issues, and avoid relying on memorized drug labels or generic
-checklists.
+Candidate evaluations are refined through manual review and model trajectory
+inspection. We remove tasks when the answer can be recovered by an obvious
+shortcut, when the prompt over-specifies the analysis, or when plausible
+analysis choices produce answers that break grading assumptions. The retained
+tasks are tagged by program stage, assay type, and task structure.
 
 \TwoColParaBreak
-We separately track decision-blocking gaps: issues that should change the
-program decision if recognized, such as a tox-species mismatch, insufficient
-free-drug coverage, a hook effect, a contaminated chemoproteomic hit, or
-survivor bias in pathology sampling. These labels are intended to support
-diagnostic analysis after endpoint grading.
+Grading uses deterministic functions over structured final answers. Depending
+on the task, graders check label sets, numerical tolerances, rank-order
+relationships, categorical choices, or all required fields. Manual trajectory
+inspection is part of benchmark construction. We track decision-blocking gaps
+that should change the program decision if recognized: tox-species mismatch,
+insufficient free-drug coverage, hook effects, contaminated chemoproteomic
+signals, survivor bias in pathology sampling, and related failure points. These
+annotations are not exposed to agents; they are used to interpret failures
+after endpoint grading and to guide future benchmark updates.
 
 \end{minipage}
 }
@@ -169,94 +191,50 @@ diagnostic analysis after endpoint grading.
 \clearpage
 
 {\fontsize{9.1}{12.8}\selectfont
-\section{Evaluation Inventory}
+\section{Benchmark Anatomy}
 
 \begin{multicols}{2}
-The current suite is organized around the Assays Roadmap rather than around
-source datasets. Each evaluation is assigned to the roadmap stage that best
-matches its primary biological skill. The current inventory includes 70
-evaluations across seven of the nine stages. S1 disease/model characterization
-and S4 human genetic target support are deferred for this release; S4 is better
-handled by GenomicsBench.
+TxBench-PP is organized around the anatomy of a practical preclinical
+pharmacology decision. Each evaluation is tagged along three axes: where the
+decision sits in a small-molecule program, the assay type that generated the
+data, and the structure of the task.
 \par
 
-The roadmap view changes the benchmark story. Coverage is broad by stage count,
-but narrow by dataset diversity. Causal target validation and perturbational
-MoA/PD are ready for v1. Screening, pharmacogenomics, safety, and translational
-efficacy have useful coverage but are single-source dominated. The largest
-in-scope gap is S7 compound-target characterization: binding, potency,
-selectivity, and cellular target engagement are almost absent.
+The program-stage axis follows the labels shown in Figure~\ref{fig:benchmark-anatomy}:
+disease and model context, screening and hit confirmation,
+drug response/pharmacogenomics, human genetic target support, causal target
+validation, MoA/PD, compound-target characterization,
+developability/safety/PK, and translational efficacy. Human genetic target
+support is reserved for future benchmarking work because adequately measuring
+this category requires a separate focused benchmark. The order gives readers
+context for task progression; it does not imply that every small-molecule
+program proceeds through this strict sequence in practice.
+\par
+
+The assay and task axes describe the actual work required. Assay labels collapse
+source kits into measurement families such as drug-response screens, protein or
+post-translational modification (PTM) measurements, genetic perturbation, target
+engagement, molecular state, safety profiling, and in vivo experiments. Task
+labels describe broad families of decisions: mechanism inference, quality
+control (QC), dependency calls, differential response, safety assessment,
+imaging, hit prioritization, and related judgments.
 \par
 \end{multicols}
 }
 
 \begin{center}
-  \includegraphics[width=0.94\textwidth]{figures/fig2_inventory.pdf}
+  \includegraphics[width=0.96\textwidth]{figures/fig2_inventory.pdf}
 
-  \captionof{figure}{\textbf{Evaluation inventory by Assays Roadmap stage.}
-  Current TxBench-PP evaluations are mapped to the roadmap stage that best
-  captures the biological skill being tested. The inventory is broad across
-  stages but uneven across assay families: S5 and S6 are ready for v1, S7 is
-  the clearest build gap, and S2, S3, S8, and S9 need source diversification.}
-  \label{fig:evaluation-inventory}
+  \captionof{figure}{\textbf{Benchmark anatomy.}
+  \textbf{A}, Program stage labels place evaluations along a roughly ordered
+  small-molecule evidence spine; the asterisk marks a stage reserved for future
+  benchmarking work. \textbf{B}, Assay-type labels summarize the measurement
+  families represented in the source data. \textbf{C}, Task-structure labels
+  describe the operation or judgment required for a passing answer.}
+  \label{fig:benchmark-anatomy}
 \end{center}
 
 \clearpage
-
-\begin{center}
-\fontsize{6.25}{7.45}\selectfont
-\setlength{\tabcolsep}{2.6pt}
-\captionof{table}{\textbf{Roadmap-stage inventory.}
-Counts are from the Assays Roadmap coverage mapping of 70 current evaluations.
-``Ready'' stages are sufficient for v1; ``Diversify'' stages have useful but
-source-narrow coverage; ``Build'' marks the largest missing pillar.}
-\label{tab:evaluation-inventory}
-\vspace{0.5em}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.22\linewidth}
-                >{\centering\arraybackslash}p{0.055\linewidth}
-                >{\raggedright\arraybackslash}p{0.13\linewidth}
-                >{\raggedright\arraybackslash}p{0.50\linewidth}@{}}
-\toprule
-Roadmap stage & Evals & Status & Assay emphasis and next gap \\
-\midrule
-S1. Disease / model characterization & 0 & Deferred &
-Model subtype, expression, mutation/CNV context, pathway state, IHC/IF, RNAscope, and model QC are out of the current build queue. \\
-\addlinespace
-S2. Primary screening / hit confirmation & 7 & Diversify &
-PRISM-heavy. Add biochemical or reporter HTS, Z-prime and signal-window plate QC, counterscreens, and frequent-hitter filtering. \\
-\addlinespace
-S3. Drug response / pharmacogenomics & 11 & Diversify &
-Mostly PRISM. Add GDSC, CTRP, CCLE, Beat AML, organoid screens, single-cell perturbation, and censored-curve handling. \\
-\addlinespace
-S4. Human genetic target support & 0 & Deferred &
-GWAS, QTL, colocalization, Mendelian randomization, and tissue-of-action matching are assigned to GenomicsBench. \\
-\addlinespace
-S5. Causal target validation & 12 & Ready &
-Strong v1 coverage. Optional expansion: Perturb-CITE-seq, rescue assays, variant-function classification, and FACS sort-bin screens. \\
-\addlinespace
-S6. Perturbational MoA / PD & 17 & Ready &
-Strong v1 coverage. Optional expansion: LINCS/CMap, DRUG-seq, Seahorse, cytokine panels, reporter dose-response, and washout PD. \\
-\addlinespace
-S7. Compound-target characterization & 1 & Build &
-Highest-priority gap. Add ChEMBL/BindingDB potency curation, selectivity panels, CETSA/NanoBRET, Kinobeads, and biochemical-to-cellular potency comparison. \\
-\addlinespace
-S8. Developability / safety & 16 & Diversify &
-Cardiotox dominated. Add measured hERG, DILI, Ames/micronucleus, permeability, metabolic stability, CYP/DDI, Tox21/ToxCast, and therapeutic-index reasoning. \\
-\addlinespace
-S9. Translational efficacy & 6 & Diversify &
-Single NSCLC source. Add organoid/patient concordance, PDX pharmacology, immune co-culture, ctDNA, responder-fraction, and exposure-response PK/PD. \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-{\fontsize{8.0}{11.0}\selectfont\RaggedRight
-\noindent\textbf{Cross-stage gap.} The roadmap also identifies a missing
-class of end-to-end go/no-go evaluations: tasks that require an agent to weigh
-efficacy, selectivity, target engagement, exposure, and safety together. The
-current inventory covers many of these component decisions, but future
-TxBench-PP tasks should test multi-stage synthesis across at least three
-evidence blocks.
-\par}
 
 \StartBody
 
@@ -270,14 +248,24 @@ Performance at the top was clustered rather than clearly separated. The stronges
 
 Thus, across providers, model generations, and agent harnesses, no system approached the reliability expected for preclinical decision-making. The absence of a clear leader, together with a performance ceiling near 60\%, suggests that current agent systems still do not reliably recover preclinical pharmacology decisions from the provided data.
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures/model_performance.png}
-    \caption{\textbf{Figure X: Pass rates and run-to-run reproducibility across model--harness configurations.} \textbf{A}, Trajectory-level pass rate for each of the 16 model--harness configurations across all 4,800 agent trajectories, with 95\% confidence intervals computed across the 100 preclinical pharmacology tasks. A trajectory was counted as passing only if its submitted answer satisfied all task-specific graders. \textbf{B}, Task-level reproducibility over the same model order, partitioning the 100 tasks for each model--harness configuration by whether zero, one, two, or all three independent attempts passed.}
-    \label{fig:passrates}
-\end{figure}
+\EndBody
 
-\begin{table}[ht]
+\begin{center}
+  \includegraphics[width=0.96\textwidth]{figures/model_performance.pdf}
+
+  \captionof{figure}{\textbf{Pass rates and reliability across model--harness configurations.}
+  \textbf{(A)} Endpoint pass rate for each of the 16 model--harness configurations across
+  all 4{,}800 agent trajectories, with 95\% confidence intervals computed over
+  task-level pass rates. Each trajectory was scored pass only when its submitted
+  answer satisfied every task-specific grader. In-panel labels identify the
+  harness for each point; alternate harnesses (Claude Code, Codex) are shown as
+  offset points for the models that ran them.
+  \textbf{(B)} Task-level reliability for the Pi harness, partitioning the 100
+  evaluations for each model by how many of the three independent rounds passed.}
+  \label{fig:leaderboard}
+\end{center}
+
+\begin{center}
     \centering
     \begin{tabular}{lcccc}
     \toprule
@@ -301,115 +289,128 @@ Thus, across providers, model generations, and agent harnesses, no system approa
     Grok 4.3 / Pi & 18.3\% (55/300; 11.9--24.8) & 30/100 & 15/100 & 10/100 \\
     \bottomrule
     \end{tabular}
-    \caption{Table x: Pass rates by model–harness configuration. ass rates are reported as percentages, with the numerator and denominator shown as passing trajectories out of 300 total trajectories per configuration, together with 95\% confidence intervals. Confidence intervals were computed across task-level mean pass rates over the 100 preclinical pharmacology tasks. The final three columns report the number of tasks, out of 100, for which at least one, at least two, or all three independent attempts passed. Runtime and cost are included as operational diagnostics rather than leaderboard columns.}
+    \captionof{table}{\textbf{Pass rates by model--harness configuration.}
+    Pass rates are reported as percentages, with the numerator and denominator
+    shown as passing trajectories out of 300 total trajectories per
+    configuration, together with 95\% confidence intervals. Confidence intervals
+    were computed across task-level mean pass rates over the 100 preclinical
+    pharmacology tasks. The final three columns report the number of tasks, out
+    of 100, for which at least one, at least two, or all three independent
+    attempts passed.}
     \label{tab:passrates}
-\end{table}
+\end{center}
 
-
-\todo{Topline paragraph from the model leaderboard (\texttt{fig1\_leaderboard}):
-state the scope (11 model families, 100 evaluations $\times$ 3 rounds on the Pi
-harness), the pass-rate definition, and the ordering from the leader
-(claude-opus-4-8, $\sim$60\%) down to the floor (grok-4.3, $\sim$19\%), with raw
-counts and confidence intervals. Emphasize that even the best system leaves
-roughly 40\% of decisions unrecovered.}
+\StartBody
 
 \subsection{Most failures map to a compact failure-mode taxonomy}
 
-To understand why agents fail, we read every failing (model, evaluation) run on
-the Pi harness and labeled it against the evaluation's documented scientific
-intent, resulting in 1{,}834 labeled failures. Each failure is classified along two
-complementary axes. The \emph{scientific error} captures what is wrong with the
-answer, and the \emph{behavioral cause} captures how the model arrived there
-(Figure~\ref{fig:failure-taxonomy}). 
+To understand why agents fail, we manually reviewed 1{,}834 failing Pi-harness
+trajectories and labeled each against the evaluation's documented scientific
+intent. We classify each failure along two complementary axes: the
+\emph{scientific error}, which captures what is wrong with the answer, and the
+\emph{behavioral cause}, which captures how the model arrived there
+(Figure~\ref{fig:failure-taxonomy}).
 
 The scientific axis comprises five recurring error families
-(Figure~\ref{fig:failure-taxonomy}A, restricted to the $n=1{,}436$ failures that
-contain a scientific error). The largest is method, which resolves into two main
-sub-modes plus a small tail. A \emph{skipped-QC} method error (17\%) omits a
-required preprocessing or quality-control step. In one case, a model aggregated
-CRISPR guides to gene-level scores without first dropping guides that map to
+(Figure~\ref{fig:failure-taxonomy}A, restricted to the $n=1{,}436$ failures
+that contain a scientific error). The largest, flawed method, resolves into two
+main subcategories and a small residual category. A \emph{skipped-QC} error (17\%) omits a
+required preprocessing or quality-control step: in one case, a model aggregated
+clustered regularly interspaced short palindromic repeat (CRISPR) guides to gene-level scores without first dropping guides that map to
 multiple loci, so paralog-family artifacts flooded the essential-gene list. A
-\emph{wrong-reference-frame} method error (21\%) runs the pipeline but compares
-against the wrong baseline, comparator, or normalization. A small
-\emph{wrong-assay-layer} tail (2\%) reads the wrong assay feature or modality
-entirely. A \emph{calibration} error (31\%) draws a cutoff a domain expert would
-set differently. In one competition-binding panel, models carried
-forward all 33 nonzero kinases when only the 8 strong binders above a clear
-affinity gap were supported. A \emph{perception} error (10\%) misreads a raw image,
-for example counting apoptotic debris as viable organoids or mis-segmenting
-two-channel colocalization. \emph{Prior over data} (10\%) answers from textbook or
-famous biology against the staged evidence. One model computed the strongest
-data-supported biomarker, a vanadium compound correlated with SLC26A2 at
-$r=-0.48$, and then discarded it for the textbook elesclomol-FDX1 cuproptosis pair.
-\emph{Over-reading} (10\%) states a stronger claim than the data supports, for
-example reporting tumor regression from a sub-baseline median when the per-animal
-measurements show only growth arrest. Method and calibration together account for
-71\% of scientific errors. 
+\emph{wrong-reference-frame} error (21\%) runs the analysis correctly but uses
+an incorrect reference statistic. The small \emph{wrong-assay-layer} tail (2\%)
+uses the wrong component of the data.  On a proteasome-kinetics task asking
+which compound degrades substrate faster, the answer lives in the
+ubiquitin-remnant layer of a dual-readout mass-spectrometry run. A model that
+uses the phosphoproteome data reaches a different conclusion.
 
-The behavioral axis records how the failure happened, over all $n=1{,}834$ runs
-(Figure~\ref{fig:failure-taxonomy}B). Two-thirds (67\%) are \emph{engaged,
-analytically wrong}. The model did the work in good faith and made an analytical
+Beyond flawed method, four families remain. A \emph{calibration} error (31\%)
+draws a cutoff a domain expert would set differently. For instance, in one
+competition-binding panel, models carried forward all 33 nonzero kinases when
+only the 8 strong binders above a clear affinity gap were supported. A
+\emph{perception} error (10\%) misreads a raw image, such as counting apoptotic
+debris as viable organoids or mis-segmenting two-channel colocalization.
+\emph{Prior over data} (10\%) answers from textbook or famous biology against
+the staged evidence: one model computed the strongest data-supported
+biomarker---a vanadium compound correlated with SLC26A2 at $r=-0.48$---then
+discarded it for the textbook elesclomol-FDX1 cuproptosis pair.
+\emph{Over-reading} (10\%) states a stronger claim than the data supports, such
+as reporting tumor regression from a sub-baseline median when the per-animal
+measurements show only growth arrest.  Together, method and calibration account
+for 71\% of scientific errors.
+
+The behavioral axis records how each failure happened, across all $n=1{,}834$
+runs (Figure~\ref{fig:failure-taxonomy}B). Two-thirds (67\%) are \emph{engaged,
+analytically wrong}: the model ran a relevant analysis but made an analytical
 error. The remaining third splits into one evidence-handling failure and three
-process failures. \emph{Prior-driven override} (6\%) is the one behavior in which
-the model engaged the data, often computed the supporting result, and then
-deferred to a textbook or famous-biology prior. It is the behavioral signature of
-the scientific \emph{prior over data} error, and the two coincide almost exactly.
-\emph{Weak commitment} (9\%) performs the right analysis but submits the wrong
-final answer. In one run a model's reasoning correctly identified CTNNB1 as the
-supported dependency while its output named E2F3. \emph{Abandoned-correct} (12\%)
-is the sharpest case. The model demonstrably had a passing result within reach and
-then committed to a worse one. \emph{Under-investment} (6\%) reaches an answer with
-little tool use or verification, for example a mitotic-kinase family call written
-from prior knowledge after merely listing the compounds. Per-run effort separates
-these modes. Under-investment is the only one written with markedly less work
-(median 6 reasoning steps against 14--17 for the others). Abandoned-correct and
-prior-driven override occur in the \emph{most} effortful runs (median 16 steps), so
-they are not relieved by additional compute. That a third of failures are
-non-analytical, and that abandoned-correct alone covers 212 runs in which the right
-result was within reach, implies that a meaningful fraction is recoverable through
-better verification and final-answer selection rather than added capability.
+process failures. \emph{Prior-driven override} (6\%), the only
+evidence-handling case, engages the data and often computes the supporting
+result, then defers to a textbook or famous-biology prior. \emph{Weak
+commitment} (9\%) performs the right analysis but submits a final answer that
+does not match it, a mismatch that appears even in the strongest models and
+points to a missing final-answer check.  \emph{Abandoned-correct} (12\%) has a
+passing result within reach and then commits to a worse, more canonical one
+such as a published figure or standard global method. Like prior-driven
+override, it occurs most often in the longest runs. \emph{Under-investment}
+(6\%) reaches an answer with little tool use, submitting a plausible decision
+before running the per-dose computation or QC the task requires.
 
-The failures have a unifying frame. These are fluency-optimized systems applied to
-a domain that rewards adversarial restraint. The fluent move is confident,
-coherent, and consistent with prior knowledge, while the right experimental move
-defers to the data over the textbook, draws conservative cuts, and distrusts its
-own first answer. TxBench-PP's traps sit where these diverge, so the failures are a
-systematic readout of that misalignment. The models have the knowledge and the
-tooling, and often compute the right intermediate result, but they lack the
-epistemic stance of an experimentalist, namely prior-skepticism, calibrated
-commitment, and self-verification.
-\EndBody
+The two axes distribute differently across models
+(Figure~\ref{fig:failure-taxonomy}C,D). The behavioral mix varies by model.
+Under-investment is concentrated in the two weakest models, at 32\% of
+Grok 4.3's failures and 17\% of Grok 4.20 reasoning's against 0--1\% for the
+others.  Abandoned-correct is spread across stronger models at 7--17\%, highest in
+GPT-5.5 and Gemini 3.1 Pro (17\% each). The scientific-error mix is nearly
+constant, with method and calibration accounting for 58--77\% of every model's
+scientific errors regardless of pass rate.  \EndBody
 
 \begin{center}
-  \includegraphics[width=0.91\textwidth]{figures/fig3_failure_taxonomy_granular.pdf}
+  \includegraphics[width=0.96\textwidth]{figures/fig3_failure_taxonomy_granular.pdf}
 
   \captionof{figure}{\textbf{A two-axis failure taxonomy.}
-  All 1{,}834 failing (model, evaluation) runs on the Pi harness, labeled against each
+  The 1{,}834 reviewed failing Pi-harness trajectories, labeled against each
   evaluation's scientific intent and classified along two complementary axes.
   \textbf{(A)} The scientific-error axis (what is wrong with the answer) is
-  dominated by method and calibration errors (71\% combined), which are general
-  analytical skills rather than domain knowledge; the method family resolves into
+  dominated by method and calibration errors (71\% combined), reflecting
+  analysis and calibration choices rather than recall of known drug mechanisms;
+  the method family resolves into
   a skipped-QC/preprocessing sub-mode and a larger wrong-reference-frame sub-mode.
   \textbf{(B)} The behavioral-cause axis (how the model failed) shows that a third
   of failures are non-analytical: a prior-driven override of the model's own
   evidence, plus three process breakdowns (weak commitment, abandoned-correct,
-  under-investment). \textbf{(C)} The behavioral mix is a model signature:
+  under-investment).   \textbf{(C)} The behavioral mix differs by model:
   under-investment dominates only the weakest model, while the strongest models
-  fail almost entirely through engaged, analytically wrong reasoning. A
-  scientific-error $\times$ behavioral-cause cross-tabulation is provided in the
-  supplement (\texttt{fig\_fm\_crosstab}).}
+  fail almost entirely through engaged, analytically wrong reasoning.
+  \textbf{(D)} The scientific-error mix, by contrast, is largely model-invariant:
+  method and calibration errors dominate every model regardless of overall
+  accuracy, so the \emph{kinds} of scientific mistakes are shared across stronger
+  systems even as their rate falls (each bar normalized within that model's
+  scientific-error failures). A scientific-error $\times$ behavioral-cause
+  cross-tabulation is provided in the supplement (\texttt{fig\_fm\_crosstab}).}
   \label{fig:failure-taxonomy}
 \end{center}
 
 \StartBody
 
-\subsection{The dominant failure mode shifts characteristically across pipeline stages}
+\subsection{The dominant failure mode shifts across program stages}
 
-Pass rates range from 27\% at the hardest stage to 55\% at the most forgiving
-(Figure~\ref{fig:by-stage}).
-Walking the arc in order shows that each stage has characteristic strengths and weaknesses.
-We look at a representative easy and hard evaluation for each stage, with the
-fraction of passing runs in parentheses.
+Pass rates range from 27\% at the hardest stage to 55\% at the easiest stage
+(Figure~\ref{fig:by-stage}). Stage-level examples show different failure
+patterns across the program-stage axis. Below, parenthetical percentages give
+the fraction of passing runs for representative tasks.
+
+Overall, the ordering of models at each stage closely mirrors their overall
+performance (Figure~\ref{fig:by-stage}C; mean Spearman $\rho = 0.80$ across
+stages, ranging from 0.56 at S7 to 0.92 at S8), with the two Grok models
+ranking lowest at every stage. Three patterns stand out. The two highest cells
+in the matrix are Gemini 3.5 Flash and GPT-5.5 at drug
+response, at 87\% (95\% CI 70--95, $n=30$) and 86\% (69--95, $n=29$), well
+above their own overall rates of 52\% and 55\%. The clearest stage effect is
+within a single model. Gemini 3.5 Flash falls from 87\% at S3 to 28\% (16--44,
+$n=36$) at causal target validation. The widest within-family spread is at hit
+screening, where Claude Opus 4.8 scores 50\% (31--69, $n=24$) and the older
+Claude Opus 4.6 scores 12\% (4--31, $n=24$).
 
 \emph{Primary screening and hit prioritization (27\%)} is the hardest stage. Models are
 competent at the mechanical steps, such as robustly collapsing noisy replicates
@@ -420,34 +421,38 @@ positive-control wells, discarding real biology as a technical artifact. On an
 oncology drugs repurposing prioritization task (\texttt{PRISM\_S2\_11}, 0\%) they rank by breadth of
 killing and nominate a pan-cytotoxic compound rather than a selective hit.
 
-\emph{Drug response and pharmacogenomics (55\%)} is one of the easier stages but exposes a consistent weakness in unsupervised mechanism recovery. Models
-do well on direct evidence checks, such as separating a causal mediator from a
-correlated biomarker (\texttt{PRISM\_S4\_06}, 76\%). They fail when asked to
-cluster compounds by mechanism from their response profiles. Across the
-embedding tasks they use a potency-dominated representation, a linear PCA or a
-Euclidean metric on raw profiles, so the leading component encodes potency and
-the intended drug class never separates from the rest. The same error recurs
-across statin collapse (\texttt{PRISM\_UMAP\_01}, 12\%), oncology MoA recovery
+\emph{Drug response (55\%)} is one of the easier stages but exposes a
+consistent weakness in unsupervised mechanism recovery. Models do well on
+direct evidence checks, such as separating a causal mediator from a correlated
+biomarker (\texttt{PRISM\_S4\_06}, 76\%). They fail when asked to cluster
+compounds by mechanism from their response profiles. Across the embedding tasks
+they use a potency-dominated representation, linear principal component
+analysis (PCA), or a Euclidean metric
+on raw profiles, so the leading component encodes potency and the intended drug
+class never separates from the rest. The same error recurs across statin
+collapse (\texttt{PRISM\_UMAP\_01}, 12\%), oncology MoA recovery
 (\texttt{PRISM\_UMAP\_04}, 48\%), and glucocorticoid substructure
-(\texttt{PRISM\_UMAP\_03}, 69\%), so it is a property of the stage rather than a
-single task.
+(\texttt{PRISM\_UMAP\_03}, 69\%), so this is a repeated stage-level pattern
+rather than a single-task failure.
 
-\emph{Causal target validation (32\%)} is the second-hardest stage and the
-one that most rewards data hygiene and statistical rigor. Models recover genuine dependencies from a
-clean screen (\texttt{HIT\_05} replicate discordance, 69\%). They routinely skip
-the library hygiene that CRISPR screens require. On multi-target guide
-contamination (\texttt{GG\_01}, 16\%) they aggregate guides to gene level
-without dropping multi-locus sgRNAs, so paralog-family false positives flood the
-dependency list. On the selective-set call (\texttt{SEL\_01}, 6\%) they ship
-thousands of genes behind a count-only filter with no effect-size floor.
+\emph{Causal target validation (32\%)} is the second-hardest stage and the one
+that most rewards data hygiene and statistical rigor. Models recover genuine
+dependencies from a clean screen (\texttt{HIT\_05} replicate discordance,
+69\%). They routinely skip the library hygiene that CRISPR screens require. On
+multi-target guide contamination (\texttt{GG\_01}, 16\%) they aggregate guides
+to gene level without dropping multi-locus single-guide RNAs (sgRNAs), so paralog-family false
+positives flood the dependency list. On the selective-set call
+(\texttt{SEL\_01}, 6\%) they ship thousands of genes behind a count-only filter
+with no effect-size floor.
 
-\emph{Mechanism of action and PD (37\%)} is the largest stage, with 21
+\emph{Mechanism of action and pharmacodynamics (MoA/PD; 37\%)} is the largest stage, with 21
 evaluations. Models reliably recover known program structure, such as assigning
 cells to the correct cell-cycle phase (\texttt{clust\_04}, 84\%). Their
 recurring failure is over-reaching on the mechanism, treating marginal or
 partial evidence as a strong, broad effect. On the antiinfective task
 (\texttt{ANTIINF\_01}, 0\%) they read near-noise pathway scores
-($p\approx0.05$) as genuinely engaged mechanisms. On the mTOR fingerprint
+($p\approx0.05$) as genuinely engaged mechanisms. On the mechanistic target of
+rapamycin (mTOR) fingerprint
 (\texttt{TXBX\_DM\_v15E}, 6\%) they correctly call mTOR the primary target but
 then count phosphosites from too broad a substrate panel, sweeping in adjacent
 AKT-axis sites instead of restricting to the canonical mTOR set, which inflates
@@ -458,58 +463,62 @@ target and how selectively, and the bottleneck is calibration, not detection
 (67\% of the stage's scientific errors). Models detect the binding signal
 reliably, for example confirming a clean direct target by thermal shift
 (\texttt{thermal\_shift\_shared\_direct\_target}, 91\%). What they lack is a
-principled cutoff for how much engagement counts, so they err in both directions.
-On a kinase-binding panel (\texttt{TXBX\_KB\_v11\_DA1}, 0\%) they accept every
-weak binder as a real hit, and on a control task (\texttt{CTRL01}, 21\%) they
-invent a stringency cutoff the data never justified and discard five genuinely
-engaged targets.
+principled cutoff for how much engagement counts, so they err in both
+directions.  On a kinase-binding panel (\texttt{TXBX\_KB\_v11\_DA1}, 0\%) they
+accept every weak binder as a real hit, and on a control task (\texttt{CTRL01},
+21\%) they invent a stringency cutoff the data never justified and discard five
+genuinely engaged targets.
 
-\emph{Developability and safety (43\%)} depends on judging a signal against the
-right reference, and that is where models slip. They make a confident call when
-the standard is unambiguous, such as the hepatotoxicity verdict
-(\texttt{TXBX\_TG\_v11\_A}, 91\%). On
-the hERG safety-margin task (\texttt{de\_14}) they size the margin against total
-drug concentration rather than the free, unbound fraction that actually reaches
-the target, overstating the safety window. The same habit appears on a
-cardiotoxicity task (\texttt{de\_12}, 0\%). The pathways most associated with a
-three-level toxicity-concern score must be found with a rank test across all
-three levels, but models collapse the score to a yes/no label and rank pathways
-by a binary test, so their top pathways diverge from the correct set and they
-miss the potassium-channel mechanism the data supports.
+\emph{Developability and safety (43\%)} depends on judging a signal against a
+domain-specific reference. Models often make a confident call when the standard
+is well established in the literature, such as a hepatotoxicity task
+(\texttt{TXBX\_TG\_v11\_A}, 91\%). On the human ether-a-go-go-related gene
+(hERG) safety-margin task
+(\texttt{de\_14}) they size the margin against total drug concentration rather
+than the free, unbound fraction that actually reaches the target, overstating
+the safety window. The same behavior appears on a cardiotoxicity task
+(\texttt{de\_12}, 0\%). The pathways most associated with a three-level
+toxicity-concern score must be found with a rank test across all three levels,
+but models collapse the score to a yes/no label and rank pathways by a binary
+test, so their top pathways diverge from the correct set and they miss the
+potassium-channel mechanism the data supports.
 
-\emph{Translational efficacy (49\%)} leans on reading microscopy images, and
-that reading, not the downstream judgment, is the bottleneck (perception is 62\%
-of its scientific errors). Models do well when the evidence is a table, such as
-calling a genotype-by-treatment rescue (\texttt{HAI2027\_MM\_FIG6C}, 89\%). When
-they must score an image they misjudge what they see, and because the image is
-the last readout before a go/no-go, the misread becomes the wrong decision. On a
-two-marker immunostain (\texttt{HAI2027\_MM\_FIG2E}, 42\%) they read faint,
-near-vehicle single-agent staining as a real signal and credit each monotherapy
-with activity, endorsing a single-agent program when only the drug combination is
-active. The organoid viability readouts are the hardest tasks in the benchmark
-(as low as 6\%). When apoptotic debris is counted as living organoids
+\emph{Translational efficacy (49\%)} reveals failures reading microscopy images
+(image perception is 62\% of its scientific errors). In contrast, models do
+well when the evidence is a table, such as calling a genotype-by-treatment
+rescue (\texttt{HAI2027\_MM\_FIG6C}, 89\%).  On a two-marker immunostain
+(\texttt{HAI2027\_MM\_FIG2E}, 42\%) they read faint, near-vehicle single-agent
+staining as a real signal and credit each monotherapy with activity, endorsing
+a single-agent program when only the drug combination is active. The organoid
+viability readouts are the hardest tasks in the benchmark (as low as 6\%). When
+apoptotic debris is counted as living organoids
 (\texttt{organoid\_moa\_cytotoxic}), the mechanism call inverts, and a compound
-that is in fact killing the tumor cells is reported as inert or growth-promoting
-and advanced on that false basis.
+that is in fact killing the tumor cells is reported as inert or
+growth-promoting and advanced on that false basis.
 
 \EndBody
 
 \begin{center}
   \includegraphics[width=0.96\textwidth]{figures/fig_by_stage.pdf}
 
-  \captionof{figure}{\textbf{The dominant failure mode shifts across pipeline
-  stages.} Failing Pi-harness runs placed along the preclinical pharmacology arc.
-  S1 disease-model and S4 target-genetics stages are omitted, since S1 is backed
-  by too few evaluations and S4 is deferred to GenomicsBench.
-  \textbf{(A)} Strict pass rate by stage. The two lowest are the early
+  \captionof{figure}{\textbf{The dominant failure mode shifts across program
+  stages.} Failing Pi-harness runs placed along the program-stage axis.
+  S1 disease/model characterization and S4 human genetic target support are
+  omitted, since S1 is backed by too few evaluations and S4 is reserved for
+  future benchmarking work.
+  \textbf{(A)} Endpoint pass rate by stage. The two lowest are the early
   data-handling stages S2 (screening/QC) and S5 (causal target validation).
   \textbf{(B)} Scientific-error composition by stage, restricted to failures
   carrying a scientific error and using the same seven categories as
-  Figure~\ref{fig:failure-taxonomy}A. The dominant error shifts
-  characteristically along the arc, from wrong reference frame at screening (S2)
+  Figure~\ref{fig:failure-taxonomy}A. The dominant error changes by stage, from
+  wrong reference frame at screening (S2)
   to skipped QC at target validation (S5), calibration at target engagement (S7),
   and perception at the image-heavy translational stage (S9), while calibration
-  persists as a thread at every stage.}
+  persists as a thread at every stage.
+  \textbf{(C)} Endpoint pass rate for every model at each stage, ordered by overall
+  pass rate. The overall ordering is largely preserved across stages, with two
+  clear rearrangements: Gemini 3.5 Flash and GPT-5.5 lead at drug response (S3),
+  and Gemini 3.5 Flash drops sharply at causal target validation (S5).}
   \label{fig:by-stage}
 \end{center}
 
@@ -517,27 +526,32 @@ and advanced on that false basis.
 
 \subsection{Some task categories remain far harder than others}
 
-Difficulty depends more on the kind of judgment a task requires than on its
-biological domain. Grouped by task type rather than by pipeline stage, mean pass
-rate across the 11 models spans roughly fourfold over the categories with at least
-four evaluations, from 71\% on exposure and PK tasks to 19\% on hit prioritization
-and 17\% on cheminformatics (Figure~\ref{fig:by-task-type}). The high-scoring
-categories have a clear, well-defined answer, either a number computed and
-compared against a threshold (exposure and PK margins) or a single entity the
-evidence points to, such as a biomarker or a binary safety or engagement call. The
-low-scoring categories instead ask the model to pick a calibrated subset from many
-candidates, with no single answer to recover. Examples are which screen hits to
-advance (hit prioritization), which genes are selective dependencies (target
-dependency), whether a response is shared or lineage-selective (differential
-response), and which substructures are genuine safety liabilities
-(cheminformatics). The pattern matches the failure taxonomy. Tasks with a definite
-target are tractable, while those that require committing to a calibrated cut under
+Tasks become more difficult when they require nuanced biological reasoning and
+judgment. Grouping the 100 evaluations by task type and restricting to the 14
+categories with at least four evaluations (86 of the 100 evaluations), the mean
+Pi-harness pass rate across the 11 models spans a 4.1-fold range, from 70\% on
+exposure and PK tasks to 19\% on hit prioritization and 17\% on cheminformatics
+(Figure~\ref{fig:by-task-type}). Performance separates by the structure of the
+required answer rather than by subject matter. The four highest categories,
+exposure-PK (70\%), biomarker discovery (56\%), safety assessment (52\%), and
+target engagement (51\%), each resolve to a determinate target and average
+57\%. In each, the answer is either a number computed and compared against a
+threshold or a single entity identified by the evidence (a biomarker, or a
+binary safety or engagement call). The four lowest categories, target
+dependency (30\%), differential response (28\%), hit prioritization (19\%), and
+cheminformatics (17\%), instead require selecting a calibrated subset from many
+candidates with no unique answer, and average 24\%. These tasks ask which genes
+are selective dependencies, whether a response is shared or lineage-selective,
+which screen hits to advance, and which substructures are genuine safety
+liabilities. The two groups differ by 34 percentage points (2.5-fold), and the
+ordering matches the failure taxonomy, in which tasks with a definite target
+are tractable for current systems while those requiring a calibrated cut under
 uncertainty are not.
 
 \EndBody
 
 \begin{center}
-  \includegraphics[width=0.9\textwidth]{figures/fig2_by_task_type.pdf}
+  \includegraphics[width=0.96\textwidth]{figures/fig2_by_task_type.pdf}
 
   \captionof{figure}{\textbf{Some task categories remain far harder than others.}
   Pi-harness pass rate by task type (categories with at least four evaluations),
@@ -550,12 +564,14 @@ uncertainty are not.
 \StartBody
 
 Splitting performance by model and task type (Figure~\ref{fig:task-heatmap}) shows
-the two effects act largely independently. Across a row, overall model strength
-dominates, with the strongest models (claude-opus-4-8, gpt-5.5) high across most
-categories and the weakest (grok-4.3, grok-4.20-reasoning) low throughout. Down a
-column, the task sets a ceiling that a better model does not overcome. On the two
-hardest categories, hit prioritization and cheminformatics, no model exceeds 45\%,
-which points to a limit shared across current models,
+that the two effects are largely separable. Within a model (a row of the matrix),
+overall model strength dominates, with the strongest models (Claude Opus 4.8,
+GPT-5.5) scoring high across most categories and the weakest (Grok 4.3,
+Grok 4.20 reasoning) scoring low across all of them. Within a task type (a column),
+difficulty imposes a
+ceiling that a stronger model does not overcome. On the two hardest categories, hit
+prioritization and cheminformatics, no model exceeds 45\%, indicating a limit shared
+across current models.
 
 \EndBody
 
@@ -572,39 +588,53 @@ which points to a limit shared across current models,
 
 \StartBody
 
-\subsection{The strongest models win through disciplined scientific process}
+\subsection{Among strong models, accuracy tracks process discipline rather than effort}
 
-Pass rate is only weakly related to expended effort, and not monotonically.
-Across the 11 models, neither mean cost nor mean number of agent steps predicts
-accuracy above a low threshold (Figure~\ref{fig:frontier}). The two cheapest and
-fastest models, grok-4.3 (\$0.02 and 6 steps per evaluation) and
-grok-4.20-reasoning (\$0.11 and 11 steps), score lowest (19\% and 20\%), with
-failures dominated by under-investment (Figure~\ref{fig:failure-taxonomy}C). Above
-that level the two quantities diverge. gemini-3.5-flash uses the most steps
-(median 42, roughly 2.5 times opus-4-8) but scores 52\% against opus-4-8's 60\%,
-gpt-5.5 exceeds gpt-5.4 with fewer steps (15 versus 24), and claude-opus-4-6
-reaches 45\% in about 10 steps, above claude-sonnet-4-6 and kimi-k2p6 at higher
-step counts.
+Pass rate is only weakly and non-monotonically related to agent cost or steps
+(Figure~\ref{fig:frontier}). Across the 11 models, mean agent steps and endpoint pass
+rate correlate at Spearman $\rho=0.54$, dropping to $\rho=0.32$ when the two
+low-engagement Grok models are excluded. Grok 4.3 (mean
+\$0.02, median 6 steps) and Grok 4.20 reasoning (\$0.11, median 11 steps) score
+lowest, at 18.3\% and 19.7\%, and under-investment drives 32\% and 17\% of their
+failures, against 0--1\% for every other model (Figure~\ref{fig:failure-taxonomy}C).
+Above the floor, effort and accuracy decouple. Gemini 3.5 Flash takes the most steps
+(median 43, $\approx$2.5$\times$ Claude Opus 4.8's 17) but reaches only 51.3\%, below
+Claude Opus 4.8's 59.3\%. GPT-5.5 beats GPT-5.4 (55.3\% vs.\ 49.7\%) with fewer steps
+(median 15 vs.\ 24). Claude Opus 4.6 reaches 44.7\% at a median of 10 steps, above
+Claude Sonnet 4.6 (36.0\%) and Kimi K2P6 (29.7\%) despite their higher step counts.
 
-The differences among the stronger models track process discipline,
-which is comparable across systems. The most accurate runs reason through the
-question's scientific intent, draw a calibrated cut, verify intermediate results
-against the data, and commit to a single answer. claude-opus-4-8, the top model,
-defers to the staged evidence over priors. On the bosutinib task it set aside the
-compound's documented BCR-ABL and SRC activity and reported the non-canonical
-off-target engagement the data show, the distinction that determines whether a
-program attributes the compound's activity to its reputed targets or to the ones
-it actually engages. On the crizotinib control it applied only the threshold the
-task specified, rather than the additional gate other models introduced that
-removes five genuine engagement hits and understates the compound's cellular
-target profile. gpt-5.5, the second-ranked model, is the best-calibrated on
-precision-sensitive tasks and verifies its reads before answering. On an EGFR and
-phospho-MEK colocalization task it established the panel layout and marker
-assignments before quantifying co-activation in code, the readout that decides
-whether the compound is advanced as on-pathway. Consistent with this, the
-strongest models fail predominantly through engaged but incorrect analysis rather
-than under-investment or weak commitment, which are concentrated in the
-lower-ranked models (Figure~\ref{fig:failure-taxonomy}C).
+Strong models differ mainly in the composition of their failures
+(Figure~\ref{fig:failure-taxonomy}C). The top Claude models fail
+mostly through engaged-but-incorrect analysis. Analytical errors account
+for 73--77\% of their failures, leaving 23--27\% non-analytical (Claude Opus 4.6
+lowest at 23.0\% of $n=165$ failures, Claude Opus 4.7 at 26.8\%, Claude Opus 4.8 at 26.7\%). The
+GPT models reach comparable accuracy with more finalization-related errors. Weak commitment
+(GPT-5.5 12\%, GPT-5.4 16\%) and abandoned-correct answers (17\% and 15\%) raise
+their non-analytical share to 39.7\% (GPT-5.5, $n=126$) and 41.8\% (GPT-5.4,
+$n=146$). Their remaining errors therefore often occur after useful analysis:
+the model fails to verify the read or submit the answer its analysis already
+supports. Under-investment is effectively absent from every strong model
+($\leq$1\% of failures) and appears only in the two cheapest.
+
+These quantitative patterns correspond to identifiable behaviors on individual
+tasks. Successful runs identify the scientific intent, draw a calibrated cut,
+verify against the data, and commit to one answer. The pattern is
+clearest on hard tasks, where most runs fail but the strongest still succeed, and
+each hinges on a concrete drug-program decision. For instance, Bosutinib is an approved
+BCR-ABL/SRC inhibitor, but a program must credit its activity to the targets it
+actually engages in the chemoproteomics panel. On this task
+(32\% of runs passing), Claude Opus 4.8 overrode the clinical prior and committed to
+the non-canonical profile the panel supports, while other models anchored to the label
+returned the canonical ABL/SRC answer. The crizotinib control (21\%) asks whether a
+separate broad-spectrum control compound justifies dropping genuinely engaged
+targets in a live-cell NanoBRET target-engagement screen. It does not, and Claude Opus 4.8 kept five
+engaged targets that other models discarded behind an invented quality-control gate,
+an error that would have removed real hits from medicinal-chemistry follow-up. The
+epidermal growth factor receptor (EGFR)/phospho-mitogen-activated protein kinase kinase (MEK) task (44\%) asks whether EGFR productively drives downstream MEK
+signaling in a BRAF-mutant colorectal-cancer organoid, the call that decides whether
+the compound advances as on-pathway. GPT-5.5 quantified the co-positive cell share
+in code rather than calling it from total marker abundance, reaching the supported
+conclusion.
 
 \EndBody
 
@@ -613,10 +643,9 @@ lower-ranked models (Figure~\ref{fig:failure-taxonomy}C).
 
   \captionof{figure}{\textbf{Spending more does not buy accuracy.}
   Strict Pi-harness pass rate against mean cost (A) and mean agent steps (B) per
-  evaluation (claude-opus-4-7 omitted, as its cost was not logged). The dashed
-  line is the Pareto frontier. The cheapest, fewest-step models score lowest, but
+  evaluation. The dotted line is the Pareto frontier. The cheapest, fewest-step models score lowest, but
   above a modest budget effort and accuracy decouple. The highest-step model
-  (gemini-3.5-flash) is not the most accurate, and claude-opus-4-8 leads at
+  (Gemini 3.5 Flash) is not the most accurate, and Claude Opus 4.8 leads at
   moderate effort.}
   \label{fig:frontier}
 \end{center}
@@ -625,49 +654,135 @@ lower-ranked models (Figure~\ref{fig:failure-taxonomy}C).
 
 \subsection{Failures translate directly into wrong go/no-go decisions}
 
-\todo{Use the downstream-consequence lists in \texttt{\_stage\_failure\_maps.md}
-to tie representative failures to concrete program errors (e.g. advancing a
-non-selective compound as selective, a wrong cytostatic-vs-cytotoxic call, a
-missed safety liability, a contaminated target-engagement hit carried forward).
-Ground each in an exact eval name once the public manifest is frozen.}
+Some evaluations closely resemble real program decisions, giving the agent
+several assay readouts at once and asking for a single advance, hold, or
+prioritize call. The current suite includes seven such advancement decisions;
+across 230 runs, models pass only 35\% of them
+(Figure~\ref{fig:program-decisions}). Models perform well when the data are
+clean and consistent, but struggle on more challenging cases, either advancing
+weak candidates or discarding strong ones.
+
+\emph{Clean correct.} The organoid program go/no-go is the clean case
+(Figure~\ref{fig:program-decisions}). Given a primary screen, a mechanism image, a
+toxicology counterscreen, and DMPK exposure for eight blinded compounds, the supported
+action is to advance the one compound that shows the desired cytostatic mechanism
+together with an adequate safety margin and exposure coverage, and most models do
+(82\%).
+
+\emph{Wrong synthesis.} On some decision tasks, the agent must assemble a set
+of models with convergent support across several endpoints, but models rank on
+a single metric (27\%), so the program's next experiments are built on wrong
+assumptions.
+
+\emph{False-go.} On the safety advancement task the supported call is that no
+candidate moves forward, because none pairs activity with healthy-tissue sparing,
+yet models advance one on activity alone or on a relative tumor-versus-healthy
+index (36\%), putting an unsafe compound into the pipeline.
+
+\emph{False no-go.} The reverse error also appears. On the long-term
+combination task, models read a strong colony-stain reduction as a complete
+kill and drop a model the combination still supports
+(\texttt{HAI2027\_FIG1\_DUR01}, 48\%).
+
+We found strong overall benchmark scores do not predict making the better
+program decisions. The six multi-evidence advancement decisions with complete
+Pi-harness model comparisons yield an order almost unrelated to overall
+accuracy (Spearman $\rho = 0.08$;
+Figure~\ref{fig:program-model-compare}A). Claude Opus 4.8, first overall at
+60\%, ranks last on these decisions at 22\% (4/18). It clears both
+single-compound calls, advancing the one qualifying organoid compound (2/3) and
+holding when no candidate is safe (2/3), but it fails all four decisions that
+instead ask which preclinical models (cell lines and patient-derived xenograft
+(PDX) models) should anchor the next program stage (the single-agent, priority,
+long-term, and
+decision-gate sets in Figure~\ref{fig:program-model-compare}B), passing none of
+them (0/3 each) because it over-ranks on a single metric or carries too many
+candidates forward.  GPT-5.5 is the only model strong on both kinds of task
+(15/18, 83\%), committing to a defensible prioritized set rather than a full
+ranking. Kimi K2P6, ninth overall at 31\%, rises to second here (12/17, 71\%):
+its careful per-model computation pays off when the task rewards naming the
+supported models, though it still fails the restraint call by advancing a
+candidate on the no-go safety task (0/3). The two Grok models stay at the
+bottom (5/18 each) by answering with little of the multi-evidence work the
+decision requires.
 
 \EndBody
 
 \begin{center}
-  \includegraphics[width=0.92\textwidth]{figures/fig4_cases.pdf}
+  \includegraphics[width=0.96\textwidth]{figures/fig_program_decisions.pdf}
 
-  \captionof{figure}{\textbf{Representative task logic.}
-  Across mechanism, target engagement, safety, and exposure decisions, the
-  correct answer is the one supported by the supplied assay evidence, not the
-  familiar shortcut.}
-  \label{fig:case-examples}
+  \captionof{figure}{\textbf{Program decisions turn analysis errors into wrong
+  go/no-go calls.} Three multi-evidence advancement evaluations, each giving the
+  agent several assay readouts and asking for one advance, hold, or prioritize
+  call. For each we show the evidence and the question, the data-supported call,
+  and the common model error with its program consequence. The organoid go/no-go
+  is passed by most models (82\%); the decision-gate and safety-advancement tasks
+  fail in opposite directions, advancing the wrong models (27\%) or an unsafe
+  candidate (36\%). NSCLC denotes non-small-cell lung cancer.}
+  \label{fig:program-decisions}
+\end{center}
+
+\begin{center}
+  \includegraphics[width=0.96\textwidth]{figures/fig_program_model_compare.pdf}
+
+  \captionof{figure}{\textbf{Aggregate accuracy does not predict program-decision
+  competence.} Pass rates on the six multi-evidence advancement decisions with
+  complete Pi-harness model comparisons (up to 18 runs per model). \textbf{(A)}
+  Endpoint pass rate on all 100
+  evaluations versus on the six program decisions; the integrative go/no-go calls
+  reorder the leaderboard almost completely (Spearman $\rho = 0.08$), with the
+  overall-best model, Claude Opus 4.8, falling to last and Kimi K2P6 rising from
+  ninth to second. \textbf{(B)} Per-decision pass rate by model. The two
+  single-compound calls (advance one, or hold; marked $\bullet$) are passed
+  broadly, but the four tasks that require nominating the supported subset of
+  models (marked with a diamond) separate the field; Claude Opus 4.8 fails all
+  four.}
+  \label{fig:program-model-compare}
 \end{center}
 
 \StartBody
 
 \subsection{The agent harness has a surprising impact on model performance}
 
-Although a harness serves merely as a wrapper around a fixed model, utilizing the same checkpoint, task text, and answer-submission protocol. We found that it exerts a surprisingly large and consistent effect on overall performance. In within model matched comparisons, which provided the only unconfounded contrast since each harness evaluated a distinct set of models, Pi outperformed Claude Code by 4.4 percentage points (95\% CI: 1.2–7.8) on the shared Opus models. Similarly, Pi outperformed OpenAI Codex by 5.5 percentage points (95\% CI: 1.2–9.8) on the shared GPT models. Notably, Pi achieved a higher score on every shared model, rather than merely winning on average.
+Each harness used the same model checkpoint, task text, and answer-submission
+protocol, but pass rate still varied by harness. In matched comparisons within
+the same model family, Pi outperformed Claude Code by 4.4 percentage points
+(95\% CI: 1.2--7.8) on the shared Claude Opus models and outperformed OpenAI
+Codex by 5.5 percentage points (95\% CI: 1.2--9.8) on the shared GPT models. Pi
+scored higher on every shared model, not only on average.
 
-The magnitude of this improvement is comparable to a model-generation upgrade. For instance, transitioning from Opus version 4.6 to 4.7 yielded only a 4.6-point increase on Pi. Consequently, the choice of harness is roughly as consequential as upgrading to a newer model version. Furthermore, this advantage was relatively uniform across both image-based and non-image tasks, indicating that the performance gains were not primarily attributable to visual access. For context, Claude Code rendered figures to the model in 100\% of image-bearing tasks compared to 84\% for Pi, whereas OpenAI Codex, which lacks vision capabilities, never rendered figures.
+The size of this difference is comparable to a model-generation upgrade. Moving
+from Claude Opus 4.6 to Claude Opus 4.7 improved Pi performance by 4.6 points,
+similar to the harness effect. The Pi advantage was also similar on image-based
+and non-image tasks, so it is not explained only by visual access. Claude Code
+rendered figures to the model in 100\% of image-bearing tasks, compared with
+84\% for Pi; OpenAI Codex, which lacks vision capabilities, never rendered
+figures.
 
-Instead, the residual performance differences can be traced to subtler scaffolding properties. For example, Pi's lean, three-tool loop failed on only 0.6\% of runs—compared to 1.8\% for Claude Code, and reached an answer in fewer steps. Conversely, OpenAI Codex's lack of a vision pathway further penalized its performance on figure-decisive tasks. Although these effects are modest in absolute terms and present wide confidence intervals, they are directionally robust and persist across different model families. Ultimately, an implementation detail nominally orthogonal to the model itself can shift the endpoint pass rate by a margin equivalent to a full model generation.
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures/fig_harness_impact.png}
-    \caption{\textbf{Figure X: The agent harness has a surprising impact on model performance.}: \textbf{A} Endpoint pass rates for each model evaluated under two different harnesses. Comparisons are matched within each model (i.e., each model executed an identical task set under both harnesses). The Pi harness (purple) outperformed the comparator harnesses across every shared model, exceeding Claude Code (orange) on the Anthropic Opus models and OpenAI Codex (lilac) on the GPT models. The labeled values represent the within-model performance difference in percentage points (pp). \textbf{B} The performance impact of a harness substitution (purple; mean within-model difference of +4.4 pp for Pi vs. Claude Code, and +5.5 pp for Pi vs. OpenAI Codex) compared to the impact of model-generation upgrades evaluated on the Pi harness (grey; Opus 4.6 to 4.7 = +4.7 pp, GPT-5.4 to 5.5 = +5.7 pp, Opus 4.7 to 4.8 = +10.0 pp). Holding the model fixed and changing only the harness shifts overall performance by a margin comparable to a full model-generation upgrade.}
-    \label{fig:passrates}
-\end{figure}
-
-\todo{From the harness-effect comparison (\texttt{fig4\_harness\_effect}):
-running the same model under different scaffolds (Pi vs Codex/CC) shifts the
-task-matched pass rate by roughly 3--12 points, with some models far more
-harness-sensitive than others (e.g. claude-opus-4-7) even though the overall
-ordering is largely preserved. Note the implication for fair model comparison:
-reported scores are a property of the model-plus-harness, not the model alone.}
+The remaining differences point to implementation details. Pi's lean,
+three-tool loop failed on 0.6\% of runs, compared with 1.8\% for Claude Code,
+and reached answers in fewer steps. OpenAI Codex was also penalized on
+figure-dependent tasks because it did not render figures. These effects are
+small in absolute terms and have wide confidence intervals, but they show that
+reported scores are properties of the model--harness configuration rather than
+the model alone.
 
 \EndBody
+
+\begin{center}
+  \includegraphics[width=0.96\textwidth]{figures/fig_harness_impact.pdf}
+
+  \captionof{figure}{\textbf{Harness choice is as consequential as a model-generation upgrade.}
+  \textbf{(A)} Task-matched pass rate on Pi versus the alternate harness for each
+  model pair. Points are matched on the shared evaluation set; the labeled gap is
+  the within-model Pi advantage in percentage points.
+  \textbf{(B)} Head-to-head comparison of the Pi advantage over an alternate harness
+  (terracotta) against the gain from a model-generation upgrade on Pi (gray).
+  A harness substitution shifts pass rate by a margin comparable to upgrading one
+  model generation, so reported scores should be interpreted as a property of
+  the model--harness configuration, not the model alone.}
+  \label{fig:harness-impact}
+\end{center}
 
 \StartBody
 
@@ -676,62 +791,144 @@ reported scores are a property of the model-plus-harness, not the model alone.}
 TxBench-PP measures a narrow but important part of drug discovery: whether an
 agent can turn preclinical pharmacology evidence into a defensible local
 decision. This scope is intentionally smaller than end-to-end therapeutic
-discovery. It is a small-molecule cluster benchmark within the broader
+discovery. It is a small-molecule task-group benchmark within the broader
 TherapeuticsBench roadmap, not a claim to cover every stage or modality. It
-does not yet test target genetics, full disease-model selection, primary
-screening operations, broad clinical translation, or non-small-molecule
+does not yet test human genetic target support, full disease-model selection,
+broad clinical translation, or non-small-molecule
 modalities. The narrower scope makes the benchmark verifiable while still
 covering decisions that directly affect compound advancement.
 
-The central hypothesis is that current agents will often operate the tools of
-preclinical analysis but fail at the scientific judgment layer. If a model
-selects a mechanism from a drug label, trusts a contaminated target-engagement
-signal, ignores survivor bias, or ranks by total exposure rather than unbound
-coverage, it may produce a fluent and computationally elaborate answer that is
-not the pharmacology decision supported by the data.
-
-\todo{After results are available, add a paragraph comparing endpoint pass
-rates, partial-credit or field-level scores if available, and trajectory
-review. Emphasize what capability is missing and which tasks show meaningful
-progress.}
+The results support this distinction. Claude Opus 4.8 / Pi was the leading
+configuration, passing 59.3\% of endpoint attempts (178/300; 95\% CI,
+51.1--67.6), but still failed more than two of every five attempts. Reviewed
+failures were not mainly blank answers or missing execution. Most were
+data-engaged analyses that made the wrong method, calibration, perception, or
+prior-versus-data choice. The program-decision tasks show the practical
+consequence: local analysis errors can advance weak or unsafe candidates and
+discard supported ones.
 
 Future versions can extend the benchmark upstream to target rationale and
-primary screening, sideways to pharmacogenomics and disease-model
-characterization, and across modalities to antibodies, ADCs, degraders,
-oligonucleotides, cell therapies, and gene therapies. A complementary
+disease-model characterization, sideways to broader pharmacogenomics, and
+across modalities to antibodies, antibody-drug conjugates
+(ADCs), degraders, oligonucleotides, cell therapies, and gene therapies. A complementary
 long-horizon TherapeuticsBench track can follow program stories across
 discovery, development, and translation. For the current paper, the clean claim
-should remain: TxBench-PP is a verifiable cluster benchmark for small-molecule
+should remain: TxBench-PP is a verifiable task-group benchmark for small-molecule
 preclinical pharmacology decisions.
+
+\columnbreak
 
 \section{Methods}
 
-\subsection{Task construction}
+\subsection{Benchmark assembly}
 
-Candidate evaluations are derived from realistic preclinical pharmacology
-workflow states. A task is retained when the target conclusion can be recovered
-from the supplied files, expressed through a constrained final answer, and
-graded deterministically. Tasks should be revised or removed when the prompt
-over-specifies the method, when multiple reasonable analyses produce
-incompatible decisions, or when the grader cannot distinguish the supported
-pharmacology conclusion from a plausible but unsupported answer.
+Benchmark construction is described in the Benchmark Construction and Benchmark
+Anatomy sections. Briefly, we assembled 100 evaluations from practical
+small-molecule preclinical pharmacology workflow states. Candidate evaluations
+were retained when the target decision could be recovered from the supplied
+data artifacts, expressed through a constrained final answer, and graded
+deterministically. Tasks were revised or removed when the prompt
+over-specified the method, when the answer could be recovered by an obvious
+shortcut, when plausible analysis choices produced incompatible decisions, or
+when the grader could not distinguish the supported pharmacology conclusion
+from a plausible but unsupported answer.
 
-\subsection{Agent runs and aggregation}
+Each retained evaluation includes a task prompt, workflow data artifacts,
+metadata needed to interpret the files, a structured answer schema, a hidden
+deterministic grader, and tags for program stage, assay type, and task
+structure. Evaluation notes record the intended empirical decision, known
+analysis traps, and decision-blocking gaps used for later trajectory
+interpretation. These notes and failure annotations are not shown to agents.
 
-\todo{Insert model-harness list, number of attempts per evaluation, execution
-environment, parsing rules, and how invalid or missing outputs are counted.}
+\subsection{Agent runs}
 
-\subsection{Statistical analysis}
+We evaluated 16 model--harness configurations across Pi, Claude Code, and
+OpenAI Codex. Pi was run with Claude Opus 4.6, Claude Opus 4.7, Claude Opus
+4.8, Claude Sonnet 4.6, GPT-5.4, GPT-5.5, Gemini 3.1 Pro, Gemini 3.5 Flash,
+Kimi K2P6, Grok 4.20 reasoning, and Grok 4.3. Claude Code was run with Claude
+Opus 4.6, Claude Opus 4.7, and Claude Opus 4.8. OpenAI Codex was run with
+GPT-5.4 and GPT-5.5.
 
-\todo{Insert primary metric and confidence interval convention. If following
-SpatialBench/EpiBench, report evaluation-weighted endpoint pass rate, raw pass
-counts for interpretability, and Student $t$ confidence intervals over
-evaluation-level replicate means.}
+Each configuration was run on the same 100 evaluations with three independent
+attempts per evaluation, yielding 300 trajectories per configuration and 4,800
+trajectories overall. Runs used the packaged task context, the supplied data
+artifacts, a coding environment for file inspection and analysis, and the same
+structured answer-submission protocol. For each run we recorded the final
+answer, grader output, trajectory, result log, duration, step count, and
+available cost metadata.
+
+Failed, timed-out, incomplete, malformed, or unparsable runs were retained in
+the denominator and counted as nonpassing unless the hidden grader emitted a
+literal boolean passing result. The result parser treated missing pass fields
+or non-boolean pass fields as failures.
+
+\subsection{Endpoint grading}
+
+The primary benchmark score is deterministic endpoint grading of the final
+structured answer. Graders parse the submitted answer and compare the requested
+fields against task-specific criteria. Depending on the evaluation, these
+criteria include exact or normalized label matches, numerical tolerances,
+rank-order checks, categorical choices, and all-of field comparisons. A run
+passes only when all required task-specific checks pass. Missing fields,
+invalid JSON, answers outside the expected schema, and answers that cannot be
+parsed by the grader are counted as failures.
+
+We also report task-level robustness counts for each model--harness
+configuration: the number of evaluations for which at least one, at least two,
+or all three replicate attempts passed. These counts are diagnostic and do not
+replace the endpoint pass rate.
+
+\subsection{Result aggregation and statistical analysis}
+
+For each model--harness configuration and evaluation, the three replicate
+passes were averaged to produce an evaluation-level pass score in
+\{0, 1/3, 2/3, 1\}. The primary endpoint pass rate is the mean of these 100
+evaluation-level scores. We report raw pass counts for interpretability, but
+compute confidence intervals over evaluations rather than over individual
+trajectories, because replicate attempts on the same evaluation are not
+independent samples of the benchmark. Unless otherwise stated, 95\% confidence
+intervals are Student $t$ intervals over evaluation-level mean pass scores.
+
+Stage, assay, and task-type analyses use the same evaluation-level aggregation
+within each metadata-defined subset. Task-type plots are restricted to
+categories with at least four evaluations. Cost, duration, and step summaries
+are averaged first across the three replicate attempts for each evaluation and
+then across evaluations. Cost analyses use the recorded total-cost metadata
+when available; for Anthropic model runs without a total-cost field, cost was
+computed from recorded token usage and the same model-specific price table used
+for aggregation.
+
+Harness comparisons are matched by model and evaluation. The Claude-family
+comparison uses Claude Opus 4.6, Claude Opus 4.7, and Claude Opus 4.8 on Pi
+and Claude Code. The GPT-family comparison uses GPT-5.4 and GPT-5.5 on Pi and
+OpenAI Codex. Program-decision analyses use the curated subset of evaluations
+that ask for an advance, hold, prioritize, or related preclinical program
+decision from multiple evidence streams; the model-comparison panel uses the
+six such decisions with complete Pi-harness comparisons across the 11 Pi
+models.
+
+\subsection{Manual trajectory review}
+
+Manual trajectory inspection was used during benchmark construction and for
+post hoc failure analysis. During construction, trajectories were inspected to
+identify prompts that over-specified the method, shortcut-solvable tasks,
+unstable answer surfaces, and graders that failed to separate supported
+answers from plausible but unsupported ones.
+
+For the failure taxonomy, reviewers labeled 1{,}834 failing Pi-harness
+trajectories against the evaluation's documented scientific intent. Each
+reviewed failure received a behavioral-cause label describing how the model
+failed. Failures with an assignable scientific issue also received a
+scientific-error label describing what was wrong with the submitted answer.
+These labels were used only for diagnostic analysis after endpoint grading.
 
 \section*{Data availability}
 
-\todo{Insert public repository, public example evaluations, result summaries,
-and trajectory availability language.}
+The manuscript source, figure-generation scripts, and derived result summaries
+are maintained in the TxBench repository. Benchmark task definitions, graders,
+available trajectories, and redistributable data artifacts will be released
+with the public TxBench-PP benchmark package. Source assay data are distributed
+or linked according to the original data licenses and access terms.
 
 \input{references}
 
