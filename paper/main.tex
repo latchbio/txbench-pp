@@ -397,9 +397,8 @@ scientific errors regardless of pass rate.  \EndBody
 \subsection{The dominant failure mode shifts across program stages}
 
 Pass rates range from 27\% at the hardest stage to 55\% at the easiest stage
-(Figure~\ref{fig:by-stage}).
-Analyzing the stages in order shows that each stage has characteristic strengths and weaknesses.
-Below, parenthetical percentages give
+(Figure~\ref{fig:by-stage}). Stage-level examples show different failure
+patterns across the program-stage axis. Below, parenthetical percentages give
 the fraction of passing runs for representative tasks.
 
 Overall, the ordering of models at each stage closely mirrors their overall
@@ -619,7 +618,7 @@ supports. Under-investment is effectively absent from every strong model
 ($\leq$1\% of failures) and appears only in the two cheapest.
 
 These quantitative patterns correspond to identifiable behaviors on individual
-tasks. The most accurate runs reason through the scientific intent, identify the
+tasks. Successful runs reason through the scientific intent, identify the
 relevant result, verify against the data, and commit to one answer. The pattern is
 clearest on hard tasks, where most runs fail but the strongest still succeed, and
 each hinges on a concrete drug-program decision. For instance, Bosutinib is an approved
@@ -660,8 +659,8 @@ Some evaluations closely resemble real program decisions, giving the agent
 several assay readouts at once and asking for a single advance, hold, or
 prioritize call. The current suite includes seven such advancement decisions;
 across 230 runs, models pass only 35\% of them
-(Figure~\ref{fig:program-decisions}). Models perform well when the assay
-evidence is clean and consistent, but struggle on more challenging cases,
+(Figure~\ref{fig:program-decisions}). Models perform well when the data are
+clean and consistent, but struggle on more challenging cases,
 either advancing weak candidates or discarding strong ones.
 
 \emph{Clean correct.} The organoid program go/no-go is the clean case
@@ -746,11 +745,25 @@ decision requires.
 
 \subsection{The agent harness has a surprising impact on model performance}
 
-A harness serves merely as a wrapper around a fixed model, with the checkpoint, task text, and answer-submission protocol held constant. However, we found that it exerts a surprisingly large and consistent effect on overall performance. In matched within-model comparisons, which provided the only unconfounded contrast since each harness evaluated a distinct set of models, Pi outperformed Claude Code by 4.4 percentage points (95\% CI: 1.2–7.8) on the shared Opus models. Similarly, Pi outperformed OpenAI Codex by 5.5 percentage points (95\% CI: 1.2–9.8) on the shared GPT models. Notably, Pi achieved a higher score on every shared model, rather than merely winning on average.
+Each harness used the same model checkpoint, task text, and answer-submission
+protocol, but pass rate still varied by harness. In matched comparisons within
+the same model family, Pi outperformed Claude Code by 4.4 percentage points
+(95\% CI: 1.2--7.8) on the shared Claude Opus models and outperformed OpenAI
+Codex by 5.5 percentage points (95\% CI: 1.2--9.8) on the shared GPT models. Pi
+scored higher on every shared model, not only on average.
 
-The magnitude of this improvement is comparable to a model-generation upgrade. For instance, transitioning from Opus version 4.6 to 4.7 yielded only a 4.6-point increase on Pi. Consequently, the choice of harness is roughly as consequential as upgrading to a newer model version. Furthermore, this advantage was relatively uniform across both image-based and non-image tasks, indicating that the performance gains were not primarily attributable to visual access. For context, Claude Code rendered figures to the model in 100\% of image-bearing tasks compared to 84\% for Pi, whereas OpenAI Codex never rendered figures.
+The size of this difference is comparable to a model-generation upgrade. Moving
+from Claude Opus 4.6 to Claude Opus 4.7 improved Pi performance by 4.6 points,
+similar to the harness effect. The Pi advantage was also similar on image-based
+and non-image tasks, so it is not explained only by visual access. Claude Code
+rendered figures to the model in 100\% of image-bearing tasks, compared with
+84\% for Pi; OpenAI Codex never rendered figures.
 
-Instead, the residual performance differences can be traced to subtler scaffolding properties. For example, Pi's lean tool loop failed on only 0.6\% of runs, compared with 1.8\% for Claude Code, and reached an answer in fewer steps. Although these effects are modest in absolute terms and have wide confidence intervals, they are directionally robust and persist across different model families.
+The remaining differences point to implementation details. Pi's lean tool loop
+failed on 0.6\% of runs, compared with 1.8\% for Claude Code, and reached answers
+in fewer steps. These effects are small in absolute terms and have
+wide confidence intervals, but they show that reported scores are properties of
+the model--harness configuration rather than the model alone.
 
 \EndBody
 
