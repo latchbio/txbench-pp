@@ -1,0 +1,64 @@
+{
+  "evals": [
+    {
+      "id": "HAI2027_MECH01_supported_mechanism_chain",
+      "path": "evals/HAI2027_MECH01_supported_mechanism_chain/eval.json",
+      "grader": "all_of"
+    },
+    {
+      "id": "PRISM_S4_10_mechanism_family_mining",
+      "path": "evals/PRISM_S4_10_mechanism_family_mining/eval.json",
+      "grader": "all_of"
+    },
+    {
+      "id": "PRISM_V10_C_primary_hit_triage",
+      "path": "evals/PRISM_V10_C_primary_hit_triage/eval.json",
+      "grader": "all_of"
+    },
+    {
+      "id": "de_10_cross_modality_herg_convergence",
+      "path": "evals/de_10_cross_modality_herg_convergence/eval.json",
+      "grader": "all_of"
+    },
+    {
+      "id": "lee2024_RNA1_raw_scrna_target_specificity",
+      "path": "evals/lee2024_RNA1_raw_scrna_target_specificity/eval.json",
+      "grader": "all_of"
+    },
+    {
+      "id": "lee2024_SRC2_calcium_response_mode",
+      "path": "evals/lee2024_SRC2_calcium_response_mode/eval.json",
+      "grader": "all_of"
+    },
+    {
+      "id": "DMA_02_mechanism_sign",
+      "path": "evals/DMA_02_mechanism_sign/eval.json",
+      "grader": "all_of"
+    },
+    {
+      "id": "sp_01_plate_well_position_confounder",
+      "path": "evals/sp_01_plate_well_position_confounder/eval.json",
+      "grader": "numeric_tolerance"
+    },
+    {
+      "id": "CTRL01_no_cc1_gate_for_crizotinib_hits",
+      "path": "evals/CTRL01_no_cc1_gate_for_crizotinib_hits/eval.json",
+      "grader": "numeric_tolerance"
+    },
+    {
+      "id": "H2_toxfree_advance_image",
+      "path": "evals/H2_toxfree_advance_image/eval.json",
+      "grader": "numeric_tolerance"
+    },
+    {
+      "id": "txbx_org_organoid_doseresponse_resistant_fraction",
+      "path": "evals/txbx_org_organoid_doseresponse_resistant_fraction/eval.json",
+      "grader": "numeric_tolerance"
+    },
+    {
+      "id": "txbx_org_program_ti_exposure_gonogo",
+      "path": "evals/txbx_org_program_ti_exposure_gonogo/eval.json",
+      "grader": "numeric_tolerance"
+    }
+  ]
+}
