@@ -17,6 +17,7 @@
 \RequirePackage{enumitem}
 \RequirePackage{booktabs}
 \RequirePackage{array}
+\RequirePackage{cite}
 \RequirePackage{hyperref}
 \RequirePackage{ragged2e}
 
@@ -145,6 +146,11 @@
 
 \newcommand{\StartBody}{%
   \clearpage
+  \fontsize{9.1}{12.8}\selectfont
+  \begin{multicols}{2}
+}
+
+\newcommand{\ResumeBody}{%
   \fontsize{9.1}{12.8}\selectfont
   \begin{multicols}{2}
 }

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Normalize pre-rendered result figures to the paper palette.
+"""Normalize any remaining pre-rendered result figures to the paper palette.
 
-Some result panels are checked in only as PDFs.  Convert them through SVG so we
-can remap data colors without changing text, axes, or layout.
+Most result figures are now generated directly in the paper palette. Keep this
+utility for legacy quantitative-only PDFs that need post hoc color remapping.
 """
 
 from __future__ import annotations
@@ -16,12 +16,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 FIG_DIR = ROOT / "paper" / "figures"
 
-FIGURES = [
-    "fig3_failure_taxonomy_granular",
-    "fig_by_stage",
-    "fig_program_model_compare",
-    "fig_harness_impact",
-]
+FIGURES = []
 
 BASE_COLOR_MAP = {
     # Data colors from older result figures -> Figure 1 / paper palette.
@@ -99,9 +94,26 @@ def main() -> None:
             color_map.update(FIGURE_SPECIFIC_MAPS.get(stem, {}))
             for old, new in color_map.items():
                 text = text.replace(old, new)
+            text = "\n".join(line.rstrip() for line in text.splitlines()) + "\n"
             recolored.write_text(text)
 
+            shutil.copyfile(recolored, FIG_DIR / f"{stem}.svg")
             run(["rsvg-convert", "-f", "pdf", "-o", str(pdf), str(recolored)])
+            if shutil.which("gs") is not None:
+                pdf14 = tmp / f"{stem}_pdf14.pdf"
+                run(
+                    [
+                        "gs",
+                        "-q",
+                        "-dNOPAUSE",
+                        "-dBATCH",
+                        "-sDEVICE=pdfwrite",
+                        "-dCompatibilityLevel=1.4",
+                        f"-sOutputFile={pdf14}",
+                        str(pdf),
+                    ]
+                )
+                shutil.copyfile(pdf14, pdf)
 
             png = FIG_DIR / f"{stem}.png"
             if png.exists():

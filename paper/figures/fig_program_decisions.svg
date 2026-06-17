@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="453.740569pt" height="261.108pt" viewBox="0 0 453.740569 261.108" xmlns="http://www.w3.org/2000/svg" version="1.1">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="467.517881pt" height="311.004pt" viewBox="0 0 467.517881 311.004" xmlns="http://www.w3.org/2000/svg" version="1.1">
  <metadata>
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-06-16T19:42:26.223657</dc:date>
+    <dc:date>2026-06-16T23:51:24.593785</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -21,271 +21,342 @@
  </defs>
  <g id="figure_1">
   <g id="patch_1">
-   <path d="M 0 261.108 
-L 453.740569 261.108 
-L 453.740569 0 
-L 0 0 
+   <path d="M 0 311.004
+L 467.517881 311.004
+L 467.517881 -0
+L 0 -0
 z
 " style="fill: #ffffff"/>
   </g>
   <g id="axes_1">
    <g id="patch_2">
-    <path d="M 25.12296 103.909536 
-L 396.61704 103.909536 
-Q 401.50512 103.909536 401.50512 100.94904 
-L 401.50512 45.686448 
-Q 401.50512 42.725952 396.61704 42.725952 
-L 25.12296 42.725952 
-Q 20.23488 42.725952 20.23488 45.686448 
-L 20.23488 100.94904 
-Q 20.23488 103.909536 25.12296 103.909536 
+    <path d="M 25.12296 106.56234
+L 396.61704 106.56234
+Q 401.50512 106.56234 401.50512 103.003092
+L 401.50512 50.504184
+Q 401.50512 46.944936 396.61704 46.944936
+L 25.12296 46.944936
+Q 20.23488 46.944936 20.23488 50.504184
+L 20.23488 103.003092
+Q 20.23488 106.56234 25.12296 106.56234
 z
-" clip-path="url(#p1c5e6ffbf5)" style="fill: #ffffff; stroke: #ddd7cb; stroke-width: 0.7; stroke-linejoin: miter"/>
+" clip-path="url(#pc12b2debba)" style="fill: #ffffff; stroke: #ddd7cb; stroke-width: 0.7; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
-    <path d="M 25.12296 103.909536 
-L 32.45508 103.909536 
-Q 37.34316 103.909536 37.34316 100.94904 
-L 37.34316 45.686448 
-Q 37.34316 42.725952 32.45508 42.725952 
-L 25.12296 42.725952 
-Q 20.23488 42.725952 20.23488 45.686448 
-L 20.23488 100.94904 
-Q 20.23488 103.909536 25.12296 103.909536 
+    <path d="M 25.12296 106.56234
+L 32.45508 106.56234
+Q 37.34316 106.56234 37.34316 103.003092
+L 37.34316 50.504184
+Q 37.34316 46.944936 32.45508 46.944936
+L 25.12296 46.944936
+Q 20.23488 46.944936 20.23488 50.504184
+L 20.23488 103.003092
+Q 20.23488 106.56234 25.12296 106.56234
 z
-" clip-path="url(#p1c5e6ffbf5)" style="fill: #2a9d8f"/>
+" clip-path="url(#pc12b2debba)" style="fill: #2a9d8f"/>
    </g>
    <g id="patch_4">
-    <path d="M 201.90852 97.495128 
-L 291.11598 97.495128 
-Q 297.63342 97.495128 297.63342 93.5478 
-L 297.63342 53.087688 
-Q 297.63342 49.14036 291.11598 49.14036 
-L 201.90852 49.14036 
-Q 195.39108 49.14036 195.39108 53.087688 
-L 195.39108 93.5478 
-Q 195.39108 97.495128 201.90852 97.495128 
+    <path d="M 201.90852 98.850636
+L 291.11598 98.850636
+Q 297.63342 98.850636 297.63342 94.104972
+L 297.63342 59.402304
+Q 297.63342 54.65664 291.11598 54.65664
+L 201.90852 54.65664
+Q 195.39108 54.65664 195.39108 59.402304
+L 195.39108 94.104972
+Q 195.39108 98.850636 201.90852 98.850636
 z
-" clip-path="url(#p1c5e6ffbf5)" style="fill: #eef3f1; stroke: #c9ddd9; stroke-width: 0.6; stroke-linejoin: miter"/>
+" clip-path="url(#pc12b2debba)" style="fill: #eef3f1; stroke: #c9ddd9; stroke-width: 0.6; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
-    <path d="M 301.70682 97.495128 
-L 390.91428 97.495128 
-Q 397.43172 97.495128 397.43172 93.5478 
-L 397.43172 53.087688 
-Q 397.43172 49.14036 390.91428 49.14036 
-L 301.70682 49.14036 
-Q 295.18938 49.14036 295.18938 53.087688 
-L 295.18938 93.5478 
-Q 295.18938 97.495128 301.70682 97.495128 
+    <path d="M 301.70682 98.850636
+L 390.91428 98.850636
+Q 397.43172 98.850636 397.43172 94.104972
+L 397.43172 59.402304
+Q 397.43172 54.65664 390.91428 54.65664
+L 301.70682 54.65664
+Q 295.18938 54.65664 295.18938 59.402304
+L 295.18938 94.104972
+Q 295.18938 98.850636 301.70682 98.850636
 z
-" clip-path="url(#p1c5e6ffbf5)" style="fill: #eef3f1; stroke: #c9ddd9; stroke-width: 0.6; stroke-linejoin: miter"/>
+" clip-path="url(#pc12b2debba)" style="fill: #eef3f1; stroke: #c9ddd9; stroke-width: 0.6; stroke-linejoin: miter"/>
    </g>
    <g id="patch_6">
-    <path d="M 25.12296 165.586536 
-L 396.61704 165.586536 
-Q 401.50512 165.586536 401.50512 162.62604 
-L 401.50512 107.363448 
-Q 401.50512 104.402952 396.61704 104.402952 
-L 25.12296 104.402952 
-Q 20.23488 104.402952 20.23488 107.363448 
-L 20.23488 162.62604 
-Q 20.23488 165.586536 25.12296 165.586536 
+    <path d="M 25.12296 166.179744
+L 396.61704 166.179744
+Q 401.50512 166.179744 401.50512 162.620496
+L 401.50512 110.121588
+Q 401.50512 106.56234 396.61704 106.56234
+L 25.12296 106.56234
+Q 20.23488 106.56234 20.23488 110.121588
+L 20.23488 162.620496
+Q 20.23488 166.179744 25.12296 166.179744
 z
-" clip-path="url(#p1c5e6ffbf5)" style="fill: #ffffff; stroke: #ddd7cb; stroke-width: 0.7; stroke-linejoin: miter"/>
+" clip-path="url(#pc12b2debba)" style="fill: #ffffff; stroke: #ddd7cb; stroke-width: 0.7; stroke-linejoin: miter"/>
    </g>
    <g id="patch_7">
-    <path d="M 25.12296 165.586536 
-L 32.45508 165.586536 
-Q 37.34316 165.586536 37.34316 162.62604 
-L 37.34316 107.363448 
-Q 37.34316 104.402952 32.45508 104.402952 
-L 25.12296 104.402952 
-Q 20.23488 104.402952 20.23488 107.363448 
-L 20.23488 162.62604 
-Q 20.23488 165.586536 25.12296 165.586536 
+    <path d="M 25.12296 166.179744
+L 32.45508 166.179744
+Q 37.34316 166.179744 37.34316 162.620496
+L 37.34316 110.121588
+Q 37.34316 106.56234 32.45508 106.56234
+L 25.12296 106.56234
+Q 20.23488 106.56234 20.23488 110.121588
+L 20.23488 162.620496
+Q 20.23488 166.179744 25.12296 166.179744
 z
-" clip-path="url(#p1c5e6ffbf5)" style="fill: #b89142"/>
+" clip-path="url(#pc12b2debba)" style="fill: #b89142"/>
    </g>
    <g id="patch_8">
-    <path d="M 201.90852 159.172128 
-L 291.11598 159.172128 
-Q 297.63342 159.172128 297.63342 155.2248 
-L 297.63342 114.764688 
-Q 297.63342 110.81736 291.11598 110.81736 
-L 201.90852 110.81736 
-Q 195.39108 110.81736 195.39108 114.764688 
-L 195.39108 155.2248 
-Q 195.39108 159.172128 201.90852 159.172128 
+    <path d="M 201.90852 158.46804
+L 291.11598 158.46804
+Q 297.63342 158.46804 297.63342 153.722376
+L 297.63342 119.019708
+Q 297.63342 114.274044 291.11598 114.274044
+L 201.90852 114.274044
+Q 195.39108 114.274044 195.39108 119.019708
+L 195.39108 153.722376
+Q 195.39108 158.46804 201.90852 158.46804
 z
-" clip-path="url(#p1c5e6ffbf5)" style="fill: #eef3f1; stroke: #c9ddd9; stroke-width: 0.6; stroke-linejoin: miter"/>
+" clip-path="url(#pc12b2debba)" style="fill: #eef3f1; stroke: #c9ddd9; stroke-width: 0.6; stroke-linejoin: miter"/>
    </g>
    <g id="patch_9">
-    <path d="M 301.70682 159.172128 
-L 390.91428 159.172128 
-Q 397.43172 159.172128 397.43172 155.2248 
-L 397.43172 114.764688 
-Q 397.43172 110.81736 390.91428 110.81736 
-L 301.70682 110.81736 
-Q 295.18938 110.81736 295.18938 114.764688 
-L 295.18938 155.2248 
-Q 295.18938 159.172128 301.70682 159.172128 
+    <path d="M 301.70682 158.46804
+L 390.91428 158.46804
+Q 397.43172 158.46804 397.43172 153.722376
+L 397.43172 119.019708
+Q 397.43172 114.274044 390.91428 114.274044
+L 301.70682 114.274044
+Q 295.18938 114.274044 295.18938 119.019708
+L 295.18938 153.722376
+Q 295.18938 158.46804 301.70682 158.46804
 z
-" clip-path="url(#p1c5e6ffbf5)" style="fill: #f5e9e4; stroke: #e7c8b9; stroke-width: 0.6; stroke-linejoin: miter"/>
+" clip-path="url(#pc12b2debba)" style="fill: #f5e9e4; stroke: #e7c8b9; stroke-width: 0.6; stroke-linejoin: miter"/>
    </g>
    <g id="patch_10">
-    <path d="M 25.12296 227.263536 
-L 396.61704 227.263536 
-Q 401.50512 227.263536 401.50512 224.30304 
-L 401.50512 169.040448 
-Q 401.50512 166.079952 396.61704 166.079952 
-L 25.12296 166.079952 
-Q 20.23488 166.079952 20.23488 169.040448 
-L 20.23488 224.30304 
-Q 20.23488 227.263536 25.12296 227.263536 
+    <path d="M 25.12296 225.797148
+L 396.61704 225.797148
+Q 401.50512 225.797148 401.50512 222.2379
+L 401.50512 169.738992
+Q 401.50512 166.179744 396.61704 166.179744
+L 25.12296 166.179744
+Q 20.23488 166.179744 20.23488 169.738992
+L 20.23488 222.2379
+Q 20.23488 225.797148 25.12296 225.797148
 z
-" clip-path="url(#p1c5e6ffbf5)" style="fill: #ffffff; stroke: #ddd7cb; stroke-width: 0.7; stroke-linejoin: miter"/>
+" clip-path="url(#pc12b2debba)" style="fill: #ffffff; stroke: #ddd7cb; stroke-width: 0.7; stroke-linejoin: miter"/>
    </g>
    <g id="patch_11">
-    <path d="M 25.12296 227.263536 
-L 32.45508 227.263536 
-Q 37.34316 227.263536 37.34316 224.30304 
-L 37.34316 169.040448 
-Q 37.34316 166.079952 32.45508 166.079952 
-L 25.12296 166.079952 
-Q 20.23488 166.079952 20.23488 169.040448 
-L 20.23488 224.30304 
-Q 20.23488 227.263536 25.12296 227.263536 
+    <path d="M 25.12296 225.797148
+L 32.45508 225.797148
+Q 37.34316 225.797148 37.34316 222.2379
+L 37.34316 169.738992
+Q 37.34316 166.179744 32.45508 166.179744
+L 25.12296 166.179744
+Q 20.23488 166.179744 20.23488 169.738992
+L 20.23488 222.2379
+Q 20.23488 225.797148 25.12296 225.797148
 z
-" clip-path="url(#p1c5e6ffbf5)" style="fill: #d14b4b"/>
+" clip-path="url(#pc12b2debba)" style="fill: #c97745"/>
    </g>
    <g id="patch_12">
-    <path d="M 201.90852 220.849128 
-L 291.11598 220.849128 
-Q 297.63342 220.849128 297.63342 216.9018 
-L 297.63342 176.441688 
-Q 297.63342 172.49436 291.11598 172.49436 
-L 201.90852 172.49436 
-Q 195.39108 172.49436 195.39108 176.441688 
-L 195.39108 216.9018 
-Q 195.39108 220.849128 201.90852 220.849128 
+    <path d="M 201.90852 218.085444
+L 291.11598 218.085444
+Q 297.63342 218.085444 297.63342 213.33978
+L 297.63342 178.637112
+Q 297.63342 173.891448 291.11598 173.891448
+L 201.90852 173.891448
+Q 195.39108 173.891448 195.39108 178.637112
+L 195.39108 213.33978
+Q 195.39108 218.085444 201.90852 218.085444
 z
-" clip-path="url(#p1c5e6ffbf5)" style="fill: #eef3f1; stroke: #c9ddd9; stroke-width: 0.6; stroke-linejoin: miter"/>
+" clip-path="url(#pc12b2debba)" style="fill: #eef3f1; stroke: #c9ddd9; stroke-width: 0.6; stroke-linejoin: miter"/>
    </g>
    <g id="patch_13">
-    <path d="M 301.70682 220.849128 
-L 390.91428 220.849128 
-Q 397.43172 220.849128 397.43172 216.9018 
-L 397.43172 176.441688 
-Q 397.43172 172.49436 390.91428 172.49436 
-L 301.70682 172.49436 
-Q 295.18938 172.49436 295.18938 176.441688 
-L 295.18938 216.9018 
-Q 295.18938 220.849128 301.70682 220.849128 
+    <path d="M 301.70682 218.085444
+L 390.91428 218.085444
+Q 397.43172 218.085444 397.43172 213.33978
+L 397.43172 178.637112
+Q 397.43172 173.891448 390.91428 173.891448
+L 301.70682 173.891448
+Q 295.18938 173.891448 295.18938 178.637112
+L 295.18938 213.33978
+Q 295.18938 218.085444 301.70682 218.085444
 z
-" clip-path="url(#p1c5e6ffbf5)" style="fill: #f5e9e4; stroke: #e7c8b9; stroke-width: 0.6; stroke-linejoin: miter"/>
+" clip-path="url(#pc12b2debba)" style="fill: #f5e9e4; stroke: #e7c8b9; stroke-width: 0.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 25.12296 285.414552
+L 396.61704 285.414552
+Q 401.50512 285.414552 401.50512 281.855304
+L 401.50512 229.356396
+Q 401.50512 225.797148 396.61704 225.797148
+L 25.12296 225.797148
+Q 20.23488 225.797148 20.23488 229.356396
+L 20.23488 281.855304
+Q 20.23488 285.414552 25.12296 285.414552
+z
+" clip-path="url(#pc12b2debba)" style="fill: #ffffff; stroke: #ddd7cb; stroke-width: 0.7; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_15">
+    <path d="M 25.12296 285.414552
+L 32.45508 285.414552
+Q 37.34316 285.414552 37.34316 281.855304
+L 37.34316 229.356396
+Q 37.34316 225.797148 32.45508 225.797148
+L 25.12296 225.797148
+Q 20.23488 225.797148 20.23488 229.356396
+L 20.23488 281.855304
+Q 20.23488 285.414552 25.12296 285.414552
+z
+" clip-path="url(#pc12b2debba)" style="fill: #7267c8"/>
+   </g>
+   <g id="patch_16">
+    <path d="M 201.90852 277.702848
+L 291.11598 277.702848
+Q 297.63342 277.702848 297.63342 272.957184
+L 297.63342 238.254516
+Q 297.63342 233.508852 291.11598 233.508852
+L 201.90852 233.508852
+Q 195.39108 233.508852 195.39108 238.254516
+L 195.39108 272.957184
+Q 195.39108 277.702848 201.90852 277.702848
+z
+" clip-path="url(#pc12b2debba)" style="fill: #eef3f1; stroke: #c9ddd9; stroke-width: 0.6; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_17">
+    <path d="M 301.70682 277.702848
+L 390.91428 277.702848
+Q 397.43172 277.702848 397.43172 272.957184
+L 397.43172 238.254516
+Q 397.43172 233.508852 390.91428 233.508852
+L 301.70682 233.508852
+Q 295.18938 233.508852 295.18938 238.254516
+L 295.18938 272.957184
+Q 295.18938 277.702848 301.70682 277.702848
+z
+" clip-path="url(#pc12b2debba)" style="fill: #f5e9e4; stroke: #e7c8b9; stroke-width: 0.6; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
-    <text style="font-weight: 700; font-size: 9.8px; font-family: 'DejaVu Serif', serif; text-anchor: start; fill: #15191f" x="23.4936" y="20.196252" transform="rotate(-0 23.4936 20.196252)">Program decisions integrate several assay readouts into one go/no-go</text>
+    <text style="font-weight: 700; font-size: 9.8px; font-family: 'DejaVu Serif', serif; text-anchor: start; fill: #15191f" x="23.4936" y="22.291884" transform="rotate(-0 23.4936 22.291884)">Program decisions combine assay readouts into one advance/hold call</text>
    </g>
    <g id="text_2">
-    <text style="font-size: 6.3px; font-family: 'DejaVu Serif', serif; text-anchor: start; fill: #5f6872" x="23.4936" y="30.603921" transform="rotate(-0 23.4936 30.603921)">Across 7 such advancement evaluations (230 runs) models pass only 35%; the same call can fail by advancing too much or too little.</text>
+    <text style="font-size: 6.3px; font-family: 'DejaVu Serif', serif; text-anchor: start; fill: #5f6872" x="23.4936" y="34.994769" transform="rotate(-0 23.4936 34.994769)">Across 7 advancement evaluations (230 runs), models pass only 35%; errors either advance weak candidates or discard supported ones.</text>
    </g>
    <g id="text_3">
-    <text style="font-weight: 700; font-size: 5px; font-family: 'DejaVu Sans Mono', monospace; fill: #ffffff" transform="translate(30.168708 83.853291) rotate(-90)">CORRECT</text>
+    <text style="font-weight: 700; font-size: 5px; font-family: 'DejaVu Sans Mono', monospace; fill: #ffffff" transform="translate(30.168708 87.289185) rotate(-90)">CORRECT</text>
    </g>
    <g id="text_4">
-    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Serif', serif; text-anchor: start; fill: #15191f" x="41.8239" y="55.759374" transform="rotate(-0 41.8239 55.759374)">Advance one compound, or none</text>
+    <text style="font-weight: 700; font-size: 6.6px; font-family: 'DejaVu Serif', serif; text-anchor: start; fill: #15191f" x="41.8239" y="60.286758" transform="rotate(-0 41.8239 60.286758)">Clean go/no-go</text>
    </g>
    <g id="text_5">
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(41.8239 64.092956)">Colorectal-cancer organoid program. Inputs: primary</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(41.8239 70.046456)">screen, mechanism image, tox counterscreen, DMPK</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(41.8239 75.999956)">exposure. Advance a compound only if the desired</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(41.8239 81.953456)">mechanism, an adequate safety margin, and covering</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(41.8239 87.906956)">exposure all hold.</text>
+    <text style="font-size: 4.8px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(41.8239 75.121947)">Organoid program with primary screen, mechanism</text>
+    <text style="font-size: 4.8px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(41.8239 80.565147)">image, tox counterscreen, and DMPK exposure for</text>
+    <text style="font-size: 4.8px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(41.8239 86.008347)">eight blinded compounds.</text>
    </g>
    <g id="text_6">
-    <text style="font-weight: 700; font-size: 4.75px; font-family: 'DejaVu Sans Mono', monospace; text-anchor: start; fill: #19736a" x="204.35256" y="58.099011" transform="rotate(-0 204.35256 58.099011)">DATA-SUPPORTED CALL</text>
+    <text style="font-weight: 700; font-size: 4.45px; font-family: 'DejaVu Sans Mono', monospace; text-anchor: start; fill: #19736a" x="204.35256" y="62.706454" transform="rotate(-0 204.35256 62.706454)">DATA-SUPPORTED CALL</text>
    </g>
    <g id="text_7">
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 66.629868)">Advance CMP-05, the one</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 72.50872)">compound that satisfies all</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 78.387571)">three criteria together.</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 70.132893)">Advance the one compound with</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 75.451854)">the desired cytostatic</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 80.838354)">mechanism, safety margin, and</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 86.224854)">exposure coverage.</text>
    </g>
    <g id="text_8">
-    <text style="font-weight: 700; font-size: 4.75px; font-family: 'DejaVu Sans Mono', monospace; text-anchor: start; fill: #19736a" x="304.15086" y="58.099011" transform="rotate(-0 304.15086 58.099011)">MOSTLY CORRECT  (82% PASS)</text>
+    <text style="font-weight: 700; font-size: 4.45px; font-family: 'DejaVu Sans Mono', monospace; text-anchor: start; fill: #19736a" x="304.15086" y="62.706454" transform="rotate(-0 304.15086 62.706454)">MOSTLY CORRECT  (82% PASS)</text>
    </g>
    <g id="text_9">
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 63.615794)">The tempting shortcut, ranking</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 69.569294)">by potency or by total</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 75.522794)">exposure, advances the wrong</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 81.476294)">compound.</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 72.826143)">Potency-only or exposure-only</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 78.212643)">ranking advances the wrong</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 83.599143)">compound.</text>
    </g>
    <g id="text_10">
-    <text style="font-weight: 700; font-size: 5px; font-family: 'DejaVu Sans Mono', monospace; fill: #ffffff" transform="translate(30.168708 157.570916) rotate(-90)">WRONG SYNTHESIS</text>
+    <text style="font-weight: 700; font-size: 5px; font-family: 'DejaVu Sans Mono', monospace; fill: #ffffff" transform="translate(30.168708 158.947214) rotate(-90)">WRONG SYNTHESIS</text>
    </g>
    <g id="text_11">
-    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Serif', serif; text-anchor: start; fill: #15191f" x="41.8239" y="117.386609" transform="rotate(-0 41.8239 117.386609)">Pick the next decision-gate models</text>
+    <text style="font-weight: 700; font-size: 6.6px; font-family: 'DejaVu Serif', serif; text-anchor: start; fill: #15191f" x="41.8239" y="119.904162" transform="rotate(-0 41.8239 119.904162)">Wrong synthesis</text>
    </g>
    <g id="text_12">
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(41.8239 125.769956)">NSCLC mTOR + WEE1 combination. The gate set must</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(41.8239 131.723456)">span models with confirmed multi-endpoint support,</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(41.8239 137.602307)">the strongest responder still lacking confirmation,</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(41.8239 143.555807)">and the strongest responder outside the primary</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(41.8239 149.509307)">genotype.</text>
+    <text style="font-size: 4.8px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(41.8239 137.460951)">Decision-gate set must combine experimental models</text>
+    <text style="font-size: 4.8px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(41.8239 142.904151)">with convergent support across several endpoints.</text>
    </g>
    <g id="text_13">
-    <text style="font-weight: 700; font-size: 4.75px; font-family: 'DejaVu Sans Mono', monospace; text-anchor: start; fill: #19736a" x="204.35256" y="119.776011" transform="rotate(-0 204.35256 119.776011)">DATA-SUPPORTED CALL</text>
+    <text style="font-weight: 700; font-size: 4.45px; font-family: 'DejaVu Sans Mono', monospace; text-anchor: start; fill: #19736a" x="204.35256" y="122.323858" transform="rotate(-0 204.35256 122.323858)">DATA-SUPPORTED CALL</text>
    </g>
    <g id="text_14">
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 125.330118)">Build the gate on convergent</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 131.283618)">multi-endpoint support (e.g.</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 137.237118)">PDX239 for the unconfirmed</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 143.11597)">slot).</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 132.477317)">Select the experimental models</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 137.796278)">supported by multi-endpoint</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 143.182778)">evidence.</text>
    </g>
    <g id="text_15">
-    <text style="font-weight: 700; font-size: 4.75px; font-family: 'DejaVu Sans Mono', monospace; text-anchor: start; fill: #a95f3d" x="304.15086" y="119.776011" transform="rotate(-0 304.15086 119.776011)">COMMON FAILURE  (27% PASS)</text>
+    <text style="font-weight: 700; font-size: 4.45px; font-family: 'DejaVu Sans Mono', monospace; text-anchor: start; fill: #a95f3d" x="304.15086" y="122.323858" transform="rotate(-0 304.15086 122.323858)">COMMON FAILURE  (27% PASS)</text>
    </g>
    <g id="text_16">
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 125.330118)">Rank on a single synergy</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 131.283618)">metric and nominate an</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 137.16247)">artifact model (H2009), so the</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 143.041321)">wrong models gate the program.</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 132.477317)">Overfit on one endpoint and</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 137.796278)">nominate the wrong models for</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 143.182778)">the next experiments.</text>
    </g>
    <g id="text_17">
-    <text style="font-weight: 700; font-size: 5px; font-family: 'DejaVu Sans Mono', monospace; fill: #ffffff" transform="translate(30.168708 208.712369) rotate(-90)">FALSE-GO</text>
+    <text style="font-weight: 700; font-size: 5px; font-family: 'DejaVu Sans Mono', monospace; fill: #ffffff" transform="translate(30.168708 208.029071) rotate(-90)">FALSE-GO</text>
    </g>
    <g id="text_18">
-    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Serif', serif; text-anchor: start; fill: #15191f" x="41.8239" y="179.063609" transform="rotate(-0 41.8239 179.063609)">Advance only if safe and active</text>
+    <text style="font-weight: 700; font-size: 6.6px; font-family: 'DejaVu Serif', serif; text-anchor: start; fill: #15191f" x="41.8239" y="179.521566" transform="rotate(-0 41.8239 179.521566)">False-go</text>
    </g>
    <g id="text_19">
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(41.8239 193.363132)">Blinded intestinal multiplex-IF package. A candidate</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(41.8239 199.316632)">may advance only with paired evidence of activity</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(41.8239 205.270132)">and healthy-tissue sparing.</text>
+    <text style="font-size: 4.8px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(41.8239 197.078355)">Safety advancement task; a candidate may advance</text>
+    <text style="font-size: 4.8px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(41.8239 202.521555)">only with activity and healthy-tissue sparing.</text>
    </g>
    <g id="text_20">
-    <text style="font-weight: 700; font-size: 4.75px; font-family: 'DejaVu Sans Mono', monospace; text-anchor: start; fill: #19736a" x="204.35256" y="181.453011" transform="rotate(-0 204.35256 181.453011)">DATA-SUPPORTED CALL</text>
+    <text style="font-weight: 700; font-size: 4.45px; font-family: 'DejaVu Sans Mono', monospace; text-anchor: start; fill: #19736a" x="204.35256" y="181.941262" transform="rotate(-0 204.35256 181.941262)">DATA-SUPPORTED CALL</text>
    </g>
    <g id="text_21">
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 187.007118)">No candidate advances; the</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 192.88597)">paired activity-and-safety</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 198.83947)">evidence fails for every</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 204.79297)">candidate.</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 189.401471)">No candidate advances; the</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 194.720432)">paired activity-and-safety</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 200.106932)">evidence fails for every</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 205.493432)">candidate.</text>
    </g>
    <g id="text_22">
-    <text style="font-weight: 700; font-size: 4.75px; font-family: 'DejaVu Sans Mono', monospace; text-anchor: start; fill: #a95f3d" x="304.15086" y="181.453011" transform="rotate(-0 304.15086 181.453011)">COMMON FAILURE  (36% PASS)</text>
+    <text style="font-weight: 700; font-size: 4.45px; font-family: 'DejaVu Sans Mono', monospace; text-anchor: start; fill: #a95f3d" x="304.15086" y="181.941262" transform="rotate(-0 304.15086 181.941262)">COMMON FAILURE  (36% PASS)</text>
    </g>
    <g id="text_23">
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 186.969794)">Advance on activity alone or a</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 192.923294)">relative tumour-vs-healthy</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 198.876794)">index, pushing an unsafe</text>
-    <text style="font-size: 5.25px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 204.830294)">candidate forward.</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 189.367701)">Advance on activity alone or a</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 194.754201)">relative tumor-vs-healthy</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 200.140701)">index, pushing an unsafe</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 205.527201)">candidate forward.</text>
+   </g>
+   <g id="text_24">
+    <text style="font-weight: 700; font-size: 5px; font-family: 'DejaVu Sans Mono', monospace; fill: #ffffff" transform="translate(30.168708 272.161709) rotate(-90)">FALSE NO-GO</text>
+   </g>
+   <g id="text_25">
+    <text style="font-weight: 700; font-size: 6.6px; font-family: 'DejaVu Serif', serif; text-anchor: start; fill: #15191f" x="41.8239" y="239.13897" transform="rotate(-0 41.8239 239.13897)">False no-go</text>
+   </g>
+   <g id="text_26">
+    <text style="font-size: 4.8px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(41.8239 256.729884)">Long-term combination follow-up; colony-stain</text>
+    <text style="font-size: 4.8px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(41.8239 262.173084)">reduction must be read with short-term response.</text>
+   </g>
+   <g id="text_27">
+    <text style="font-weight: 700; font-size: 4.45px; font-family: 'DejaVu Sans Mono', monospace; text-anchor: start; fill: #19736a" x="204.35256" y="241.558666" transform="rotate(-0 204.35256 241.558666)">DATA-SUPPORTED CALL</text>
+   </g>
+   <g id="text_28">
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 249.052644)">Keep the model where the</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 254.371605)">combination remains supported</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 259.690566)">by both short- and long-term</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(204.35256 265.077066)">evidence.</text>
+   </g>
+   <g id="text_29">
+    <text style="font-weight: 700; font-size: 4.45px; font-family: 'DejaVu Sans Mono', monospace; text-anchor: start; fill: #a95f3d" x="304.15086" y="241.558666" transform="rotate(-0 304.15086 241.558666)">COMMON FAILURE  (48% PASS)</text>
+   </g>
+   <g id="text_30">
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 251.712125)">Treat a strong colony-stain</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 257.098625)">reduction as a reason to drop</text>
+    <text style="font-size: 4.75px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(304.15086 262.417586)">a still-supported model.</text>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p1c5e6ffbf5">
-   <rect x="7.2" y="7.2" width="407.34" height="246.708"/>
+  <clipPath id="pc12b2debba">
+   <rect x="7.2" y="7.2" width="407.34" height="296.604"/>
   </clipPath>
  </defs>
 </svg>
