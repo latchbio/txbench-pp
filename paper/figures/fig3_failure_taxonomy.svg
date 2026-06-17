@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="468.867788pt" height="255.564pt" viewBox="0 0 468.867788 255.564" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-06-16T19:42:25.680669</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 255.564 
+L 468.867788 255.564 
+L 468.867788 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 35.72496 115.241472 
+L 185.58144 115.241472 
+Q 195.22368 115.241472 195.22368 109.453536 
+L 195.22368 58.085604 
+Q 195.22368 52.297668 185.58144 52.297668 
+L 35.72496 52.297668 
+Q 26.08272 52.297668 26.08272 58.085604 
+L 26.08272 109.453536 
+Q 26.08272 115.241472 35.72496 115.241472 
+z
+" clip-path="url(#p7670eec591)" style="fill: #fbfaf6; stroke: #ddd7cb; stroke-width: 0.7; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 29.2968 60.25608 
+L 192.0096 60.25608 
+L 192.0096 54.22698 
+L 29.2968 54.22698 
+z
+" clip-path="url(#p7670eec591)" style="fill: #a95f3d"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 222.54336 115.241472 
+L 372.39984 115.241472 
+Q 382.04208 115.241472 382.04208 109.453536 
+L 382.04208 58.085604 
+Q 382.04208 52.297668 372.39984 52.297668 
+L 222.54336 52.297668 
+Q 212.90112 52.297668 212.90112 58.085604 
+L 212.90112 109.453536 
+Q 212.90112 115.241472 222.54336 115.241472 
+z
+" clip-path="url(#p7670eec591)" style="fill: #fbfaf6; stroke: #ddd7cb; stroke-width: 0.7; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 216.1152 60.25608 
+L 378.828 60.25608 
+L 378.828 54.22698 
+L 216.1152 54.22698 
+z
+" clip-path="url(#p7670eec591)" style="fill: #2a9d8f"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 35.72496 198.443052 
+L 185.58144 198.443052 
+Q 195.22368 198.443052 195.22368 192.655116 
+L 195.22368 141.287184 
+Q 195.22368 135.499248 185.58144 135.499248 
+L 35.72496 135.499248 
+Q 26.08272 135.499248 26.08272 141.287184 
+L 26.08272 192.655116 
+Q 26.08272 198.443052 35.72496 198.443052 
+z
+" clip-path="url(#p7670eec591)" style="fill: #fbfaf6; stroke: #ddd7cb; stroke-width: 0.7; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 29.2968 143.45766 
+L 192.0096 143.45766 
+L 192.0096 137.42856 
+L 29.2968 137.42856 
+z
+" clip-path="url(#p7670eec591)" style="fill: #7267c8"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 222.54336 198.443052 
+L 372.39984 198.443052 
+Q 382.04208 198.443052 382.04208 192.655116 
+L 382.04208 141.287184 
+Q 382.04208 135.499248 372.39984 135.499248 
+L 222.54336 135.499248 
+Q 212.90112 135.499248 212.90112 141.287184 
+L 212.90112 192.655116 
+Q 212.90112 198.443052 222.54336 198.443052 
+z
+" clip-path="url(#p7670eec591)" style="fill: #fbfaf6; stroke: #ddd7cb; stroke-width: 0.7; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 216.1152 143.45766 
+L 378.828 143.45766 
+L 378.828 137.42856 
+L 216.1152 137.42856 
+z
+" clip-path="url(#p7670eec591)" style="fill: #b89142"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 10.8px; font-family: 'DejaVu Serif', serif; text-anchor: start; fill: #15191f" x="29.2968" y="20.955724" transform="rotate(-0 29.2968 20.955724)">Failure modes should be read as program-relevant judgment gaps</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 7px; font-family: 'DejaVu Serif', serif; text-anchor: start; fill: #5f6872" x="31.3056" y="34.404017" transform="rotate(-0 31.3056 34.404017)">These categories should be replaced or quantified after trajectory review, but they define the expected diagnostic frame.</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 8.4px; font-family: 'DejaVu Serif', serif; text-anchor: start; fill: #15191f" x="38.13552" y="72.702843" transform="rotate(-0 38.13552 72.702843)">Literature prior over evidence</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 6.65px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(38.13552 86.007097)">Importing the known mechanism of a compound</text>
+    <text style="font-size: 6.65px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(38.13552 93.548197)">instead of reading the supplied assay footprint.</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 6.1px; font-family: 'DejaVu Sans Mono', monospace; text-anchor: start; fill: #5f6872" x="38.13552" y="106.795803" transform="rotate(-0 38.13552 106.795803)">decryptM, decryptE</text>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 8.4px; font-family: 'DejaVu Serif', serif; text-anchor: start; fill: #15191f" x="224.95392" y="72.643124" transform="rotate(-0 224.95392 72.643124)">Assay-context calibration failure</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 6.65px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(224.95392 86.054374)">Using the right workflow with the wrong tolerance,</text>
+    <text style="font-size: 6.65px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(224.95392 93.595474)">prompt context, species, or source convention.</text>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 6.1px; font-family: 'DejaVu Sans Mono', monospace; text-anchor: start; fill: #5f6872" x="224.95392" y="106.795803" transform="rotate(-0 224.95392 106.795803)">DM, DE, PK</text>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 8.4px; font-family: 'DejaVu Serif', serif; text-anchor: start; fill: #15191f" x="38.13552" y="155.844704" transform="rotate(-0 38.13552 155.844704)">Multi-property integration gap</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 6.65px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(38.13552 169.208677)">Optimizing one attractive value while missing the</text>
+    <text style="font-size: 6.65px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(38.13552 176.749777)">property that changes the advancement decision.</text>
+   </g>
+   <g id="text_11">
+    <text style="font-weight: 700; font-size: 6.1px; font-family: 'DejaVu Sans Mono', monospace; text-anchor: start; fill: #5f6872" x="38.13552" y="189.997383" transform="rotate(-0 38.13552 189.997383)">PK, ADMET, MPO</text>
+   </g>
+   <g id="text_12">
+    <text style="font-weight: 700; font-size: 8.4px; font-family: 'DejaVu Serif', serif; text-anchor: start; fill: #15191f" x="224.95392" y="155.844704" transform="rotate(-0 224.95392 155.844704)">Rigid threshold shortcut</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 6.65px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(224.95392 169.208677)">Treating a rule-of-thumb cutoff as dispositive</text>
+    <text style="font-size: 6.65px; font-family: 'DejaVu Serif', serif; fill: #15191f" transform="translate(224.95392 176.749777)">when margin or protocol context changes the call.</text>
+   </g>
+   <g id="text_14">
+    <text style="font-weight: 700; font-size: 6.1px; font-family: 'DejaVu Sans Mono', monospace; text-anchor: start; fill: #5f6872" x="224.95392" y="189.997383" transform="rotate(-0 224.95392 189.997383)">PK / ADMET, TG</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p7670eec591">
+   <rect x="7.2" y="7.2" width="401.76" height="241.164"/>
+  </clipPath>
+ </defs>
+</svg>

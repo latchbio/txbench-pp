@@ -1,0 +1,11 @@
+paper/*.aux
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.log
+paper/*.out
+paper/*.synctex.gz
+paper/*.toc
+paper/*.swp
+paper/.main.tex.swp
+__pycache__/
+.DS_Store
