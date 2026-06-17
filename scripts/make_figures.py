@@ -503,32 +503,32 @@ def fig_inventory() -> None:
         label(ax, x + cell_w - 0.012, y + 0.020, count_text, size=4.6, mono=not reserved, bold=True, ha="right", color=MUTED if reserved else TEXT)
 
     # Panel B: evidence the agent must interpret.
-    rounded_box(ax, (0.045, 0.105), 0.440, 0.305, fc=WHITE, ec=LINE, lw=0.55, radius=0.014)
-    label(ax, 0.063, 0.381, "B", size=7.0, color=ACCENT, bold=True, mono=True)
-    label(ax, 0.086, 0.381, "Assay type", size=7.0, color=TEXT, bold=True)
+    rounded_box(ax, (0.045, 0.085), 0.440, 0.330, fc=WHITE, ec=LINE, lw=0.55, radius=0.014)
+    label(ax, 0.063, 0.387, "B", size=7.0, color=ACCENT, bold=True, mono=True)
+    label(ax, 0.086, 0.387, "Assay type", size=7.0, color=TEXT, bold=True)
     for i, (txt, n, c) in enumerate(assays):
-        y = 0.316 - i * 0.026
-        label(ax, 0.065, y, txt, size=4.7, color=TEXT)
-        ax.add_patch(Rectangle((0.280, y - 0.006), 0.105, 0.011, facecolor="#ECE7DF", edgecolor="none"))
-        ax.add_patch(Rectangle((0.280, y - 0.006), 0.105 * n / max_assay, 0.011, facecolor=c, edgecolor="none"))
-        label(ax, 0.407, y, f"{n}", size=4.7, mono=True, bold=True, ha="right")
+        y = 0.328 - i * 0.029
+        label(ax, 0.065, y, txt, size=5.0, color=TEXT)
+        ax.add_patch(Rectangle((0.292, y - 0.0065), 0.102, 0.012, facecolor="#ECE7DF", edgecolor="none"))
+        ax.add_patch(Rectangle((0.292, y - 0.0065), 0.102 * n / max_assay, 0.012, facecolor=c, edgecolor="none"))
+        label(ax, 0.417, y, f"{n}", size=5.0, mono=True, bold=True, ha="right")
 
     # Panel C: operation or judgment being graded.
-    rounded_box(ax, (0.515, 0.105), 0.440, 0.305, fc=WHITE, ec=LINE, lw=0.55, radius=0.014)
-    label(ax, 0.533, 0.381, "C", size=7.0, color=ACCENT, bold=True, mono=True)
-    label(ax, 0.556, 0.381, "Task structure", size=7.0, color=TEXT, bold=True)
+    rounded_box(ax, (0.515, 0.085), 0.440, 0.330, fc=WHITE, ec=LINE, lw=0.55, radius=0.014)
+    label(ax, 0.533, 0.387, "C", size=7.0, color=ACCENT, bold=True, mono=True)
+    label(ax, 0.556, 0.387, "Task structure", size=7.0, color=TEXT, bold=True)
     for i, (txt, n, c) in enumerate(tasks):
-        y = 0.319 - i * 0.0138
-        label(ax, 0.535, y, txt, size=4.15, color=TEXT if i < len(tasks) - 1 else MUTED)
-        ax.add_patch(Rectangle((0.700, y - 0.004), 0.112, 0.008, facecolor="#ECE7DF", edgecolor="none"))
-        ax.add_patch(Rectangle((0.700, y - 0.004), 0.112 * n / max_task, 0.008, facecolor=c, edgecolor="none"))
-        label(ax, 0.832, y, f"{n}", size=4.15, mono=True, bold=True, ha="right", color=TEXT if i < len(tasks) - 1 else MUTED)
+        y = 0.336 - i * 0.0162
+        label(ax, 0.535, y, txt, size=4.45, color=TEXT if i < len(tasks) - 1 else MUTED)
+        ax.add_patch(Rectangle((0.700, y - 0.0045), 0.116, 0.009, facecolor="#ECE7DF", edgecolor="none"))
+        ax.add_patch(Rectangle((0.700, y - 0.0045), 0.116 * n / max_task, 0.009, facecolor=c, edgecolor="none"))
+        label(ax, 0.836, y, f"{n}", size=4.45, mono=True, bold=True, ha="right", color=TEXT if i < len(tasks) - 1 else MUTED)
 
-    label(ax, 0.535, 0.080, "Task counts show categories with >=4 evaluations plus the smaller-category tail.", size=5.2, color=MUTED)
+    label(ax, 0.535, 0.060, "Task counts show categories with >=4 evaluations plus the smaller-category tail.", size=5.2, color=MUTED)
     label(
         ax,
         0.05,
-        0.042,
+        0.035,
         "* reserved for future benchmarking work",
         size=5.8,
         color=MUTED,
@@ -667,23 +667,23 @@ def fig_program_decisions() -> None:
         },
     ]
 
-    fig, ax = plt.subplots(figsize=(7.3, 5.15))
+    fig, ax = plt.subplots(figsize=(7.3, 4.45))
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.axis("off")
-    label(ax, 0.04, 0.965, "Program decisions integrate several assay readouts into one go/no-go", size=10.2, bold=True)
+    label(ax, 0.04, 0.958, "Program decisions integrate several assay readouts into one go/no-go", size=9.8, bold=True)
     label(
         ax,
         0.04,
-        0.922,
+        0.912,
         "Across 7 such advancement evaluations (230 runs) models pass only 35%; the same call can fail by advancing too much or too little.",
-        size=6.7,
+        size=6.3,
         color=MUTED,
     )
 
-    top0 = 0.862
-    row_h = 0.262
-    gap = 0.022
+    top0 = 0.848
+    row_h = 0.232
+    gap = 0.018
     for i, c in enumerate(cards):
         top = top0 - i * (row_h + gap)
         bot = top - row_h
@@ -693,18 +693,18 @@ def fig_program_decisions() -> None:
         ax.text(0.053, bot + row_h / 2, c["tag"], fontsize=5.0, color=WHITE,
                 fontproperties=MONO_BOLD, ha="center", va="center", rotation=90)
         # column A: context
-        label(ax, 0.085, top - 0.040, c["head"], size=7.2, bold=True)
-        label(ax, 0.085, top - 0.135, wrap(c["body"], 52), size=5.5, color=TEXT)
+        label(ax, 0.085, top - 0.037, c["head"], size=7.0, bold=True)
+        label(ax, 0.085, top - 0.121, wrap(c["body"], 52), size=5.25, color=TEXT)
         # column B: supported call
         gx, gw = 0.470, 0.235
-        rounded_box(ax, (gx, bot + 0.030), gw, row_h - 0.060, fc="#EEF3F1", ec="#C9DDD9", lw=0.6, radius=0.016)
-        label(ax, gx + 0.014, top - 0.052, "DATA-SUPPORTED CALL", size=4.9, bold=True, mono=True, color=TEAL_DARK)
-        label(ax, gx + 0.014, top - 0.115, wrap(c["good"], 30), size=5.5, color=TEXT)
+        rounded_box(ax, (gx, bot + 0.026), gw, row_h - 0.052, fc="#EEF3F1", ec="#C9DDD9", lw=0.6, radius=0.016)
+        label(ax, gx + 0.014, top - 0.049, "DATA-SUPPORTED CALL", size=4.75, bold=True, mono=True, color=TEAL_DARK)
+        label(ax, gx + 0.014, top - 0.107, wrap(c["good"], 30), size=5.25, color=TEXT)
         # column C: common failure + consequence
         bx, bw = 0.715, 0.235
-        rounded_box(ax, (bx, bot + 0.030), bw, row_h - 0.060, fc=c["bad_fc"], ec=c["bad_ec"], lw=0.6, radius=0.016)
-        label(ax, bx + 0.014, top - 0.052, c["bad_head"].upper(), size=4.9, bold=True, mono=True, color=c["bad_color"])
-        label(ax, bx + 0.014, top - 0.115, wrap(c["bad"], 30), size=5.5, color=TEXT)
+        rounded_box(ax, (bx, bot + 0.026), bw, row_h - 0.052, fc=c["bad_fc"], ec=c["bad_ec"], lw=0.6, radius=0.016)
+        label(ax, bx + 0.014, top - 0.049, c["bad_head"].upper(), size=4.75, bold=True, mono=True, color=c["bad_color"])
+        label(ax, bx + 0.014, top - 0.107, wrap(c["bad"], 30), size=5.25, color=TEXT)
 
     save(fig, "fig_program_decisions")
 
