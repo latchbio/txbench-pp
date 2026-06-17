@@ -514,17 +514,13 @@ The size of this difference is comparable to improvements in model generations
 within families. Moving from Claude Opus 4.6 to Claude Opus 4.7 improved Pi
 performance by 4.6 points, similar to the harness effect. The Pi advantage was
 also similar on image-based and non-image tasks, so it is not explained only by
-differences in image reasoning. Claude Code rendered figures to the model in
-100\% of image-bearing tasks, compared with 84\% for Pi; OpenAI Codex, which
-lacks vision capabilities, never rendered figures.
+differences in image reasoning.
 
-The remaining differences point to implementation details. Pi's lean,
-three-tool loop failed on 0.6\% of runs, compared with 1.8\% for Claude Code,
-and reached answers in fewer steps. OpenAI Codex was also penalized on
-figure-dependent tasks because it did not render figures. These effects are
-small in absolute terms and have wide confidence intervals, but they show that
-reported scores are properties of the model--harness configuration rather than
-the model alone.
+The remaining differences point to implementation details. Pi's minimal tool loop
+failed on 0.6\% of runs, compared with 1.8\% for Claude Code, and reached
+answers in fewer steps. These effects are small in absolute terms and have wide 
+confidence intervals, but they show that reported scores are properties of the model--harness 
+configuration rather than the model alone.
 
 \EndBody
 
