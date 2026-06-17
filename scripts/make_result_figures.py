@@ -186,6 +186,19 @@ def task_label(task: str) -> str:
     return labels.get(task, task.replace("_", " ").title())
 
 
+def stage_axis_label(stage: str, n: int) -> str:
+    labels = {
+        "S2_screening_hit_confirmation": "S2\nScreen/QC",
+        "S3_drug_response_pharmacogenomics": "S3\nDrug resp.",
+        "S5_causal_target_validation": "S5\nTarget val.",
+        "S6_moa_pharmacodynamics": "S6\nMoA / PD",
+        "S7_compound_target_engagement": "S7\nEngage.",
+        "S8_developability_safety": "S8\nSafety / PK",
+        "S9_translational_efficacy": "S9\nTranslational",
+    }
+    return f"{labels.get(stage, stage)}\nn={n}"
+
+
 def stage_label(stage: str, *, short: bool = False) -> str:
     labels = {
         "S2_screening_hit_confirmation": ("S2", "Screening / QC"),
@@ -397,46 +410,71 @@ def task_type_model_means(pi: pd.DataFrame) -> pd.Series:
     )
 
 
-def plot_task_type_bar() -> None:
-    pi, counts, order, _ = task_summary()
-    summary = task_type_model_means(pi).reindex(order)
-    n = counts.loc[order, "n"].astype(int)
+def plot_task_type_by_model() -> None:
+    pi, counts, order, models = task_summary()
+    mat = (
+        pi.groupby(["task", "model_name"])["passed"]
+        .mean()
+        .mul(100)
+        .unstack("model_name")
+        .reindex(index=order, columns=models)
+    )
 
-    fig, ax = plt.subplots(figsize=(8.2, 4.15))
-    y = np.arange(len(order))
-    colors = []
-    for task in order:
-        if task in DETERMINATE_TASKS:
-            colors.append(TEAL)
-        elif task in SELECTION_TASKS:
-            colors.append(ACCENT_LIGHT)
-        else:
-            colors.append(GRAY)
+    fig, ax = plt.subplots(figsize=(9.25, 4.85))
+    xx, yy = np.meshgrid(np.arange(len(models)), np.arange(len(order)))
+    vals = mat.values.astype(float)
+    sc = ax.scatter(
+        xx.ravel(),
+        yy.ravel(),
+        s=22 + vals.ravel() * 1.05,
+        c=vals.ravel(),
+        cmap=HEATMAP,
+        vmin=0,
+        vmax=100,
+        edgecolor="white",
+        linewidth=0.45,
+        zorder=3,
+    )
 
-    ax.barh(y, summary.values, color=colors, edgecolor="#686056", linewidth=0.5, height=0.65)
-    ax.set_yticks(y)
-    ax.set_yticklabels([f"{task_label(t)}  (n={n[t]})" for t in order], fontsize=7.0)
-    ax.invert_yaxis()
-    ax.set_xlim(0, 78)
-    ax.set_xlabel("Pass rate (%) - mean across 11 Pi-harness models", fontsize=8)
-    ax.set_title("Pass rate by task type", loc="left", fontsize=9, fontproperties=SERIF_BOLD)
-    style_axis(ax)
-    for yi, val in zip(y, summary.values):
-        ax.text(
-            val + 1.4,
-            yi,
-            f"{val:.0f}%",
-            fontsize=6.4,
-            va="center",
-            ha="left",
-            color=TEXT,
-            fontproperties=MONO_BOLD,
-        )
+    ax.set_xlim(-0.55, len(models) - 0.45)
+    ax.set_ylim(len(order) - 0.5, -0.5)
+    ax.set_xticks(np.arange(len(models)))
+    ax.set_xticklabels([model_label(m) for m in models], rotation=34, ha="right", fontsize=6.2)
+    ax.set_yticks(np.arange(len(order)))
+    ax.set_yticklabels([f"{task_label(t)}  (n={int(counts.loc[t, 'n'])})" for t in order], fontsize=6.6)
+    ax.set_xlabel("Pi-harness model", fontsize=7.6)
+    ax.set_title("Pass rate by task type and model", loc="left", fontsize=9, fontproperties=SERIF_BOLD)
+    for spine in ax.spines.values():
+        spine.set_visible(False)
+    ax.tick_params(length=0)
+    ax.set_xticks(np.arange(-0.5, len(models), 1), minor=True)
+    ax.set_yticks(np.arange(-0.5, len(order), 1), minor=True)
+    ax.grid(which="minor", color=GRID, linewidth=0.35, alpha=0.65)
+    ax.tick_params(which="minor", bottom=False, left=False)
+    cbar = fig.colorbar(sc, ax=ax, fraction=0.024, pad=0.022)
+    cbar.set_label("Pass rate (%)", fontsize=7)
+    cbar.ax.tick_params(labelsize=6.2)
 
     save(fig, "fig2_by_task_type")
 
 
 def plot_failure_taxonomy() -> None:
+    raw = pd.read_csv(RESULTS / "results_table.csv")
+    raw["passed"] = raw["passed"].astype(bool)
+    model_results = pd.read_csv(RESULTS / "model_results.csv")
+    pi_accuracy = (
+        model_results[model_results["harness"] == "pi"]
+        .set_index("model_name")["Accuracy (%)"]
+        .to_dict()
+    )
+    failing_steps = (
+        raw[(raw["harness"] == "pi") & (~raw["passed"])]
+        .groupby("model_name")
+        .agg(mean_steps=("steps", "mean"), n_fail=("steps", "size"))
+        .reset_index()
+        .sort_values("mean_steps", ascending=True)
+    )
+
     scientific = [
         ("Method errors", 40, TEAL),
         ("Calibration", 31, ACCENT),
@@ -452,12 +490,18 @@ def plot_failure_taxonomy() -> None:
         ("Under-investment", 6, CREAM),
     ]
 
-    fig, (ax_a, ax_b) = plt.subplots(
-        1,
+    fig = plt.figure(figsize=(8.8, 4.85))
+    gs = fig.add_gridspec(
         2,
-        figsize=(8.8, 3.05),
-        gridspec_kw={"width_ratios": [1.0, 1.08], "wspace": 0.46},
+        2,
+        height_ratios=[1.0, 1.08],
+        width_ratios=[1.0, 1.08],
+        hspace=0.70,
+        wspace=0.46,
     )
+    ax_a = fig.add_subplot(gs[0, 0])
+    ax_b = fig.add_subplot(gs[0, 1])
+    ax_c = fig.add_subplot(gs[1, :])
 
     for ax, rows, title, xlabel in [
         (
@@ -476,8 +520,7 @@ def plot_failure_taxonomy() -> None:
         y = np.arange(len(rows))
         vals = [r[1] for r in rows]
         colors = [r[2] for r in rows]
-        edge_colors = ["#686056" if c == CREAM else "white" for c in colors]
-        ax.barh(y, vals, color=colors, edgecolor=edge_colors, linewidth=0.55, height=0.62)
+        ax.barh(y, vals, color=colors, edgecolor="none", linewidth=0, height=0.62)
         ax.set_yticks(y)
         ax.set_yticklabels([r[0] for r in rows], fontsize=7.0)
         ax.set_xlim(0, 75 if ax is ax_b else 45)
@@ -504,27 +547,46 @@ def plot_failure_taxonomy() -> None:
                 ha=ha,
                 fontsize=6.4,
                 color=color,
-                fontproperties=MONO_BOLD,
+                fontproperties=SERIF,
             )
 
-    ax_a.text(
-        0.02,
-        -0.24,
-        "Method + calibration = 71% of assignable scientific errors",
-        transform=ax_a.transAxes,
-        fontsize=6.7,
-        color=MUTED,
-        ha="left",
+    y = np.arange(len(failing_steps))
+    vals = failing_steps["mean_steps"].to_numpy()
+    colors = [
+        ACCENT if m == "grok-4.3" else TEAL if vals[i] >= 30 else GRAY
+        for i, m in enumerate(failing_steps["model_name"])
+    ]
+    ax_c.barh(y, vals, height=0.58, color=colors, edgecolor="none", linewidth=0)
+    ax_c.set_yticks(y)
+    ax_c.set_yticklabels([model_label(m) for m in failing_steps["model_name"]], fontsize=6.7)
+    ax_c.set_xlim(0, max(vals) + 8)
+    ax_c.set_xlabel("Mean steps among failing Pi trajectories", fontsize=7.8)
+    ax_c.set_title(
+        "C  Failing-trajectory effort by model",
+        loc="left",
+        fontsize=9.0,
+        fontproperties=SERIF_BOLD,
+        pad=7,
     )
-    ax_b.text(
-        0.02,
-        -0.24,
-        "Most failures occurred after data engagement and plausible analysis",
-        transform=ax_b.transAxes,
-        fontsize=6.7,
-        color=MUTED,
-        ha="left",
-    )
+    style_axis(ax_c)
+    ax_c.spines["left"].set_visible(False)
+    ax_c.tick_params(axis="y", length=0)
+    ax_c.invert_yaxis()
+    for yi, row in enumerate(failing_steps.itertuples(index=False)):
+        label = (
+            f"{row.mean_steps:.1f} steps, "
+            f"{pi_accuracy.get(row.model_name, float('nan')):.0f}% pass"
+        )
+        ax_c.text(
+            row.mean_steps + 0.8,
+            yi,
+            label,
+            va="center",
+            ha="left",
+            fontsize=6.2,
+            color=MUTED,
+            fontproperties=SERIF,
+        )
 
     save(fig, "fig3_failure_taxonomy_granular")
 
@@ -694,7 +756,6 @@ def plot_by_stage() -> None:
         .tolist()
     )
 
-    stage_rates = pi.groupby("tx_stage")["passed"].mean().mul(100).reindex(STAGE_ORDER)
     stage_counts = pi.groupby("tx_stage")["task_id"].nunique().reindex(STAGE_ORDER)
     mat = (
         pi.groupby(["model_name", "tx_stage"])["passed"]
@@ -704,23 +765,7 @@ def plot_by_stage() -> None:
         .reindex(index=models, columns=STAGE_ORDER)
     )
 
-    fig = plt.figure(figsize=(9.6, 3.35))
-    gs = fig.add_gridspec(1, 2, width_ratios=[0.86, 1.34], wspace=0.30)
-    ax_a = fig.add_subplot(gs[0, 0])
-    ax_b = fig.add_subplot(gs[0, 1])
-
-    y = np.arange(len(STAGE_ORDER))
-    colors = [ACCENT_LIGHT if v <= 33 else TEAL if v >= 49 else GRAY_DARK for v in stage_rates]
-    ax_a.barh(y, stage_rates.values, color=colors, edgecolor="#686056", linewidth=0.5, height=0.62)
-    ax_a.set_yticks(y)
-    ax_a.set_yticklabels([stage_label(s) for s in STAGE_ORDER], fontsize=6.7)
-    ax_a.invert_yaxis()
-    ax_a.set_xlim(0, 66)
-    ax_a.set_xlabel("Endpoint pass rate (%)", fontsize=8)
-    ax_a.set_title("A  Pass rate by program stage", loc="left", fontsize=9, fontproperties=SERIF_BOLD)
-    style_axis(ax_a)
-    for yi, stage, val in zip(y, STAGE_ORDER, stage_rates.values):
-        ax_a.text(val + 1.2, yi, f"{val:.0f}%  n={int(stage_counts[stage])}", va="center", fontsize=5.9, fontproperties=MONO_BOLD)
+    fig, ax_b = plt.subplots(figsize=(8.7, 3.35))
 
     x = np.arange(len(STAGE_ORDER))
     highlights = {
@@ -773,13 +818,17 @@ def plot_by_stage() -> None:
             color=color,
         )
 
-    ax_b.set_xlim(-0.25, len(STAGE_ORDER) + 1.18)
+    ax_b.set_xlim(-0.25, len(STAGE_ORDER) + 1.26)
     ax_b.set_ylim(0, 94)
     ax_b.set_xticks(x)
-    ax_b.set_xticklabels([s.split("_", 1)[0] for s in STAGE_ORDER], rotation=0, fontsize=6.8)
+    ax_b.set_xticklabels(
+        [stage_axis_label(s, int(stage_counts[s])) for s in STAGE_ORDER],
+        rotation=0,
+        fontsize=6.2,
+    )
     ax_b.set_xlabel("Program stage", fontsize=7.5)
     ax_b.set_ylabel("Endpoint pass rate (%)", fontsize=7.5)
-    ax_b.set_title("B  Stage profiles for Pi-harness models", loc="left", fontsize=9, fontproperties=SERIF_BOLD)
+    ax_b.set_title("Pass rate by program stage", loc="left", fontsize=9, fontproperties=SERIF_BOLD)
     style_axis(ax_b, xgrid=False, ygrid=True)
     ax_b.spines["left"].set_visible(False)
     ax_b.tick_params(axis="y", labelsize=6.6, length=0)
@@ -818,28 +867,20 @@ def plot_program_model_compare() -> None:
         ax_a.plot([o, p], [yi, yi], color=line_color, lw=1.25, alpha=0.9, zorder=1)
         ax_a.scatter(o, yi, s=25, color=GRAY_DARK, edgecolor="white", linewidth=0.45, zorder=3)
         ax_a.scatter(p, yi, s=30, color=line_color, edgecolor="white", linewidth=0.45, zorder=4)
-        if p >= 92:
-            label_x = p - 2.2
-            ha = "right"
-            label_color = WHITE
-        else:
-            label_x = p + 2.0
-            ha = "left"
-            label_color = line_color
         ax_a.text(
-            label_x,
+            106.0,
             yi,
             f"{p:.0f}%",
-            ha=ha,
+            ha="right",
             va="center",
             fontsize=5.8,
-            color=label_color,
-            fontproperties=MONO_BOLD,
+            color=line_color,
+            fontproperties=SERIF_BOLD,
         )
     ax_a.set_yticks(y)
     ax_a.set_yticklabels([model_label(m) for m in order], fontsize=6.6)
     ax_a.set_ylim(len(order) - 0.35, -0.65)
-    ax_a.set_xlim(0, 104)
+    ax_a.set_xlim(0, 110)
     ax_a.set_xlabel("Pass rate (%)", fontsize=8)
     ax_a.set_title("A  Overall vs. program decisions", loc="left", fontsize=9, fontproperties=SERIF_BOLD)
     style_axis(ax_a)
@@ -852,6 +893,16 @@ def plot_program_model_compare() -> None:
         color=MUTED,
         ha="left",
         va="top",
+    )
+    ax_a.text(
+        106.0,
+        -0.58,
+        "Program",
+        fontsize=5.8,
+        color=MUTED,
+        ha="right",
+        va="bottom",
+        fontproperties=SERIF_BOLD,
     )
     im = ax_b.imshow(mat.values, aspect="auto", cmap=HEATMAP, vmin=0, vmax=100)
     ax_b.set_yticks(np.arange(len(order)))
@@ -916,11 +967,11 @@ def plot_harness_impact() -> None:
             69.5,
             yi,
             f"+{pi - alt:.1f} pp",
-            fontsize=5.9,
+            fontsize=6.1,
             va="center",
             ha="left",
             color=ACCENT,
-            fontproperties=MONO_BOLD,
+            fontproperties=SERIF_BOLD,
         )
 
     ax.set_yticks(y)
@@ -928,7 +979,7 @@ def plot_harness_impact() -> None:
     ax.set_ylim(len(pair_rows) - 0.35, -0.65)
     ax.set_xlim(30, 75)
     ax.set_xlabel("Endpoint pass rate (%)", fontsize=8)
-    ax.set_title("Same model checkpoint, different harness", loc="left", fontsize=9, fontproperties=SERIF_BOLD)
+    ax.set_title("Score difference across harnesses", loc="left", fontsize=9, fontproperties=SERIF_BOLD)
     style_axis(ax)
     ax.text(
         69.5,
@@ -944,7 +995,7 @@ def plot_harness_impact() -> None:
         handles=[
             Line2D([0], [0], marker="o", color="none", markerfacecolor=ACCENT, markeredgecolor=ACCENT, markersize=6, label="Pi"),
             Line2D([0], [0], marker="s", color="none", markerfacecolor=TEAL, markeredgecolor=TEAL, markersize=6, label="Claude Code"),
-            Line2D([0], [0], marker="s", color="none", markerfacecolor=VIOLET, markeredgecolor=VIOLET, markersize=6, label="Codex"),
+            Line2D([0], [0], marker="D", color="none", markerfacecolor=VIOLET, markeredgecolor=VIOLET, markersize=5.5, label="Codex"),
         ],
         frameon=False,
         fontsize=6.3,
@@ -961,7 +1012,7 @@ def main() -> None:
     plot_model_performance()
     plot_failure_taxonomy()
     plot_by_stage()
-    plot_task_type_bar()
+    plot_task_type_by_model()
     plot_task_heatmap()
     plot_cost_frontier()
     plot_program_model_compare()

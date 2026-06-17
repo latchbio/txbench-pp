@@ -281,15 +281,6 @@ def draw_scope_panel(ax: plt.Axes) -> None:
                 ha="left",
             )
 
-    label(
-        ax,
-        left,
-        0.060,
-        "Current release: small-molecule preclinical pharmacology task groups. Future: other modalities and full program stories.",
-        size=5.2,
-        color=MUTED,
-    )
-
 
 def draw_passrate_panel(ax: plt.Axes, rows: list[dict[str, float | str]]) -> None:
     rows = sorted(rows, key=lambda r: float(r["acc"]), reverse=True)
@@ -441,7 +432,7 @@ def fig_inventory() -> None:
     assays = [
         ("Drug-response screens", 22, ACCENT),
         ("Image / histology / physiology", 17, VIOLET),
-        ("Protein / phospho readouts", 16, VIOLET),
+        ("Protein / PTM readouts", 16, VIOLET),
         ("Genetic perturbation", 12, TEAL),
         ("Target engagement / selectivity", 11, GOLD),
         ("Single-cell / molecular state", 8, TEAL),
