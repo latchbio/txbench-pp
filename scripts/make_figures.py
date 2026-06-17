@@ -95,7 +95,11 @@ plt.rcParams.update(
 def save(fig: plt.Figure, stem: str) -> None:
     FIGURES.mkdir(parents=True, exist_ok=True)
     for ext in ("pdf", "png", "svg"):
-        fig.savefig(FIGURES / f"{stem}.{ext}", dpi=520, bbox_inches="tight")
+        path = FIGURES / f"{stem}.{ext}"
+        fig.savefig(path, dpi=520, bbox_inches="tight")
+        if ext == "svg":
+            text = path.read_text()
+            path.write_text("\n".join(line.rstrip() for line in text.splitlines()) + "\n")
     plt.close(fig)
     print(f"saved {stem}")
 
@@ -277,15 +281,6 @@ def draw_scope_panel(ax: plt.Axes) -> None:
                 ha="left",
             )
 
-    label(
-        ax,
-        left,
-        0.060,
-        "Current release: small-molecule preclinical pharmacology task groups. Future: other modalities and full program stories.",
-        size=5.2,
-        color=MUTED,
-    )
-
 
 def draw_passrate_panel(ax: plt.Axes, rows: list[dict[str, float | str]]) -> None:
     rows = sorted(rows, key=lambda r: float(r["acc"]), reverse=True)
@@ -335,7 +330,7 @@ def draw_pareto_panel(ax: plt.Axes, rows: list[dict[str, float | str]]) -> None:
         ax.scatter(
             [float(r["cost"]) for r in subset],
             [float(r["acc"]) for r in subset],
-            s=19,
+            s=18,
             color=color,
             edgecolor=WHITE,
             linewidth=0.45,
@@ -354,33 +349,33 @@ def draw_pareto_panel(ax: plt.Axes, rows: list[dict[str, float | str]]) -> None:
         zorder=2,
     )
     labels = {
-        ("grok-4.3", "pi"): ((9, -10), "Grok 4.3", "left"),
-        ("grok-4.20-0309-reasoning", "pi"): ((8, -7), "Grok 4.20", "left"),
-        ("kimi-k2p6", "pi"): ((8, -12), "Kimi K2P6", "left"),
-        ("claude-sonnet-4-6", "pi"): ((-10, -13), "Sonnet 4.6", "right"),
-        ("gemini-3.1-pro-preview", "pi"): ((-14, 7), "Gemini 3.1", "right"),
-        ("claude-opus-4-6", "pi"): ((-17, 16), "Opus 4.6", "right"),
-        ("claude-opus-4-6", "claude-code"): ((18, -15), "Opus 4.6", "left"),
-        ("gpt-5.4", "pi"): ((-4, 17), "GPT-5.4", "right"),
-        ("gpt-5.4", "openai-codex"): ((18, -10), "GPT-5.4", "left"),
-        ("claude-opus-4-7", "pi"): ((20, 5), "Opus 4.7", "left"),
-        ("gpt-5.5", "openai-codex"): ((18, -3), "GPT-5.5", "left"),
-        ("claude-opus-4-7", "claude-code"): ((19, -13), "Opus 4.7", "left"),
-        ("gemini-3.5-flash", "pi"): ((18, -7), "Gemini 3.5", "left"),
-        ("gpt-5.5", "pi"): ((14, 8), "GPT-5.5", "left"),
-        ("claude-opus-4-8", "pi"): ((9, 11), "Opus 4.8", "left"),
-        ("claude-opus-4-8", "claude-code"): ((-18, -9), "Opus 4.8", "right"),
+        ("grok-4.3", "pi"): (0.145, 16.1, "Grok 4.3", "left"),
+        ("grok-4.20-0309-reasoning", "pi"): (0.245, 21.7, "Grok 4.20", "left"),
+        ("kimi-k2p6", "pi"): (0.555, 27.8, "Kimi K2P6", "left"),
+        ("claude-sonnet-4-6", "pi"): (0.435, 34.1, "Sonnet 4.6", "right"),
+        ("gemini-3.1-pro-preview", "pi"): (0.445, 40.6, "Gemini 3.1", "right"),
+        ("claude-opus-4-6", "pi"): (0.610, 46.4, "Opus 4.6", "right"),
+        ("claude-opus-4-6", "claude-code"): (0.860, 39.6, "Opus 4.6", "left"),
+        ("gpt-5.4", "pi"): (0.720, 52.5, "GPT-5.4", "right"),
+        ("gpt-5.4", "openai-codex"): (0.900, 45.0, "GPT-5.4", "left"),
+        ("claude-opus-4-7", "pi"): (1.045, 53.3, "Opus 4.7", "left"),
+        ("gpt-5.5", "openai-codex"): (1.130, 47.9, "GPT-5.5", "left"),
+        ("claude-opus-4-7", "claude-code"): (1.215, 43.1, "Opus 4.7", "left"),
+        ("gemini-3.5-flash", "pi"): (1.355, 50.2, "Gemini 3.5", "left"),
+        ("gpt-5.5", "pi"): (0.970, 57.1, "GPT-5.5", "right"),
+        ("claude-opus-4-8", "pi"): (1.650, 61.4, "Opus 4.8", "left"),
+        ("claude-opus-4-8", "claude-code"): (1.710, 52.7, "Opus 4.8", "right"),
     }
     for row in rows:
         key = (str(row["model"]), str(row["harness"]))
         if key not in labels:
             continue
-        offset, txt, ha = labels[key]
+        text_x, text_y, txt, ha = labels[key]
         ax.annotate(
             txt,
             xy=(float(row["cost"]), float(row["acc"])),
-            xytext=offset,
-            textcoords="offset points",
+            xytext=(text_x, text_y),
+            textcoords="data",
             fontsize=3.75,
             color=TEXT,
             fontproperties=SERIF,
@@ -391,14 +386,14 @@ def draw_pareto_panel(ax: plt.Axes, rows: list[dict[str, float | str]]) -> None:
                 "color": MUTED,
                 "lw": 0.35,
                 "alpha": 0.72,
-                "shrinkA": 1.0,
-                "shrinkB": 2.0,
+                "shrinkA": 1.4,
+                "shrinkB": 2.4,
             },
             zorder=4,
         )
 
-    ax.set_xlim(-0.04, 2.14)
-    ax.set_ylim(13, 69)
+    ax.set_xlim(-0.04, 2.12)
+    ax.set_ylim(12, 65)
     ax.set_xlabel("Mean cost per task ($)", fontsize=6.1, labelpad=2)
     ax.set_ylabel("Endpoint pass rate (%)", fontsize=6.1, labelpad=2)
     ax.set_title("C  Cost-performance frontier", loc="left", fontsize=8.5, fontproperties=SERIF_BOLD, pad=6)
@@ -414,8 +409,8 @@ def draw_pareto_panel(ax: plt.Axes, rows: list[dict[str, float | str]]) -> None:
 
 def fig_pipeline() -> None:
     rows = load_model_results()
-    fig = plt.figure(figsize=(7.45, 6.55))
-    gs = fig.add_gridspec(2, 2, height_ratios=[1.24, 1.0], width_ratios=[1.12, 1.0], hspace=0.32, wspace=0.36)
+    fig = plt.figure(figsize=(7.45, 6.6))
+    gs = fig.add_gridspec(2, 2, height_ratios=[1.08, 1.15], width_ratios=[1.04, 1.14], hspace=0.22, wspace=0.32)
     draw_scope_panel(fig.add_subplot(gs[0, :]))
     draw_passrate_panel(fig.add_subplot(gs[1, 0]), rows)
     draw_pareto_panel(fig.add_subplot(gs[1, 1]), rows)
@@ -437,7 +432,7 @@ def fig_inventory() -> None:
     assays = [
         ("Drug-response screens", 22, ACCENT),
         ("Image / histology / physiology", 17, VIOLET),
-        ("Protein / phospho readouts", 16, VIOLET),
+        ("Protein / PTM readouts", 16, VIOLET),
         ("Genetic perturbation", 12, TEAL),
         ("Target engagement / selectivity", 11, GOLD),
         ("Single-cell / molecular state", 8, TEAL),
@@ -613,22 +608,20 @@ def fig_cases() -> None:
 
 
 def fig_program_decisions() -> None:
-    """Three multi-evidence advancement decisions: one success, two failures."""
+    """Multi-evidence advancement decisions spanning success and failure patterns."""
     TEAL_DARK = "#19736A"
     cards = [
         {
             "tag": "CORRECT",
             "tag_color": TEAL,
-            "head": "Advance one compound, or none",
-            "body": "Colorectal-cancer organoid program. Inputs: primary screen, "
-            "mechanism image, tox counterscreen, DMPK exposure. Advance a compound "
-            "only if the desired mechanism, an adequate safety margin, and covering "
-            "exposure all hold.",
-            "good": "Advance CMP-05, the one compound that satisfies all three "
-            "criteria together.",
+            "head": "Clean go/no-go",
+            "body": "Organoid program with primary screen, mechanism image, tox "
+            "counterscreen, and DMPK exposure for eight blinded compounds.",
+            "good": "Advance the one compound with the desired cytostatic mechanism, "
+            "safety margin, and exposure coverage.",
             "bad_head": "Mostly correct  (82% pass)",
-            "bad": "The tempting shortcut, ranking by potency or by total exposure, "
-            "advances the wrong compound.",
+            "bad": "Potency-only or exposure-only ranking advances the wrong "
+            "compound.",
             "bad_fc": "#EEF3F1",
             "bad_ec": "#C9DDD9",
             "bad_color": TEAL_DARK,
@@ -636,54 +629,67 @@ def fig_program_decisions() -> None:
         {
             "tag": "WRONG SYNTHESIS",
             "tag_color": GOLD,
-            "head": "Pick the next decision-gate models",
-            "body": "NSCLC mTOR + WEE1 combination. The gate set must span models "
-            "with confirmed multi-endpoint support, the strongest responder still "
-            "lacking confirmation, and the strongest responder outside the primary "
-            "genotype.",
-            "good": "Build the gate on convergent multi-endpoint support "
-            "(e.g. PDX239 for the unconfirmed slot).",
+            "head": "Wrong synthesis",
+            "body": "Decision-gate set must combine experimental models with "
+            "convergent support across several endpoints.",
+            "good": "Select the experimental models supported by multi-endpoint "
+            "evidence.",
             "bad_head": "Common failure  (27% pass)",
-            "bad": "Rank on a single synergy metric and nominate an artifact model "
-            "(H2009), so the wrong models gate the program.",
+            "bad": "Overfit on one endpoint and nominate the wrong models for the "
+            "next experiments.",
             "bad_fc": "#F5E9E4",
             "bad_ec": "#E7C8B9",
             "bad_color": ACCENT,
         },
         {
             "tag": "FALSE-GO",
-            "tag_color": RED,
-            "head": "Advance only if safe and active",
-            "body": "Blinded intestinal multiplex-IF package. A candidate may advance "
-            "only with paired evidence of activity and healthy-tissue sparing.",
+            "tag_color": ACCENT_LIGHT,
+            "head": "False-go",
+            "body": "Safety advancement task; a candidate may advance only with "
+            "activity and healthy-tissue sparing.",
             "good": "No candidate advances; the paired activity-and-safety evidence "
             "fails for every candidate.",
             "bad_head": "Common failure  (36% pass)",
-            "bad": "Advance on activity alone or a relative tumour-vs-healthy index, "
+            "bad": "Advance on activity alone or a relative tumor-vs-healthy index, "
             "pushing an unsafe candidate forward.",
+            "bad_fc": "#F5E9E4",
+            "bad_ec": "#E7C8B9",
+            "bad_color": ACCENT,
+        },
+        {
+            "tag": "FALSE NO-GO",
+            "tag_color": VIOLET,
+            "head": "False no-go",
+            "body": "Long-term combination follow-up; colony-stain reduction must "
+            "be read with short-term response.",
+            "good": "Keep the model where the combination remains supported by "
+            "both short- and long-term evidence.",
+            "bad_head": "Common failure  (48% pass)",
+            "bad": "Treat a strong colony-stain reduction as a reason to drop a "
+            "still-supported model.",
             "bad_fc": "#F5E9E4",
             "bad_ec": "#E7C8B9",
             "bad_color": ACCENT,
         },
     ]
 
-    fig, ax = plt.subplots(figsize=(7.3, 4.45))
+    fig, ax = plt.subplots(figsize=(7.3, 5.35))
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.axis("off")
-    label(ax, 0.04, 0.958, "Program decisions integrate several assay readouts into one go/no-go", size=9.8, bold=True)
+    label(ax, 0.04, 0.958, "Program decisions combine assay readouts into one advance/hold call", size=9.8, bold=True)
     label(
         ax,
         0.04,
         0.912,
-        "Across 7 such advancement evaluations (230 runs) models pass only 35%; the same call can fail by advancing too much or too little.",
+        "Across 7 advancement evaluations (230 runs), models pass only 35%; errors either advance weak candidates or discard supported ones.",
         size=6.3,
         color=MUTED,
     )
 
-    top0 = 0.848
-    row_h = 0.232
-    gap = 0.018
+    top0 = 0.858
+    row_h = 0.185
+    gap = 0.016
     for i, c in enumerate(cards):
         top = top0 - i * (row_h + gap)
         bot = top - row_h
@@ -693,18 +699,18 @@ def fig_program_decisions() -> None:
         ax.text(0.053, bot + row_h / 2, c["tag"], fontsize=5.0, color=WHITE,
                 fontproperties=MONO_BOLD, ha="center", va="center", rotation=90)
         # column A: context
-        label(ax, 0.085, top - 0.037, c["head"], size=7.0, bold=True)
-        label(ax, 0.085, top - 0.121, wrap(c["body"], 52), size=5.25, color=TEXT)
+        label(ax, 0.085, top - 0.031, c["head"], size=6.6, bold=True)
+        label(ax, 0.085, top - 0.101, wrap(c["body"], 52), size=4.8, color=TEXT)
         # column B: supported call
         gx, gw = 0.470, 0.235
         rounded_box(ax, (gx, bot + 0.026), gw, row_h - 0.052, fc="#EEF3F1", ec="#C9DDD9", lw=0.6, radius=0.016)
-        label(ax, gx + 0.014, top - 0.049, "DATA-SUPPORTED CALL", size=4.75, bold=True, mono=True, color=TEAL_DARK)
-        label(ax, gx + 0.014, top - 0.107, wrap(c["good"], 30), size=5.25, color=TEXT)
+        label(ax, gx + 0.014, top - 0.041, "DATA-SUPPORTED CALL", size=4.45, bold=True, mono=True, color=TEAL_DARK)
+        label(ax, gx + 0.014, top - 0.093, wrap(c["good"], 30), size=4.75, color=TEXT)
         # column C: common failure + consequence
         bx, bw = 0.715, 0.235
         rounded_box(ax, (bx, bot + 0.026), bw, row_h - 0.052, fc=c["bad_fc"], ec=c["bad_ec"], lw=0.6, radius=0.016)
-        label(ax, bx + 0.014, top - 0.049, c["bad_head"].upper(), size=4.75, bold=True, mono=True, color=c["bad_color"])
-        label(ax, bx + 0.014, top - 0.107, wrap(c["bad"], 30), size=5.25, color=TEXT)
+        label(ax, bx + 0.014, top - 0.041, c["bad_head"].upper(), size=4.45, bold=True, mono=True, color=c["bad_color"])
+        label(ax, bx + 0.014, top - 0.093, wrap(c["bad"], 30), size=4.75, color=TEXT)
 
     save(fig, "fig_program_decisions")
 
